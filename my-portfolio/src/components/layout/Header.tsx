@@ -72,7 +72,7 @@ export default function Header() {
                     alt="Win Thant Tin Han"
 					fill
                     className="object-cover"
-                    sizes="36px"
+                    sizes="100px"
                   />
                 </div>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-rose-400/20 to-fuchsia-600/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
