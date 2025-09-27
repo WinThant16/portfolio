@@ -66,19 +66,19 @@ export default function Header() {
           >
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-cyan-400/25 group-hover:shadow-xl">
+                <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-rose-400/25 group-hover:shadow-xl">
                   <Image
-                    src="/avatar.jpg"                // <-- your local avatar
+                    src="/avatar.JPEG"                // <-- your local avatar
                     alt="Win Thant Tin Han"
-                    fill
+					fill
                     className="object-cover"
                     sizes="36px"
                   />
                 </div>
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-rose-400/20 to-fuchsia-600/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
               <div className="hidden sm:block">
-                <span className="transition-colors duration-300 font-semibold text-white group-hover:text-cyan-300">
+                <span className="transition-colors duration-300 font-semibold text-white group-hover:text-rose-300">
                   Win Thant Tin Han
                 </span>
                 <div className="font-mono text-xs text-gray-400">
@@ -100,13 +100,13 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={`group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                    isActive(item.href) ? "text-cyan-300" : "text-gray-300 hover:text-white"
+                    isActive(item.href) ? "text-rose-300" : "text-gray-300 hover:text-white"
                   }`}
                 >
                   {item.label}
                   {isActive(item.href) && (
                     <motion.div
-                      className="absolute inset-0 rounded-lg border border-cyan-400/20 bg-cyan-400/10"
+                      className="absolute inset-0 rounded-lg border border-rose-400/20 bg-rose-400/10"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -128,7 +128,7 @@ export default function Header() {
           >
             <Button
               size="sm"
-              className="border-0 bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-lg transition-all duration-300 hover:from-cyan-300 hover:to-blue-400 hover:shadow-cyan-400/25"
+              className="h-9 px-4 rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
               asChild
             >
               <Link href="/resume">
@@ -154,7 +154,7 @@ export default function Header() {
               <div className="border-b border-white/10 p-6">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
                   <div className="relative h-10 w-10 overflow-hidden rounded-xl">
-                    <Image src="/avatar.jpg" alt="Win Thant Tin Han" fill className="object-cover" sizes="40px" />
+                    <Image src="/avatar.JPEG" alt="Win Thant Tin Han" fill className="object-cover" sizes="40px" />
                   </div>
                   <div>
                     <div className="font-semibold text-white">Win Thant Tin Han</div>
@@ -177,7 +177,7 @@ export default function Header() {
                       onClick={() => setIsOpen(false)}
                       className={`relative flex items-center rounded-xl border p-4 font-medium transition-all duration-500 ${
                         isActive(item.href)
-                          ? "border-cyan-400/30 bg-gradient-to-r from-cyan-400/15 to-blue-500/10 text-cyan-300 shadow-lg shadow-cyan-400/10"
+                          ? "border-rose-400/30 bg-gradient-to-r from-rose-400/15 to-fuchsia-600/10 text-rose-300 shadow-lg shadow-rose-400/10"
                           : "border-transparent text-gray-300 hover:border-white/20 hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 hover:text-white"
                       }`}
                     >
@@ -192,7 +192,7 @@ export default function Header() {
               {/* Mobile footer CTA */}
               <div className="border-t border-white/10 p-6">
                 <Button
-                  className="w-full border-0 bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-300 hover:to-blue-400"
+                  className="w-full border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white hover:from-rose-300 hover:to-fuchsia-600"
                   asChild
                 >
                   <Link href="/resume">
