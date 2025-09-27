@@ -128,7 +128,7 @@ export default function Header() {
           >
             <Button
               size="sm"
-              className="h-9 px-4 rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
+              className="h-9 px-4 py-0 leading-none rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
               asChild
             >
               <Link href="/resume">
