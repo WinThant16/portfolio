@@ -3,11 +3,15 @@
 // src/app/page.tsx
 export default function Home() {
   return (
-    <main className="min-h-screen grid place-items-center">
-      <h1 className="text-4xl font-bold">Hello 👋</h1>
+    <main className="container-max py-24 text-center">
+      <h1 className="text-4xl font-bold">Hello...</h1>
+      <p className="mt-4 text-foreground/70">
+        Welcome to my new portfolio. More sections coming soon.
+      </p>
     </main>
   );
 }
+
 
 
 

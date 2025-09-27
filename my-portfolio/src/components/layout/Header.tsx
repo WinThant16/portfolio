@@ -1,21 +1,210 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const { scrollY } = useScroll();
+
+  // NOTE: this intentionally matches the reference (a dark glass header).
+  // We can re-theme later if you want it neutral in light mode.
+  const headerBackground = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(16, 20, 24, 0.80)", "rgba(16, 20, 24, 0.95)"]
+  );
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   return (
-    <header className="sticky top-0 z-40 bg-background/70 backdrop-blur">
-      <div className="mx-auto max-w-5xl px-6 py-3 flex items-center justify-between">
-        <Link href="/" className="font-semibold">Win</Link>
-        <nav className="hidden sm:flex gap-6 text-sm">
-          <Link href="/projects">Projects</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
-          <Link href="/resume">Resume</Link>
-        </nav>
-        <ThemeToggle />
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "backdrop-blur-xl border-b border-white/10 shadow-2xl"
+          : "backdrop-blur-sm border-b border-white/5"
+      }`}
+      style={{ backgroundColor: headerBackground }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="container-max">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo / Name */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-cyan-400/25 group-hover:shadow-xl">
+                  <Image
+                    src="/avatar.jpg"                // <-- your local avatar
+                    alt="Win Thant Tin Han"
+                    fill
+                    className="object-cover"
+                    sizes="36px"
+                  />
+                </div>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+              <div className="hidden sm:block">
+                <span className="transition-colors duration-300 font-semibold text-white group-hover:text-cyan-300">
+                  Win Thant Tin Han
+                </span>
+                <div className="font-mono text-xs text-gray-400">
+                  MSCS @ USC | AI/ML Enthusiast
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {navItems.map((item, i) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+              >
+                <Link
+                  href={item.href}
+                  className={`group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                    isActive(item.href) ? "text-cyan-300" : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                  {isActive(item.href) && (
+                    <motion.div
+                      className="absolute inset-0 rounded-lg border border-cyan-400/20 bg-cyan-400/10"
+                      layoutId="activeNav"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <div className="absolute inset-0 rounded-lg bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </Link>
+              </motion.div>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <motion.div
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button
+              size="sm"
+              className="border-0 bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-lg transition-all duration-300 hover:from-cyan-300 hover:to-blue-400 hover:shadow-cyan-400/25"
+              asChild
+            >
+              <Link href="/resume">
+                Resume
+                <ArrowRight className="ml-2 h-3 w-3" />
+              </Link>
+            </Button>
+          </motion.div>
+
+          {/* Mobile menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="sm" className="text-gray-300 hover:bg-white/10 hover:text-white">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-full max-w-sm border-l border-white/10 bg-gray-900/95 backdrop-blur-xl"
+            >
+              {/* Mobile header */}
+              <div className="border-b border-white/10 p-6">
+                <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+                  <div className="relative h-10 w-10 overflow-hidden rounded-xl">
+                    <Image src="/avatar.jpg" alt="Win Thant Tin Han" fill className="object-cover" sizes="40px" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">Win Thant Tin Han</div>
+                    <div className="font-mono text-xs text-gray-400">MSCS @ USC | AI/ML Enthusiast</div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Mobile nav */}
+              <nav className="flex-1 space-y-2 p-6">
+                {navItems.map((item, idx) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`relative flex items-center rounded-xl border p-4 font-medium transition-all duration-500 ${
+                        isActive(item.href)
+                          ? "border-cyan-400/30 bg-gradient-to-r from-cyan-400/15 to-blue-500/10 text-cyan-300 shadow-lg shadow-cyan-400/10"
+                          : "border-transparent text-gray-300 hover:border-white/20 hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 hover:text-white"
+                      }`}
+                    >
+                      {/* shimmer */}
+                      <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
+                      <span className="relative z-10">{item.label}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              {/* Mobile footer CTA */}
+              <div className="border-t border-white/10 p-6">
+                <Button
+                  className="w-full border-0 bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-300 hover:to-blue-400"
+                  asChild
+                >
+                  <Link href="/resume">
+                    View Resume
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
