@@ -1,16 +1,17 @@
 // import Image from "next/image";
 
 // src/app/page.tsx
+import { HeroSection } from "@/components/sections/hero";
+import { TechStrip } from "@/components/sections/tech-strip";
+
 export default function Home() {
   return (
-    <main className="container-max py-24 text-center">
-      <h1 className="text-4xl font-bold">Hello...</h1>
-      <p className="mt-4 text-foreground/70">
-        Welcome to my new portfolio. More sections coming soon.
-      </p>
+    <main className="min-h-screen">
+      <HeroSection />
+      <TechStrip />
     </main>
   );
-}
+} 
 
 
 
