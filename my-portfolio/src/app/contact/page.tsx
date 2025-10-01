@@ -60,9 +60,11 @@ export default function ContactPage() {
       setFromEmail('');
       setSubject('');
       setMessage('');
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error ? err.message : 'Something went wrong.';
       setSubmitted('error');
-      setErrorMsg(err?.message || 'Something went wrong.');
+      setErrorMsg(msg);
     } finally {
       setIsSubmitting(false);
     }
