@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const EMAIL = 'winthant@usc.edu';
 const LINKEDIN = 'https://www.linkedin.com/in/win-thant-tin-han';
@@ -20,6 +20,11 @@ export default function ContactPage() {
   const [message, setMessage] = useState('');
   // honeypot (should stay empty — bots often fill every field)
   const [website, setWebsite] = useState('');
+  const [startedAt, setStartedAt] = useState<number>(Date.now());
+
+  useEffect(() => {
+    setStartedAt(Date.now());         //reset when page mounts
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<null | 'ok' | 'error'>(null);
@@ -47,6 +52,8 @@ export default function ContactPage() {
           email: fromEmail,
           subject,
           message,
+          website,            //send honeypot
+          startedAt,        //send timestamp for spam detection
         }),
       });
 

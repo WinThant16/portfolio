@@ -36,6 +36,7 @@ export function HeroSection() {
               alt="Win Thant Tin Han"
               fill
               priority
+              unoptimized
               className="object-cover object-center"
               sizes="(min-width: 1024px) 720px, 100vw"
             />
