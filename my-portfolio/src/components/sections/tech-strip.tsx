@@ -17,37 +17,37 @@ const items = [
   title: "Languages",
   desc: "C · C++ · Python · JavaScript",
   icon: Code,
-  tone: "from-rose-500/15 to-fuchsia-500/15 border-rose-500/20",
+  tone: "from-rose-500/25 to-fuchsia-500/25 border-rose-500/30",
  },
   {
     title: "Web Stack",
     desc: "Next.js · Node.js · React · TypeScript · Tailwind · HTML/CSS · shadcn/ui",
     icon: Code2,
-    tone: "from-purple-500/15  to-indigo-500/15  border-purple-500/20",
+    tone: "from-purple-500/25  to-indigo-500/25  border-purple-500/30",
   },
   {
     title: "Databases",
     desc: "Postgres · MySQL · MongoDB · NoSQL · SQLite",
     icon: Database,
-    tone: "from-indigo-500/15 to-blue-500/15 border-indigo-500/20",
+    tone: "from-indigo-500/25 to-blue-500/25 border-indigo-500/30",
   },
   {
     title: "Infra & deploy",
     desc: "Vercel · GitHub Actions",
     icon: Cloud,
-    tone: "from-blue-500/15 to-sky-500/15 border-blue-500/20",
+    tone: "from-blue-500/25 to-sky-500/25 border-blue-500/30",
   },
   {
     title: "Data & ML Tools",
     desc: "Apache Spark · PySpark · Pandas · Scikit-learn · TensorFlow · PyTorch",
     icon: Boxes,
-    tone: "from-sky-500/15 to-cyan-500/15 border-sky-500/20",
+    tone: "from-sky-500/25 to-cyan-500/25 border-sky-500/30",
   },
   {
     title: "Data Visualization",
     desc: "Seaborn · Matplotlib · Plotly · Tableau ",
     icon: ShieldCheck,
-    tone: "from-cyan-500/15 to-teal-500/15 border-cyan-500/20",
+    tone: "from-cyan-500/25 to-teal-500/25 border-cyan-500/30",
   },
   
 ];

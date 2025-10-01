@@ -96,13 +96,13 @@ export default function ContactPage() {
         {/* Grid */}
         <div className="mt-10 grid gap-8 lg:grid-cols-12">
           {/* Left: quick ways to reach me */}
-          <Card className="lg:col-span-5 p-6 space-y-4 border-white/10 bg-white/[0.04]">
+          <Card className="lg:col-span-5 p-6 space-y-10 border-white/10 bg-slate-950/90">
             <div className="space-y-2">
               <div className="font-semibold">Reach me directly</div>
-              <p className="text-sm text-white/70">Prefer not to use a form? Use any of these:</p>
+              <p className="text-sm text-white/90">Prefer not to use a form? Use any of these:</p>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-5">
               <Button asChild variant="outline" className="justify-start rounded-full">
                 <a href={`mailto:${EMAIL}`}>
                   <Mail className="mr-2 h-4 w-4" />
@@ -124,14 +124,10 @@ export default function ContactPage() {
                 </Link>
               </Button>
             </div>
-
-            <div className="pt-4 text-xs text-white/60">
-              This form sends email via a serverless route using Resend. You can reply directly to the sender.
-            </div>
           </Card>
 
           {/* Right: the real form (calls /api/contact) */}
-          <Card className="lg:col-span-7 p-6 border-white/10 bg-white/[0.04]">
+          <Card className="lg:col-span-7 p-6 border-white/10 bg-slate-950/90">
             <form className="space-y-5" onSubmit={handleSubmit} noValidate>
               {/* success / error banners */}
               {submitted === 'ok' && (

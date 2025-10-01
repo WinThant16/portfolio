@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -60,7 +61,7 @@ export function HeroSection() {
             </Badge>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 bg-zinc-950/60">
             <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
               Hi, I&apos;m Win.
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
@@ -83,9 +84,9 @@ export function HeroSection() {
               asChild
               className="rounded-full leading-none text-center items-center justify-center bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg hover:from-rose-300 hover:to-fuchsia-600"
             >
-              <a href="/resume">
+              <Link href="/resume">
                 View Resume <ArrowRight className="ml-1 h-3 w-3" />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="rounded-full">
               <a href="/contact">Get in Touch</a>

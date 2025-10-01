@@ -64,7 +64,7 @@ export default function Header() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-5 group">
               <div className="relative">
                 <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-rose-400/25 group-hover:shadow-xl">
                   <Image
@@ -99,7 +99,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  className={`group relative rounded-lg px-4 py-2 text-sm leading-none font-medium transition-all duration-300 ${
                     isActive(item.href) ? "text-rose-300" : "text-gray-300 hover:text-white"
                   }`}
                 >
@@ -127,13 +127,12 @@ export default function Header() {
             whileTap={{ scale: 0.95 }}
           >
             <Button
-              size="sm"
-              className="h-8 px-4 py-0  leading-none rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
+              size="lg"
               asChild
+              className="leading-none text-center items-center justify-center bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg hover:from-rose-300 hover:to-fuchsia-600"
             >
               <Link href="/resume">
-              Resume
-              <ArrowRight className="ml-2 h-3 w-3" />
+                Resume <ArrowRight className="ml-1 h-3 w-3" />
               </Link>
             </Button>
           </motion.div>
