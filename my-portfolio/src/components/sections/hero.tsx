@@ -61,7 +61,7 @@ export function HeroSection() {
 
           <div className="space-y-6">
             <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
-              Hi, I’m Win.
+              Hi, I&apos;m Win.
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
                 Exploring Software Engineering & AI/ML Research
               </span>

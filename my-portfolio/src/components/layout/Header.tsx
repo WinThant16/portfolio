@@ -128,12 +128,12 @@ export default function Header() {
           >
             <Button
               size="sm"
-              className="h-9 px-4 py-0 leading-none rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
+              className="h-8 px-4 py-0  leading-none rounded-full inline-flex items-center justify-center border-0 bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg transition-all duration-300 hover:from-rose-300 hover:to-fuchsia-600 hover:shadow-rose-400/25"
               asChild
             >
-              <Link href="/resume" className="flex items-center justify-center gap-2">
-                <span className="flex items-center">Resume</span>
-                <ArrowRight className="h-4 w-4" />
+              <Link href="/resume">
+              Resume
+              <ArrowRight className="ml-2 h-3 w-3" />
               </Link>
             </Button>
           </motion.div>

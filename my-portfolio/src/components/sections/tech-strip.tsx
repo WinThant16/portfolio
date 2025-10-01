@@ -67,7 +67,7 @@ export function TechStrip() {
             Tools I <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">reach for</span>
           </h2>
           <p className="mt-2 text-sm text-white/70">
-            The tools I’m currently learning and using in coursework and personal projects.
+            The tools I&apos;m currently learning and using in coursework and personal projects.
           </p>
         </motion.div>
 
