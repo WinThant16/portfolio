@@ -84,8 +84,11 @@ export default function AboutPage() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg">
-                    <Link href="/contact">Let&apos;s work together</Link>
+                  <Button variant="outline" asChild size="lg">
+                    <Link href="/contact">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Let&apos;s work together
+                    </Link>
                   </Button>
                   <Button variant="outline" size="lg" asChild>
                     <Link href="/resume">
