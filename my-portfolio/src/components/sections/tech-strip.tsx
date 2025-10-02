@@ -18,6 +18,7 @@ type ColumnSpec = {
 /** Small helper so TS doesn't mark arrays as readonly and trip you up later. */
 const A = (arr: IconItem[]): IconItem[] => arr;
 
+const ICON_HOVER_SPRING = { type: "spring" as const, stiffness: 420, damping: 22, mass: 0.3 };
 /* --------------------------------- Data ---------------------------------- */
 /** 6 columns – make sure the filenames match what’s in /public/stack */
 const COLUMNS: ColumnSpec[] = [
@@ -138,19 +139,37 @@ function ColumnCard({
           key={idx} // triggers slide animation
           initial={{ x: 0, opacity: 1 }}
           animate={{ x: '-100%', opacity: 0 }} // slide left
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 grid place-items-center"
+          transition={{ duration: 0.45 }}
+          className="absolute inset-0 grid place-items-center transform-gpu will-change-transform"
         > 
-          <div className="flex flex-col items-center justify-center gap-2">
+          {/* CURRENT slide content */}
+          <motion.div
+            whileHover={{ scale: 1.06, y: -2, rotate: 1 }}
+            whileTap={{ scale: 0.98 }}
+            transition={ICON_HOVER_SPRING}
+            className="group/icon relative flex flex-col items-center justify-center gap-2 transform-gpu will-change-transform"
+          >
+
+            {/* glow */}
+            <span
+              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover/icon:opacity-100 blur-md
+                        bg-black/10 transition-opacity duration-300"
+              aria-hidden
+            />
             <Image
               src={current.src}
               alt={current.label}
               width={42}
               height={42}
-              className="block size-10 sm:size-11 md:size-12 object-contain"
+              className="block size-12 sm:size-13 md:size-14 object-contain drop-shadow-[0_4px_16px_rgba(255,255,255,0.12)]
+                        group-hover/icon:drop-shadow-[0_6px_22px_rgba(0,0,0,0.24)] transition-[filter] duration-300"
             />
-          </div>
-          <div className="text-base text-center font-medium leading-none">{current.label}</div>
+            <div className="text-base text-center font-medium leading-none transition-colors duration-300
+                            text-white/90 group-hover/icon:text-white">
+              {current.label}
+            </div>
+          </motion.div>
+
         </motion.div>
 
         <motion.div
@@ -158,16 +177,35 @@ function ColumnCard({
           initial={{ x: '100%', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }} // slide next in
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 grid place-items-center"
+          className="absolute inset-0 grid place-items-center transform-gpu will-change-transform"
         >
-          <Image
-            src={upcoming.src}
-            alt={upcoming.label}
-            width={42}
-            height={42}
-            className="block size-10 sm:size-11 md:size-12 object-contain"
-          />
-          <div className="text-base text-center font-medium leading-none">{upcoming.label}</div>
+          {/* NEXT slide content */}
+          <motion.div
+            whileHover={{ scale: 1.06, y: -2, rotate: 1 }}
+            whileTap={{ scale: 0.98 }}
+            transition={ICON_HOVER_SPRING}
+            className="group/icon relative flex flex-col items-center justify-center gap-2 transform-gpu will-change-transform"
+          >
+
+            <span
+              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover/icon:opacity-100 blur-md
+                        bg-black/10 transition-opacity duration-300"
+              aria-hidden
+            />
+            <Image
+              src={upcoming.src}
+              alt={upcoming.label}
+              width={42}
+              height={42}
+              className="block size-12 sm:size-13 md:size-14 object-contain drop-shadow-[0_4px_16px_rgba(255,255,255,0.12)]
+                        group-hover/icon:drop-shadow-[0_6px_22px_rgba(0,0,0,0.24)] transition-[filter] duration-300"
+            />
+            <div className="text-base text-center font-medium leading-none transition-colors duration-300
+                            text-white/90 group-hover/icon:text-white">
+              {upcoming.label}
+            </div>
+          </motion.div>
+
         </motion.div>
       </div>
 
