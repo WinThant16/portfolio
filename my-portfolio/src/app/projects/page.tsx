@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Github, ExternalLink, Calendar, Clock, Code, Cpu, Microscope, Rocket, Database } from "lucide-react";
+import { Github, ExternalLink, Calendar, Clock, Code, CodeXml, Cpu, Microscope, Rocket, Database } from "lucide-react";
 import YouTubeThumb from "@/components/YouTubeThumb";
 
 /* --------------------------------- SEO --------------------------------- */
@@ -162,16 +162,17 @@ const projects: Project[] = [
 const categories: Category[] = ["All", "Web", "Embedded", "Research", "Club/Org", "Database Systems"];
 
 /* -------------------------------- UI utils ------------------------------ */
-function categoryIcon(c: Category) {
+function categoryIcon(c: Category, className = "") {
   switch (c) {
-    case "Web": return <Code className="w-4 h-4 text-white" />;
-    case "Embedded": return <Cpu className="w-4 h-4 text-white" />;
-    case "Research": return <Microscope className="w-4 h-4 text-white" />;
-    case "Club/Org": return <Rocket className="w-4 h-4 text-white" />;
-    case "Database Systems": return <Database className="w-4 h-4 text-white" />;
-    default: return <Code className="w-4 h-4 text-white" />;
+    case "Web": return <CodeXml className={`text-white ${className}`} />;
+    case "Embedded": return <Cpu className={`text-white ${className}`} />;
+    case "Research": return <Microscope className={`text-white ${className}`} />;
+    case "Club/Org": return <Rocket className={`text-white ${className}`} />;
+    case "Database Systems": return <Database className={`text-white ${className}`} />;
+    default: return <Code className={`text-white ${className}`} />;
   }
 }
+
 
 function linkMeta(type: LinkType) {
   switch (type) {
@@ -193,12 +194,12 @@ export default async function ProjectsPage() {
   const enriched = await enrichProjectsForThumbs(projects);
   return (
     <section className="relative min-h-screen pt-20 md:pt-28 pb-16">
-      <div className="container-max">
+      <div className="mx-auto w-full max-w-[min(80rem,80vw)] px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Projects</h1>
           <p className="text-white/70 mt-4">A small, honest slice of work across web dev, embedded systems, and research.</p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <div className="mt-4 flex flex-wrap self-center justify-center gap-2">
             <Badge variant="secondary">{projects.length} projects</Badge>
             <Badge variant="secondary">Built with care</Badge>
           </div>
@@ -206,13 +207,26 @@ export default async function ProjectsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="All" className="mt-10">
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full self-center">
             <TabsList className="rounded-full bg-white/5 backdrop-blur border border-white/10 p-1 gap-1">
               {categories.map((c) => (
-                <TabsTrigger key={c} value={c} className="rounded-full px-4 py-2 text-sm data-[state=active]:bg-white/10">
-                  <span className="flex items-center gap-2">
-                    {categoryIcon(c)} {c}
-                    <span className="ml-1 text-[10px] px-2 py-0.5 rounded-full bg-white/10">{counts[c]}</span>
+                <TabsTrigger key={c} value={c} 
+                              className="rounded-full 
+                              px-[clamp(0.5rem,1.8vw,0.9rem)]
+                              py-[clamp(0.30rem,1.2vw,0.55rem)]
+                              data-[state=active]:bg-white/10">
+                  <span 
+                    className="flex items-center
+                                gap-[clamp(0.35rem,1vw,0.5rem)]
+                                text-[clamp(0.82rem,1.6vw,0.95rem)]
+                                leading-none">
+                    {categoryIcon(c, "w-[1em] h-[1em]")}
+                    {/* label disappears < md */}
+                    <span className="hidden md:inline">{c}</span>
+                    {/* count disappears < sm and scales with text */}
+                    <span className="ml-1 hidden sm:inline rounded-full bg-white/10 px-[0.6em] py-[0.2em] text-[0.72em]">
+                      {counts[c]}
+                    </span>
                   </span>
                 </TabsTrigger>
               ))}
@@ -223,7 +237,12 @@ export default async function ProjectsPage() {
             const list = c === "All" ? enriched : enriched.filter((p) => p.category === c);
             return (
               <TabsContent key={c} value={c} className="mt-8">  
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-x-6 gap-y-10
+                                [grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))]
+                                sm:[grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))]
+                                md:[grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))]
+                                lg:[grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))]
+                                xl:[grid-template-columns:repeat(auto-fit,minmax(22rem,1fr))]">
                   {list.map((p) => {
                     const demoUrl = p.links?.find((l) => l.type === "demo")?.url;
 

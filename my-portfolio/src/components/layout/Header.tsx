@@ -64,28 +64,27 @@ export default function Header() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <Link href="/" className="flex items-center gap-5 group">
-              <div className="relative">
+            <Link
+              href="/"
+              className="group flex items-center gap-5 min-w-0"   // add min-w-0 so truncation can work
+            >
+              <div className="relative shrink-0">                  {/* prevent avatar from shrinking */}
                 <div className="relative h-9 w-9 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-rose-400/25 group-hover:shadow-xl">
-                  <Image
-                    src="/avatar.JPEG"                // <-- your local avatar
-                    alt="Win Thant Tin Han"
-					fill
-                    className="object-cover"
-                    sizes="100px"
-                  />
+                  <Image src="/avatar.JPEG" alt="Win Thant Tin Han" fill className="object-cover" sizes="100px" />
                 </div>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-rose-400/20 to-fuchsia-600/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
-              <div className="hidden sm:block">
-                <span className="transition-colors duration-300 font-semibold text-white group-hover:text-rose-300">
+              {/* name block */}
+              <div className="hidden sm:flex min-w-0 flex-col">    {/* sm+: show; allow truncation */}
+                <span className="font-semibold text-white group-hover:text-rose-300 whitespace-nowrap truncate max-w-[12rem] lg:max-w-none">
                   Win Thant Tin Han
                 </span>
-                <div className="font-mono text-xs text-gray-400">
+                <div className="font-mono text-xs text-gray-400 truncate whitespace-nowrap max-w-[12rem] lg:max-w-none">
                   MSCS @ USC
                 </div>
               </div>
             </Link>
+
           </motion.div>
 
           {/* Desktop nav */}
@@ -99,20 +98,23 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`group relative rounded-lg px-4 py-2 text-sm leading-none font-medium transition-all duration-300 ${
-                    isActive(item.href) ? "text-rose-300" : "text-gray-300 hover:text-white"
-                  }`}
+                  className={`group relative inline-flex items-center whitespace-nowrap
+                              h-9 rounded-lg px-4 text-sm leading-none font-medium
+                              transition-all duration-300 ${
+                                isActive(item.href) ? "text-rose-300" : "text-gray-300 hover:text-white"
+                              }`}
                 >
                   {item.label}
                   {isActive(item.href) && (
                     <motion.div
-                      className="absolute inset-0 rounded-lg border border-rose-400/20 bg-rose-400/10"
+                      className="pointer-events-none absolute inset-0 -z-10 rounded-lg border border-rose-400/20 bg-rose-400/10"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <div className="absolute inset-0 rounded-lg bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-0 -z-10 rounded-lg bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </Link>
+
               </motion.div>
             ))}
           </nav>
@@ -157,7 +159,7 @@ export default function Header() {
                   </div>
                   <div>
                     <div className="font-semibold text-white">Win Thant Tin Han</div>
-                    <div className="font-mono text-xs text-gray-400">MSCS @ USC | AI/ML Enthusiast</div>
+                    <div className="font-mono text-xs text-gray-400">MSCS @ USC</div>
                   </div>
                 </Link>
               </div>
