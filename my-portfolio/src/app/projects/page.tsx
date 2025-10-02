@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Selected projects in web, embedded, and research.",
 };
 
-export const revalidate = 60 * 60 * 24; // cache enriched thumbnails for 1 day
+export const revalidate = 86400; // cache enriched thumbnails for 1 day
 
 import { getOgImage } from '@/lib/getOgImage';
 
