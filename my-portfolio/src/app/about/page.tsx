@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
-  Code, Award, Users, Coffee, Globe, BookOpen, ExternalLink, Calendar, Layers,
+  Code, Award, Users, Coffee, Globe, BookOpen, ExternalLink, Layers,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -16,14 +16,6 @@ export const metadata: Metadata = {
 };
 
 /* --- Content ---------------------------------------------------------------- */
-
-const skills = [
-  { category: "Languages", items: ["C", "C++", "Python", "JavaScript", "TypeScript"] },
-  { category: "Web Stack", items: ["Next.js", "React", "Node.js", "Tailwind", "HTML/CSS", "shadcn/ui"] },
-  { category: "Databases", items: ["PostgreSQL", "MySQL", "MongoDB", "SQLite"] },
-  { category: "Data & ML", items: ["Apache Spark", "PySpark", "Pandas", "scikit-learn", "TensorFlow", "PyTorch"] },
-  { category: "Visualization", items: ["Seaborn", "Matplotlib", "Plotly", "Tableau"] },
-];
 
 const values = [
   {

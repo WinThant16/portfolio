@@ -6,7 +6,6 @@ import {
   Code,
   Code2,        // Web stack
   Database,     // Data layer
-  BrainCircuit, // AI / LLM
   Cloud,        // Infra / DevOps
   ShieldCheck,  // Testing / quality
   Boxes,        // UI / motion

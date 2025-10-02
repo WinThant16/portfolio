@@ -28,7 +28,7 @@ async function enrichProjectsForThumbs(list: Project[]): Promise<Project[]> {
       // Only fetch if no image is already set:
       if (!p.image) {
         const paperUrl = p.links?.find((l) => l.type === 'paper')?.url;
-        const demoUrl  = p.links?.find((l) => l.type === 'demo')?.url;
+        // const demoUrl  = p.links?.find((l) => l.type === 'demo')?.url;
 
         // Prefer demo (YouTube handled already), else use paper page
         const pageToProbe = paperUrl ?? null;
