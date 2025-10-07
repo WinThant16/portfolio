@@ -1,26 +1,16 @@
-// src/components/sections/tech-strip.tsx
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-/* ----------------------------- Types & helpers ---------------------------- */
 
 type IconItem = { src: string; label: string };
-type ColumnSpec = {
-  title: string;
-  tone: string; // bg gradient + border classes
-  items: IconItem[];
-};
+type ColumnSpec = { title: string; tone: string; items: IconItem[] };
 
-/** Small helper so TS doesn't mark arrays as readonly and trip you up later. */
 const A = (arr: IconItem[]): IconItem[] => arr;
+const ICON_HOVER_SPRING = { type: 'spring' as const, stiffness: 420, damping: 22, mass: 0.3 };
 
-const ICON_HOVER_SPRING = { type: "spring" as const, stiffness: 420, damping: 22, mass: 0.3 };
 /* --------------------------------- Data ---------------------------------- */
-/** 6 columns – make sure the filenames match what’s in /public/stack */
 const COLUMNS: ColumnSpec[] = [
   {
     title: 'Languages',
@@ -40,8 +30,8 @@ const COLUMNS: ColumnSpec[] = [
       { src: '/stack/next-js.svg', label: 'Next.js' },
       { src: '/stack/react.svg', label: 'React' },
       { src: '/stack/node-js.svg', label: 'Node.js' },
-      { src: '/stack/html.svg', label: 'HTML' },
-      { src: '/stack/CSS3.svg', label: 'CSS' },
+      // { src: '/stack/html.svg', label: 'HTML' },
+      // { src: '/stack/CSS3.svg', label: 'CSS' },
       { src: '/stack/tailwind.svg', label: 'Tailwind' },
       { src: '/stack/shadcnui.svg', label: 'shadcn/ui' },
     ]),
@@ -61,7 +51,7 @@ const COLUMNS: ColumnSpec[] = [
     tone: 'from-blue-500/25 to-sky-500/25 border-blue-500/30',
     items: A([
       { src: '/stack/vercel.svg', label: 'Vercel' },
-      { src: '/stack/github-actions.svg', label: 'GitHub Actions' }, // rename if needed
+      { src: '/stack/github-actions.svg', label: 'GitHub Actions' },
     ]),
   },
   {
@@ -87,160 +77,95 @@ const COLUMNS: ColumnSpec[] = [
   },
 ];
 
-/* ---------------------------- Carousel component -------------------------- */
-
-function ColumnCard({
-  title,
-  tone,
-  items,
-  autoMs = 1800,
-}: {
-  title: string;
-  tone: string;
-  items: IconItem[];
-  autoMs?: number;
-}) {
-  const [idx, setIdx] = useState(0);
-  const [hover, setHover] = useState(false);
-  const count = items.length;
-  const next = () => setIdx((v) => (v + 1) % count);
-  const prev = () => setIdx((v) => (v - 1 + count) % count);
-
-  // Auto-advance
-  useEffect(() => {
-    if (hover || count <= 1) return;
-    const t = setInterval(next, autoMs);
-    return () => clearInterval(t);
-  }, [hover, count, autoMs]);
-
-  // We render the current + next item and slide between them for a smooth feel
-  const current = items[idx];
-  const upcoming = items[(idx + 1) % count];
-
+/* ---------------------------- Column (card) ------------------------------- */
+function ColumnCard({ title, tone, items }: ColumnSpec) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10% 0px' }}
       transition={{ duration: 0.45 }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      className={`relative rounded-2xl border bg-gradient-to-r ${tone} p-6 min-h-44
-                  shadow-sm hover:shadow-md transition-shadow`}
+      className={`
+        relative rounded-2xl border bg-gradient-to-r ${tone}
+        p-6 shadow-sm hover:shadow-md transition-shadow
+        min-h-[clamp(10rem,18vw,10rem)]
+      `}
     >
-      {/* Title */}
       <div className="mb-4 text-center text-sm font-semibold tracking-wide text-white/90">
         {title}
       </div>
 
-      {/* Carousel viewport */}
-      <div className="relative grid h-24 place-items-center overflow-hidden">
-        <motion.div
-          key={idx} // triggers slide animation
-          initial={{ x: 0, opacity: 1 }}
-          animate={{ x: '-100%', opacity: 0 }} // slide left
-          transition={{ duration: 0.45 }}
-          className="absolute inset-0 grid place-items-center transform-gpu will-change-transform"
-        > 
-          {/* CURRENT slide content */}
+      {/* FLEX WRAP so the last row centers */}
+      <div
+        className="
+          flex flex-wrap justify-center
+          gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-6
+        "
+      >
+        {items.map((it, i) => (
           <motion.div
+            key={it.label + i}
             whileHover={{ scale: 1.06, y: -2, rotate: 1 }}
             whileTap={{ scale: 0.98 }}
             transition={ICON_HOVER_SPRING}
-            className="group/icon relative flex flex-col items-center justify-center gap-2 transform-gpu will-change-transform"
+            className="
+              group/icon relative
+              flex flex-col items-center justify-center text-center
+              /* each tile uses a responsive fixed basis so rows align nicely */
+              basis-[clamp(3.75rem,5vw,3.25rem)] grow-0 shrink-0
+            "
           >
+            {/* icon */}
+            <div className="relative aspect-square w-[clamp(3rem,4vw,1rem)]">
+              <Image
+                src={it.src}
+                alt={it.label}
+                fill
+                sizes="(min-width:1024px) 6vw, 10vw"
+                className="
+                  object-contain
+                  drop-shadow-[0_4px_16px_rgba(255,255,255,0.10)]
+                  group-hover/icon:drop-shadow-[0_6px_22px_rgba(0,0,0,0.24)]
+                  transition-[filter] duration-300
+                "
+              />
+            </div>
 
-            {/* glow */}
+            {/* label */}
+            <div
+              className="
+                mt-2 font-medium leading-none text-white/90 group-hover/icon:text-white
+                text-[clamp(0.75rem,1.6vw,0.95rem)]
+                transition-colors duration-300
+              "
+            >
+              {it.label}
+            </div>
+
+            {/* contained hover glow */}
             <span
-              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover/icon:opacity-100 blur-md
-                        bg-black/10 transition-opacity duration-300"
+              className="
+                pointer-events-none absolute inset-1 rounded-xl
+                opacity-0 group-hover/icon:opacity-100
+                transition-opacity duration-300
+                after:absolute after:inset-0 after:rounded-xl after:blur
+                after:bg-white/5
+              "
               aria-hidden
             />
-            <Image
-              src={current.src}
-              alt={current.label}
-              width={42}
-              height={42}
-              className="block size-12 sm:size-13 md:size-14 object-contain drop-shadow-[0_4px_16px_rgba(255,255,255,0.12)]
-                        group-hover/icon:drop-shadow-[0_6px_22px_rgba(0,0,0,0.24)] transition-[filter] duration-300"
-            />
-            <div className="text-base text-center font-medium leading-none transition-colors duration-300
-                            text-white/90 group-hover/icon:text-white">
-              {current.label}
-            </div>
           </motion.div>
-
-        </motion.div>
-
-        <motion.div
-          key={`${idx}-next`}
-          initial={{ x: '100%', opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }} // slide next in
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 grid place-items-center transform-gpu will-change-transform"
-        >
-          {/* NEXT slide content */}
-          <motion.div
-            whileHover={{ scale: 1.06, y: -2, rotate: 1 }}
-            whileTap={{ scale: 0.98 }}
-            transition={ICON_HOVER_SPRING}
-            className="group/icon relative flex flex-col items-center justify-center gap-2 transform-gpu will-change-transform"
-          >
-
-            <span
-              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover/icon:opacity-100 blur-md
-                        bg-black/10 transition-opacity duration-300"
-              aria-hidden
-            />
-            <Image
-              src={upcoming.src}
-              alt={upcoming.label}
-              width={42}
-              height={42}
-              className="block size-12 sm:size-13 md:size-14 object-contain drop-shadow-[0_4px_16px_rgba(255,255,255,0.12)]
-                        group-hover/icon:drop-shadow-[0_6px_22px_rgba(0,0,0,0.24)] transition-[filter] duration-300"
-            />
-            <div className="text-base text-center font-medium leading-none transition-colors duration-300
-                            text-white/90 group-hover/icon:text-white">
-              {upcoming.label}
-            </div>
-          </motion.div>
-
-        </motion.div>
+        ))}
       </div>
-
-      {/* Controls (show on hover) */}
-      {count > 1 && (
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2">
-          <button
-            onClick={prev}
-            className="pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur hover:bg-white/20"
-            aria-label="Previous"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={next}
-            className="pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur hover:bg-white/20"
-            aria-label="Next"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      )}
     </motion.div>
   );
 }
 
 /* ------------------------------- Main block ------------------------------- */
-
 export function TechStrip() {
   const cols = useMemo(() => COLUMNS, []);
-
   return (
     <section className="py-16">
-      <div className="container-max">
-        {/* Title */}
+      <div className="mx-auto w-full max-w-[min(110rem,95vw)] px-[clamp(1rem,4vw,2rem)]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -259,10 +184,9 @@ export function TechStrip() {
           </p>
         </motion.div>
 
-        {/* Grid – larger tiles, 6 columns on xl */}
         <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {cols.map((c) => (
-            <ColumnCard key={c.title} title={c.title} tone={c.tone} items={c.items}/>
+            <ColumnCard key={c.title} {...c} />
           ))}
         </div>
       </div>
