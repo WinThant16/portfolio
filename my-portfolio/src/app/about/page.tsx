@@ -12,34 +12,34 @@ import {
 export const metadata: Metadata = {
   title: "About | Win Thant Tin Han",
   description:
-    "MSCS at USC. Formerly CS Honors at UC Riverside. Interested in software engineering and AI/ML research.",
+    "MSCS at USC. CS Honors from UC Riverside. I build web apps and work with data, usually around applied ML",
 };
 
 /* --- Content ---------------------------------------------------------------- */
 
 const values = [
   {
-    title: "Build with purpose",
+    title: "Readability",
     description:
-      "I enjoy turning ideas into practical systems—shipping features, measuring impact, and iterating fast.",
+      "I try to write code that future me or someone else can pick up and understand quickly.",
     gradient: "from-rose-500/20 to-fuchsia-500/20",
   },
   {
-    title: "Craft & quality",
+    title: "Doing it right",
     description:
-      "Readable code, thoughtful abstractions, and tests. Small details compound into big wins.",
+      "I don't like cutting corners. If I'm involved, I want the end result to be solid.",
     gradient: "from-blue-500/20 to-indigo-500/20",
   },
   {
-    title: "Learn relentlessly",
+    title: "Being thoughtful",
     description:
-      "I love exploring new tools and research in AI/ML, systems, and modern web—then apply what sticks.",
+      "I try to understand how people think and what they care about, not just what they’re responsible for.",
     gradient: "from-amber-500/20 to-orange-500/20",
   },
   {
-    title: "Collaborate openly",
+    title: "Working together",
     description:
-      "Good software is a team sport. I value clear communication, feedback, and shared ownership.",
+      "Great products come from great teams. I value clear communication and mutual respect.",
     gradient: "from-emerald-500/20 to-teal-500/20",
   },
 ];
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 </div>
 
                 <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                  I like building practical things and working with data.
+                  I love deploying things on Fridays.
                 </h1>
 
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
@@ -112,7 +112,7 @@ export default function AboutPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">What guides my work</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">What I care about</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {values.map((v, i) => (
                   <Card
@@ -158,7 +158,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-6">
                 <Coffee className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-3xl font-bold mb-6">Beyond the code</h2>
+              <h2 className="text-3xl font-bold mb-6">Other interests</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 I like learning new stacks, tinkering with small ML ideas, and polishing
                 UI details. I&apos;m always open to collaborating on projects that blend
@@ -167,15 +167,15 @@ export default function AboutPage() {
               <div className="flex justify-center gap-8 text-sm text-muted-foreground">
                 <div className="flex items-center">
                   <Globe className="w-4 h-4 mr-2" />
-                  <span>Global mindset</span>
+                  <span>Full Stack</span>
                 </div>
                 <div className="flex items-center">
                   <BookOpen className="w-4 h-4 mr-2" />
-                  <span>Always learning</span>
+                  <span>Applied ML</span>
                 </div>
                 <div className="flex items-center">
                   <Users className="w-4 h-4 mr-2" />
-                  <span>Team-first</span>
+                  <span>UI and systems</span>
                 </div>
               </div>
             </div>
@@ -190,11 +190,10 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-8 shadow-lg">
                 <Code className="w-10 h-10 text-primary" />
               </div>
-              <h2 className="text-4xl font-bold mb-6">Let&apos;s build something great</h2>
+              <h2 className="text-4xl font-bold mb-6">If you want to work together</h2>
               <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                I&apos;m exploring software roles/internships and open to research
-                collaborations in CS/AI/ML. If that aligns with what you&apos;re building,
-                I&apos;d love to chat.
+                I&apos;m looking for software roles and open to research
+                projects in CS/AI/ML. If you think I&apos;d be a good fit, please reach out.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="outline" asChild size="lg">
