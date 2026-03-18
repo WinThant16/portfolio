@@ -28,14 +28,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         {/* Global background (hidden in light mode, shown in dark mode) */}
         <div className="fixed inset-0 -z-50 hidden dark:block">
-          <Image
+          {/* <Image
             src="/starry.jpeg"
             alt=""            // decorative
             fill
             priority
             sizes="100vw"
             className="object-cover"
-          />
+          /> */}
           {/* Optional soft tint for readability; remove if you prefer pure stars */}
           {/* <div
             className="pointer-events-none absolute inset-0

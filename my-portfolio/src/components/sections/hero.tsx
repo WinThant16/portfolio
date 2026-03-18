@@ -61,19 +61,19 @@ export function HeroSection() {
             </Badge>
           </div>
 
-          <div className="space-y-6 bg-zinc-950/60">
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+          <div className="space-y-10 bg-zinc-950/60">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] md:leading-[1.12]">
               Hi, I&apos;m Win.
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
-                Exploring Software Engineering & AI/ML Research
+              <span className="inline-block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
+                Aspiring Software Engineer.
               </span>
             </h1>
 
-            <p className="max-w-2xl lg:ml-auto text-white/70 text-lg">
-              MS in Computer Science at the University of Southern California.
+            <p className="max-w-3xl lg:ml-auto text-white/70 text-lg">
+              Pursuing a MS degree in CS at USC.
               <br />
               Formerly CS Honors at UC Riverside. Focused on AI/ML, data-driven
-              systems, and building practical web applications.
+              systems, and building web applications.
             </p>
           </div>
 

@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Mail, Github, Linkedin } from 'lucide-react';
 import { useEffect } from 'react';
 
-const EMAIL = 'winthant@usc.edu';
+const EMAIL = 'winthant1601@gmail.com';
 const LINKEDIN = 'https://www.linkedin.com/in/win-thant-tin-han';
 const GITHUB = 'https://github.com/WinThant16';
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <section className="relative min-h-[70vh] pt-20 md:pt-28">
+    <section className="relative min-h-[75vh] pt-20 md:pt-28">
       <div className="container-max">
         {/* Header */}
         <div className="text-center space-y-3">
@@ -25,7 +25,7 @@ export default function ContactPage() {
             Contact
           </Badge>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Let’s build something great
+            Let&apos;s build something great
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto">
             Open to internships, software engineering roles, and research collaborations.
@@ -34,7 +34,7 @@ export default function ContactPage() {
         </div>
 
         {/* Single centered card */}
-        <div className="mt-10 flex justify-center w-1/4 align-middle mx-auto">
+        <div className="mt-10 flex justify-center w-fit align-middle mx-auto">
           <Card className="w-full max-w-xl p-6 space-y-10 border-white/10 bg-slate-950/90">
             <div className="space-y-2">
               <div className="font-semibold text-center">Reach me directly:</div>

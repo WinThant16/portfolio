@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "About | Win Thant Tin Han",
   description:
-    "MSCS at USC. CS Honors from UC Riverside. I build web apps and work with data, usually around applied ML",
+    "MSCS at USC. CS Honors from UC Riverside. I build web apps and work with data.",
 };
 
 /* --- Content ---------------------------------------------------------------- */
@@ -193,7 +193,7 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold mb-6">If you want to work together</h2>
               <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
                 I&apos;m looking for software roles and open to research
-                projects in CS/AI/ML. If you think I&apos;d be a good fit, please reach out.
+                projects in CS. If you think I&apos;d be a good fit, please reach out.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="outline" asChild size="lg">

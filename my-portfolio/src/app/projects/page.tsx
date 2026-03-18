@@ -199,10 +199,10 @@ export default async function ProjectsPage() {
         <div className="text-center mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Projects</h1>
           <p className="text-white/70 mt-4">A small, honest slice of work across web dev, embedded systems, and research.</p>
-          <div className="mt-4 flex flex-wrap self-center justify-center gap-2">
+          {/* <div className="mt-4 flex flex-wrap self-center justify-center gap-2">
             <Badge variant="secondary">{projects.length} projects</Badge>
             <Badge variant="secondary">Built with care</Badge>
-          </div>
+          </div> */}
         </div>
 
         {/* Tabs */}

@@ -14,7 +14,8 @@ import {
   Github,
   Linkedin,
   Briefcase,
-  Rocket
+  Rocket,
+  FileText
 } from 'lucide-react'
 
 /* ----------------------------- Personal info ----------------------------- */
@@ -76,6 +77,17 @@ const leadership = [
 /* ----------------------------- Experience list --------------------------- */
 const experience = [
   {
+    title: 'Web Developer',
+    company: 'Wise Wish Marine Engineering Training Centre',
+    location: 'Remote',
+    period: 'Jan 2026 – Present',
+    achievements: [
+      'Developing a responsive website for a marine engineering training center using React, TypeScript, Vite, Tailwind CSS, and React Router, with consistent navigation and layout behavior across mobile and desktop devices',
+      'Designed and structured 5+ core website sections to support key business goals including course registration, mobile accessibility, and clearer presentation of training programs and institutional information',
+      'Implemented bilingual language support and improved usability for mobile first audiences, while integrating Lucide React icons and animation libraries to create a cleaner and more accessible user experience',
+    ],
+  },
+  {
     title: 'Undergraduate Research Assistant',
     company: 'Behavioral Economics & Decision-Making Lab, UCR School of Business',
     location: 'Riverside, CA',
@@ -90,6 +102,13 @@ const experience = [
 /* ----------------------------- Projects ---------------------------------- */
 const projects = [
   {
+    title: 'Reddit Music Search Engine | Python, PRAW, PyLucene, JSONL',
+    period: 'Apr. 2025 – Jun. 2025',
+    details: ['Built a Reddit data collection pipeline using PRAW to crawl music related subreddits, extracting posts and comment threads, into structured JSONL datasets for downstream indexing',
+             'Implemented a PyLucene indexing and retrieval pipeline over titles, bodies, and comments, then reranked results by combining Lucene relevance with Reddit post score and a time decay based recency factor',
+    ]
+  },
+  {
     title: 'Generative AI in Higher Education (Honors Capstone Research)',
     period: 'Jan 2023 – Jun 2025',
     details: [
@@ -99,7 +118,7 @@ const projects = [
     ],
   },
   {
-    title: 'Quantitative Analysis Club Website',
+    title: 'Quantitative Analysis Club Website | Next.js, TypeScript, React, Tailwind CSS, Framer Motion',
     period: 'Jan 2025 – Apr 2025',
     details: [
       'Developed a responsive website for a student-run finance club using Next.js, TypeScript, and Tailwind CSS',
@@ -108,12 +127,21 @@ const projects = [
     ],
   },
   {
-    title: 'Flappy Dot – Embedded Game Development',
+    title: 'Flappy Dot – Embedded Game Development | C, Arduino Uno, ST7735 LCD',
     period: 'Aug 2024 – Dec 2024',
     details: [
       'Created a Flappy Bird-inspired game using C on an Arduino-compatible microcontroller',
       'Integrated SPI TFT LCD, piezo buzzer for sound effects, and collision / scoring logic',
     ],
+  },
+
+  {
+    title: 'Big Data Crime Analysis | PySpark, Python, GeoPandas, Shapely, MySQL',
+    period:  'Apr. 2024 – Jun. 2024',
+    details: ['Preprocessed and standardized five large city crime datasets in PySpark by renaming columns to a common schema, handling missing values, and removing unnecessary fields across millions of records',
+              'Developed a scalable geospatial processing workflow that assigned ZIP codes to 22M+ crime records in 1M row batches using GeoPandas, Shapely, and U.S. Census ZCTA shapefiles',
+              'Analyzed crime frequency by ZIP code and joined demographic information to support downstream visualization of crime patterns, common offense types, and neighborhood level trends',
+    ]
   },
 ]
 
@@ -162,6 +190,17 @@ export default function ResumePage() {
             >
               <Github className="w-3.5 h-3.5" />
               github.com/WinThant16
+            </Link>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mt-4">
+            <Link
+              href="/win_resume2026.pdf"
+              target="_blank"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-400 to-fuchsia-600 px-4 py-2 text-sm font-medium text-white shadow-lg transition hover:opacity-90"
+            >
+              <FileText className="w-4 h-4" />
+              View PDF Resume
             </Link>
           </div>
         </header>
