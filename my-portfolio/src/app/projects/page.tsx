@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Github, ExternalLink, Calendar, Clock, Code, CodeXml, Cpu, Microscope, Rocket, Database } from "lucide-react";
+import { Github, ExternalLink, Calendar, Clock, Code, CodeXml, Cpu, Microscope, Rocket, Database, Brain, Box } from "lucide-react";
 import YouTubeThumb from "@/components/YouTubeThumb";
 
 /* --------------------------------- SEO --------------------------------- */
@@ -47,7 +47,7 @@ async function enrichProjectsForThumbs(list: Project[]): Promise<Project[]> {
 
 /* --------------------------------- Data -------------------------------- */
 type LinkType = "github" | "live" | "paper" | "demo";
-type Category = "All" | "Web" | "Embedded" | "Research" | "Club/Org" | "Database Systems";
+type Category = "All" | "Web" | "AI/ML" | "Graphics" | "Embedded" | "Research" | "Club/Org" | "Database Systems";
 
 type Project = {
   id: string;
@@ -67,6 +67,63 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    id: "dota-draft-winprob",
+    title: "Dota 2 Draft Win-Probability Model",
+    description:
+      "ML pipeline predicting match outcome from hero drafts. 150k+ ranked matches pulled from the OpenDota API; a logistic-regression baseline reaches 56.2% accuracy against a 53.6% majority baseline, now extending to gradient boosting with hero synergy and counter features.",
+    image: null,
+    imageGradient: "from-red-600 to-rose-900",
+    tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
+    category: "AI/ML",
+    status: "In Progress",
+    timeline: "2026",
+    year: "2026",
+    featured: true,
+    links: [],
+  },
+  {
+    id: "adversarial-game-agent",
+    title: "Adversarial Game Agent (Heirs)",
+    description:
+      "Search agent for a 12x12 strategic board game with 8 piece types: principal variation search with iterative deepening, Zobrist-hashed transposition tables, killer/history heuristics, and late move reduction. Placed 19th of 201 (top 10%) in a course tournament.",
+    image: null,
+    imageGradient: "from-violet-600 to-indigo-900",
+    tags: ["C++", "Adversarial Search", "Game AI"],
+    category: "AI/ML",
+    status: "Completed",
+    timeline: "Jan-May",
+    year: "2026",
+    links: [],
+  },
+  {
+    id: "poisson-surface-recon",
+    title: "Poisson Surface Reconstruction",
+    description:
+      "Screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes. F-score 0.9999 on the Stanford bunny at depth 7, benchmarked against Alpha Shape and Ball Pivoting.",
+    image: null,
+    imageGradient: "from-sky-500 to-blue-800",
+    tags: ["Python", "NumPy", "SciPy", "Marching Cubes"],
+    category: "Graphics",
+    status: "Completed",
+    timeline: "Jan-May",
+    year: "2026",
+    links: [],
+  },
+  {
+    id: "reddit-music-search",
+    title: "Reddit Music Search Engine",
+    description:
+      "PyLucene indexing and retrieval over post titles, bodies, and comments from music subreddits, reranking by Lucene relevance combined with post score and a time-decay recency factor. PRAW pipeline crawls the data into structured JSONL.",
+    image: null,
+    imageGradient: "from-orange-500 to-rose-700",
+    tags: ["Python", "PRAW", "PyLucene", "Information Retrieval"],
+    category: "AI/ML",
+    status: "Completed",
+    timeline: "Apr-Jun",
+    year: "2025",
+    links: [],
+  },
   {
     id: "qac-website",
     title: "Quantitative Analysis Club Website",
@@ -159,12 +216,14 @@ const projects: Project[] = [
 
 ];
 
-const categories: Category[] = ["All", "Web", "Embedded", "Research", "Club/Org", "Database Systems"];
+const categories: Category[] = ["All", "Web", "AI/ML", "Graphics", "Embedded", "Research", "Club/Org", "Database Systems"];
 
 /* -------------------------------- UI utils ------------------------------ */
 function categoryIcon(c: Category, className = "") {
   switch (c) {
     case "Web": return <CodeXml className={`text-white ${className}`} />;
+    case "AI/ML": return <Brain className={`text-white ${className}`} />;
+    case "Graphics": return <Box className={`text-white ${className}`} />;
     case "Embedded": return <Cpu className={`text-white ${className}`} />;
     case "Research": return <Microscope className={`text-white ${className}`} />;
     case "Club/Org": return <Rocket className={`text-white ${className}`} />;

@@ -60,7 +60,7 @@ export default function AboutPage() {
                   <Badge variant="outline">About</Badge>
                   <div className="text-sm text-muted-foreground flex items-center gap-2">
                     <Layers className="w-4 h-4" />
-                    Software • AI/ML
+                    Software • AI/ML • Research
                   </div>
                 </div>
 
@@ -73,6 +73,20 @@ export default function AboutPage() {
                   Previously I graduated with a Bachelor&apos;s in CS with Honors at University of California - Riverside. I
                   enjoy working on the intersection of software engineering and applied AI/ML: modern web apps, data-driven backends,
                   and small ML pieces that make products smarter.
+                </p>
+
+                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  My honors capstone at UC Riverside became a{" "}
+                  <a
+                    href="https://escholarship.org/uc/item/3qp27645"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    published paper
+                  </a>{" "}
+                  on how decision-making traits shape the way students adopt generative AI. These days I&apos;m
+                  exploring ML and NLP research alongside my graduate coursework at USC.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">

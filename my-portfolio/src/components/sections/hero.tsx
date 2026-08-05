@@ -65,15 +65,15 @@ export function HeroSection() {
             <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] md:leading-[1.12]">
               Hi, I&apos;m Win.
               <span className="inline-block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
-                Aspiring Software Engineer.
+                Software Engineer &amp; Researcher.
               </span>
             </h1>
 
             <p className="max-w-3xl lg:ml-auto text-white/70 text-lg">
-              Pursuing a MS degree in CS at USC.
+              MS in CS at USC, CS Honors from UC Riverside.
               <br />
-              Formerly CS Honors at UC Riverside. Focused on AI/ML, data-driven
-              systems, and building web applications.
+              I build web apps and applied ML, with published undergraduate
+              research on how people adopt generative AI.
             </p>
           </div>
 

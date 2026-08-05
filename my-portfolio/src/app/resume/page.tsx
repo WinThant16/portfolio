@@ -29,7 +29,7 @@ const personalInfo = {
 }
 
 /* --------------------------- Professional summary ----------------------- */
-const summary = `M.S. Computer Science student at the University of Southern California with a background in web development and embedded systems. Graduated with Honors in Computer Science from UC Riverside. Passionate about building reliable, data-driven technologies and exploring the intersection of AI, design, and human decision-making. Demonstrated ability to lead technical teams, complete research projects, and deliver practical software solutions through academic and extracurricular work. Seeking opportunities to apply technical skills, contribute to impactful projects, and continue growing through real-world experience.`
+const summary = `M.S. Computer Science student at USC and CS Honors graduate (Cum Laude) from UC Riverside, with a frontend-leaning software background and growing depth in applied ML. I build production web apps, from editorial publishing tooling on Arc XP Fusion to a bilingual maritime training-school site, alongside ML and systems projects. My undergraduate honors research on generative AI adoption in education is published on eScholarship. I'm looking for software and AI/ML roles, and open to research.`
 
 /* ----------------------------- Education list --------------------------- */
 const education = [
@@ -77,30 +77,74 @@ const leadership = [
 /* ----------------------------- Experience list --------------------------- */
 const experience = [
   {
+    title: 'Web Developer, Incoming Web Production Editor',
+    company: 'USC Annenberg Media',
+    location: 'Los Angeles, CA',
+    period: 'Feb 2026 – Present',
+    achievements: [
+      "Built a custom triple-column React layout block on Arc XP's Fusion platform, integrating structured content feeds and theme-aware styling to support editorial publishing workflows",
+      'Selected to lead web production for the Fall 2026 cycle after collaborating with designers and project managers across 2+ feature cycles to translate editorial requirements into production-ready components',
+    ],
+  },
+  {
     title: 'Web Developer',
     company: 'Wise Wish Marine Engineering Training Centre',
     location: 'Remote',
     period: 'Jan 2026 – Present',
     achievements: [
-      'Developing a responsive website for a marine engineering training center using React, TypeScript, Vite, Tailwind CSS, and React Router, with consistent navigation and layout behavior across mobile and desktop devices',
-      'Designed and structured 5+ core website sections to support key business goals including course registration, mobile accessibility, and clearer presentation of training programs and institutional information',
-      'Implemented bilingual language support and improved usability for mobile first audiences, while integrating Lucide React icons and animation libraries to create a cleaner and more accessible user experience',
+      'Built and shipped wisewishmetc.com, a bilingual English/Burmese site for a Myanmar maritime training school, in React, TypeScript, Vite, and Tailwind CSS with mobile-first layouts',
+      'Implemented a Google Sheets-backed intake calendar rendering rolling 12-month course availability with no backend, letting non-technical staff update schedules without a deploy',
+      'Owned the deploy path end to end: Cloudflare Workers static assets with automated builds on merge, custom domain, and DNS',
     ],
   },
   {
-    title: 'Undergraduate Research Assistant',
+    title: 'IT Support (Part-Time)',
+    company: 'Dr. Khin Sandra Oo, Inc. & Associates',
+    location: 'Yorba Linda, CA',
+    period: 'Dec 2024 – Present',
+    achievements: [
+      'Design and develop the clinic\u2019s informational website in Next.js, TypeScript, and Tailwind CSS with interactive service and FAQ components and mobile-optimized layouts',
+      'Maintain front-desk workstations, staff accounts, and routine updates and backups across clinic devices',
+    ],
+  },
+  {
+    title: 'Undergraduate Research Associate',
     company: 'Behavioral Economics & Decision-Making Lab, UCR School of Business',
     location: 'Riverside, CA',
     period: 'Sep 2023 – Jun 2025',
     achievements: [
-      'Conducted research under Professor Ye Li, contributing to 5 + projects through weekly lab meetings',
-      'Collaborated with peers on survey deployment, qualitative coding, and experimental design feedback',
+      'Conducted an independent honors capstone under Professor Ye Li, presenting progress to faculty and graduate students in weekly lab meetings',
+      'Collaborated with peers on survey deployment, qualitative coding, and experimental design feedback across multiple lab projects',
     ],
   },
 ]
 
 /* ----------------------------- Projects ---------------------------------- */
 const projects = [
+  {
+    title: 'Dota 2 Draft Win-Probability Model | Python, scikit-learn, pandas, OpenDota API',
+    period: '2026 – Present',
+    details: [
+      'Collected 150k+ Divine-ranked all-pick matches from the OpenDota API with cursor pagination, validation filtering, and resumable retries, stored as Parquet',
+      'Trained a logistic-regression baseline reaching 56.2% test accuracy vs a 53.6% majority baseline; extending to gradient-boosted trees with hero synergy and counter features',
+    ],
+  },
+  {
+    title: 'Adversarial Game Agent (Heirs) | C++',
+    period: 'Jan 2026 – May 2026',
+    details: [
+      'Built a search agent for a 12x12 strategic board game with 8 piece types: principal variation search with iterative deepening, Zobrist-hashed transposition tables, killer/history heuristics, late move reduction, and aspiration windows',
+      'Placed 19th of 201 (top 10%) in a course-wide tournament under a fixed per-move time budget',
+    ],
+  },
+  {
+    title: 'Poisson Surface Reconstruction | Python, NumPy, SciPy',
+    period: 'Jan 2026 – May 2026',
+    details: [
+      'Implemented screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes',
+      'Achieved F-score 0.9999 on the Stanford bunny at depth 7; benchmarked against Alpha Shape and Ball Pivoting',
+    ],
+  },
   {
     title: 'Reddit Music Search Engine | Python, PRAW, PyLucene, JSONL',
     period: 'Apr. 2025 – Jun. 2025',
@@ -147,8 +191,10 @@ const projects = [
 
 /* ----------------------------- Skills ----------------------------------- */
 const skills = {
-  Languages: ['Python', 'C++', 'JavaScript', 'SQL', 'HTML/CSS', 'Rust'],
-  Tools: ['PySpark', 'MySQL', 'MongoDB', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Framer Motion', 'Pandas'],
+  Languages: ['Python', 'C++', 'C', 'TypeScript', 'JavaScript', 'SQL', 'HTML/CSS'],
+  'ML & Data': ['PyTorch', 'scikit-learn', 'NumPy', 'SciPy', 'Pandas', 'PySpark', 'GeoPandas', 'PyLucene'],
+  Web: ['React', 'Next.js', 'Node.js', 'Express.js', 'Vite', 'Tailwind CSS'],
+  'Tools & Infra': ['Git', 'GitHub Actions', 'Docker', 'MySQL', 'MongoDB', 'Cloudflare', 'Vercel', 'Linux'],
 }
 
 /* ----------------------------- Component -------------------------------- */

@@ -5,7 +5,8 @@ type Experience = {
   org: string;
   location: string;
   dates: string;
-  image: { src: string; alt: string };
+  image?: { src: string; alt: string };
+  imageGradient?: string;
   oneLiner: string;
   story: string;
   impact: string;
@@ -14,6 +15,54 @@ type Experience = {
 };
 
 const experiences: Experience[] = [
+  {
+    title: "Web Developer, Incoming Web Production Editor",
+    org: "USC Annenberg Media",
+    location: "Los Angeles, CA",
+    dates: "Feb 2026 - Present",
+    imageGradient: "from-amber-500/30 to-rose-600/30",
+    oneLiner:
+      "Building editorial publishing tools inside a live newsroom's CMS.",
+    story:
+      "Working inside a real newsroom meant my code had to fit an existing editorial workflow, not the other way around. I spent as much time understanding what editors and designers needed as I did writing the components themselves.",
+    impact:
+      "Built a custom triple-column React layout block on Arc XP's Fusion platform with structured content feeds and theme-aware styling, and was selected to lead web production for the Fall 2026 cycle after two-plus feature cycles.",
+    stack:
+      "React, Arc XP Fusion, TypeScript, editorial CMS workflows",
+    links: [],
+  },
+  {
+    title: "Web Developer",
+    org: "Wise Wish Marine Engineering Training Centre",
+    location: "Remote",
+    dates: "Jan 2026 - Present",
+    imageGradient: "from-sky-500/30 to-blue-700/30",
+    oneLiner:
+      "Shipped a bilingual site that a non-technical team can actually maintain.",
+    story:
+      "The interesting constraint was that the school's staff needed to update course schedules themselves, without touching code or waiting on a deploy. That pushed me toward a no-backend design backed by a Google Sheet, so the people who run the school stay in control of their own content.",
+    impact:
+      "Built and shipped wisewishmetc.com in React, TypeScript, Vite, and Tailwind with English and Burmese support, a Google Sheets-backed intake calendar showing 12 months of availability, and an automated Cloudflare deploy on every merge.",
+    stack:
+      "React, TypeScript, Vite, Tailwind CSS, Cloudflare Workers, Google Sheets API",
+    links: [{ label: "wisewishmetc.com", href: "https://wisewishmetc.com" }],
+  },
+  {
+    title: "IT Support (Part-Time)",
+    org: "Dr. Khin Sandra Oo, Inc. & Associates",
+    location: "Yorba Linda, CA",
+    dates: "Dec 2024 - Present",
+    imageGradient: "from-teal-500/30 to-emerald-600/30",
+    oneLiner:
+      "Wearing two hats: building the clinic's site and keeping its systems running.",
+    story:
+      "A small practice where the work varies day to day. Sometimes it's designing a patient-facing page; other times it's fixing a front-desk workstation before the clinic opens. It taught me to keep things simple and reliable for people who aren't technical.",
+    impact:
+      "Design and develop the clinic's informational site in Next.js, TypeScript, and Tailwind with mobile-first layouts, and maintain front-desk workstations, staff accounts, and device backups.",
+    stack:
+      "Next.js, TypeScript, Tailwind CSS, IT support",
+    links: [],
+  },
   {
     title: "Vice President",
     org: "Engineers Without Borders at UCR",
@@ -102,26 +151,38 @@ function ExperienceCard({ exp }: { exp: Experience }) {
   return (
     <article className="grid gap-6 rounded-2xl border border-border/60 bg-card p-6 shadow-sm md:grid-cols-[2fr_3fr]">
       <div className="relative self-center overflow-hidden rounded-xl border border-border/60 bg-muted">
-        <div className="relative w-full">
-          <Image
-            src={exp.image.src}
-            alt={exp.image.alt}
-            width={1200}
-            height={1200}
-            sizes="(max-width: 768px) 100vw, 40vw"
-            className="w-full h-[40vh]object-cover object-center"
-            priority={false}
-          />
-        </div>
+        {exp.image ? (
+          <div className="relative w-full">
+            <Image
+              src={exp.image.src}
+              alt={exp.image.alt}
+              width={1200}
+              height={1200}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="w-full h-[40vh] object-cover object-center"
+              priority={false}
+            />
+          </div>
+        ) : (
+          <div
+            className={`flex h-[40vh] w-full items-center justify-center bg-gradient-to-br ${
+              exp.imageGradient ?? "from-rose-400/30 to-fuchsia-600/30"
+            } p-6`}
+          >
+            <span className="text-center text-lg font-semibold text-white/90">
+              {exp.org}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="min-w-0">
         <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
           <div className="min-w-0">
-            <h2 className="truncate text-xl font-semibold">{exp.title}</h2>
+            <h2 className="text-balance text-xl font-semibold leading-snug">{exp.title}</h2>
             <p className="mt-1 text-sm text-foreground/70">
               <span className="font-medium text-foreground">{exp.org}</span>
-              <span className="text-foreground/60">{"  "}</span>
+              <span className="mx-2 text-foreground/40">·</span>
               <span className="text-foreground/60">{exp.location}</span>
             </p>
           </div>
