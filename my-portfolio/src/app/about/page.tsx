@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Github } from "lucide-react";
 import {
-  Code, Award, Users, Coffee, Globe, BookOpen, ExternalLink, Layers,
+  Code, Coffee, ExternalLink, Layers,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -64,15 +64,10 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                  I love deploying things on Fridays.
-                </h1>
-
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  I&apos;m currently pursuing a Master&apos;s Degree in CS at the University of Southern California. 
-                  Previously I graduated with a Bachelor&apos;s in CS with Honors at University of California - Riverside. I
-                  enjoy working on the intersection of software engineering and applied AI/ML: modern web apps, data-driven backends,
-                  and small ML pieces that make products smarter.
+                  I&apos;m a Master&apos;s student in CS at the University of Southern California, and I graduated with  
+                  Honors in CS at University of California - Riverside. I
+                  enjoy working on the intersection of software engineering and applied AI/ML: mostly web applications and data-driven backends.
                 </p>
 
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
@@ -85,8 +80,8 @@ export default function AboutPage() {
                   >
                     published paper
                   </a>{" "}
-                  on how decision-making traits shape the way students adopt generative AI. These days I&apos;m
-                  exploring ML and NLP research alongside my graduate coursework at USC.
+                  on decision-making traits and how they potentially shape whether college students decide to use generative AI in their assignments. These days I am mostly
+                  building and shipping web apps, and am currently a Web Editor for USC Annenberg Media, where I am redesigning their website!
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -122,49 +117,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Values */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">What I care about</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {values.map((v, i) => (
-                  <Card
-                    key={v.title}
-                    className="relative overflow-hidden group hover:shadow-xl transition-all duration-300 border-0"
-                  >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${v.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                    />
-                    <CardContent className="relative p-8">
-                      <div className="flex items-start gap-5">
-                        <div
-                          className={`w-14 h-14 bg-gradient-to-br ${v.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          <Award className="w-7 h-7 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center mb-2">
-                            <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                              {v.title}
-                            </h3>
-                            <Badge variant="outline" className="ml-auto text-xs opacity-60">
-                              0{i + 1}
-                            </Badge>
-                          </div>
-                          <p className="text-muted-foreground leading-relaxed">
-                            {v.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Personal */}
         <section className="py-16">
           <div className="container mx-auto px-4">
@@ -174,24 +126,13 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold mb-6">Other interests</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                I like learning new stacks, tinkering with small ML ideas, and polishing
-                UI details. I&apos;m always open to collaborating on projects that blend
-                engineering and research.
+                Outside of work I follow soccer, the NBA, and play a lot of Dota 2, which is where my current ML project came from.
+                You will find me building web apps, small ML models, or side projects no one asked for here: 
               </p>
-              <div className="flex justify-center gap-8 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <Globe className="w-4 h-4 mr-2" />
-                  <span>Full Stack</span>
-                </div>
-                <div className="flex items-center">
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  <span>Applied ML</span>
-                </div>
-                <div className="flex items-center">
-                  <Users className="w-4 h-4 mr-2" />
-                  <span>UI and systems</span>
-                </div>
-              </div>
+              <a href="https://github.com/WinThant16" target="_blank" rel="noreferrer"
+                className="inline-flex items-center gap-2 underline underline-offset-4 hover:text-foreground">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
             </div>
           </div>
         </section>

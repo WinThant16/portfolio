@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -24,14 +24,6 @@ export default function Header() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
 
-  // NOTE: this intentionally matches the reference (a dark glass header).
-  // We can re-theme later if you want it neutral in light mode.
-  const headerBackground = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(16, 20, 24, 0.80)", "rgba(16, 20, 24, 0.95)"]
-  );
-
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     onScroll();
@@ -46,12 +38,9 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "backdrop-blur-xl border-b border-white/10 shadow-2xl"
-          : "backdrop-blur-sm border-b border-white/5"
+      className={`fixed top-0 left-0 right-0 z-40 bg-[rgb(16,20,24)]/90 backdrop-blur-xl transition-all duration-500 ${
+        isScrolled ? "border-b border-white/10 shadow-2xl" : "border-b border-white/5"
       }`}
-      style={{ backgroundColor: headerBackground }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -149,8 +138,9 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full max-w-sm border-l border-white/10 bg-gray-900/95 backdrop-blur-xl"
+              className="w-full max-w-sm border-l border-white/10 bg-black/99 backdrop-blur-xl"
             >
+              <SheetTitle className='sr-only'>Navigation Menu</SheetTitle>
               {/* Mobile header */}
               <div className="border-b border-white/10 p-6">
                 <Link href="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
@@ -166,27 +156,19 @@ export default function Header() {
 
               {/* Mobile nav */}
               <nav className="flex-1 space-y-2 p-6">
-                {navItems.map((item, idx) => (
-                  <motion.div
+                {navItems.map((item) => (
+                  <Link
                     key={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center rounded-xl p-4 font-medium transition-colors ${
+                      isActive(item.href)
+                        ? "bg-gradient-to-r from-rose-400/25 to-fuchsia-600/25 text-rose-300 shadow-lg shadow-rose-400/10"
+                        : "text-gray-300 hover:bg-white/10 hover:text-white"
+                    }`}
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`relative flex items-center rounded-xl border p-4 font-medium transition-all duration-500 ${
-                        isActive(item.href)
-                          ? "border-rose-400/30 bg-gradient-to-r from-rose-400/15 to-fuchsia-600/10 text-rose-300 shadow-lg shadow-rose-400/10"
-                          : "border-transparent text-gray-300 hover:border-white/20 hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 hover:text-white"
-                      }`}
-                    >
-                      {/* shimmer */}
-                      <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
-                      <span className="relative z-10">{item.label}</span>
-                    </Link>
-                  </motion.div>
+                    {item.label}
+                  </Link>
                 ))}
               </nav>
 
