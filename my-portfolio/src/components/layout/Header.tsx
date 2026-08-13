@@ -41,7 +41,6 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-40 bg-[rgb(16,20,24)]/90 backdrop-blur-xl transition-all duration-500 ${
         isScrolled ? "border-b border-white/10 shadow-2xl" : "border-b border-white/5"
       }`}
-      initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >

@@ -26,24 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen relative antialiased
                     bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
       >
-        {/* Global background (hidden in light mode, shown in dark mode) */}
-        <div className="fixed inset-0 -z-50 hidden dark:block">
-          {/* <Image
-            src="/starry.jpeg"
-            alt=""            // decorative
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          /> */}
-          {/* Optional soft tint for readability; remove if you prefer pure stars */}
-          {/* <div
-            className="pointer-events-none absolute inset-0
-                       bg-[radial-gradient(ellipse_at_top,rgba(255,0,122,.06),transparent_40%),
-                           radial-gradient(ellipse_at_bottom,rgba(88,80,236,.06),transparent_40%)]"
-          /> */}
-        </div>
-
         <ThemeProvider>
           <Header />
           {children}
