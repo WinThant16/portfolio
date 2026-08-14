@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Github, ExternalLink, Calendar, Clock, Code, CodeXml, Cpu, Microscope, Rocket, Database, Brain, Box } from "lucide-react";
 import YouTubeThumb from "@/components/YouTubeThumb";
 
+import { cn } from "@/lib/utils";
 /* --------------------------------- SEO --------------------------------- */
 export const metadata: Metadata = {
   title: "Projects | Win Thant Tin Han",
@@ -65,6 +66,7 @@ type Project = {
   links?: { type: LinkType; url: string }[];
   imageMode?: "cover" | "logo";
   logoSize?: number; // px
+  size?: "feature";
 };
 
 const projects: Project[] = [
@@ -78,10 +80,11 @@ const projects: Project[] = [
     tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
     category: "AI/ML",
     status: "In Progress",
-    timeline: "2026",
+    timeline: "June-",
     year: "2026",
     featured: true,
-    links: [],
+    links: [{type: "github", url: "https://github.com/WinThant16/d2shenanigans"}],
+    size:"feature"
   },
   {
     id: "adversarial-game-agent",
@@ -95,22 +98,54 @@ const projects: Project[] = [
     status: "Completed",
     timeline: "Jan-May",
     year: "2026",
-    links: [],
+    links: [{type:"github", url:"https://github.com/WinThant16/heirs-chess-variant-agent"}],
+  },
+  {
+  id: "sandra-oo-optometry",
+  title: "Dr. Khin Sandra Oo Optometry",
+  description:
+    "Production site for an independent optometry practice: services, doctor profiles, an eye-conditions library, FAQs, and a contact section with an embedded map and hours. Built in Next.js and deployed on Vercel.",
+  image: "/optometrysite.png",
+  imageGradient: "from-teal-500 to-emerald-800",
+  tags: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+  category: "Web",
+  status: "Completed",
+  timeline: "Apr-Jun",
+  year: "2026",
+  links: [{ type: "live", url: "https://drsandraooeyecare.com/" }],
   },
   {
     id: "poisson-surface-recon",
     title: "Poisson Surface Reconstruction",
     description:
       "Screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes. F-score 0.9999 on the Stanford bunny at depth 7, benchmarked against Alpha Shape and Ball Pivoting.",
-    image: null,
+    image: "/surface-reconstruction.jpg",
     imageGradient: "from-sky-500 to-blue-800",
     tags: ["Python", "NumPy", "SciPy", "Marching Cubes"],
     category: "Graphics",
     status: "Completed",
     timeline: "Jan-May",
     year: "2026",
-    links: [],
+    links: [{type: "github", url:"https://github.com/laddertosky/surface_reconstruction"}],
   },
+  {
+    id: "wise-wish-metc",
+    title: "Wise Wish Marine Engineering Training Centre",
+    description:
+      "Production marketing and enrollment site for a Myanmar marine training school. Course catalog, News section, and a live per-course intake calendar pulling from Google Sheets via OpenSheet. Built solo and deployed on Cloudflare Workers.",
+    image: "/wisewishsite.png",
+    imageGradient: "from-blue-600 to-cyan-800",
+    tags: ["React", "Vite", "TypeScript", "Tailwind", "Cloudflare Workers"],
+    category: "Web",
+    status: "Completed",
+    timeline: "Jan-Jun",
+    year: "2026",
+    featured: true,
+    links: [{ type: "live", url: "https://wisewishmetc.com" }],
+    size: "feature",
+  },
+  
+  
   {
     id: "reddit-music-search",
     title: "Reddit Music Search Engine",
@@ -123,7 +158,22 @@ const projects: Project[] = [
     status: "Completed",
     timeline: "Apr-Jun",
     year: "2025",
-    links: [],
+    links: [{type:"github", url:"https://github.com/WinThant16/reddit-music-search-engine"}],
+  },
+  {
+    id: "genai-higher-ed",
+    title: "Generative AI in Higher Education (Honors Capstone)",
+    description:
+      "Survey design + OLS analysis on how decision-making traits (risk preference, time preference and loss aversion) relate to academic use of ChatGPT.",
+    image: "/logo_eschol-small.svg",
+    imageGradient: "from-rose-200 to-purple-950",
+    imageMode: "logo",
+    tags: ["Python", "Pandas", "Matplotlib", "OLS"],
+    category: "Research",
+    status: "Completed",
+    timeline: "Multi-term",
+    year: "2023-2025",
+    links: [ { type: "paper", url: "https://escholarship.org/uc/item/3qp27645" } ],
   },
   {
     id: "qac-website",
@@ -156,34 +206,7 @@ const projects: Project[] = [
     timeline: "Aug-Dec",
     year: "2024",
     links: [{ type: "demo", url: "https://youtu.be/llS1ihetCOk" }],
-  },
-  {
-    id: "genai-higher-ed",
-    title: "Generative AI in Higher Education (Honors Capstone)",
-    description:
-      "Survey design + OLS analysis on how decision-making traits (risk preference, time preference and loss aversion) relate to academic use of ChatGPT.",
-    image: "/logo_eschol-small.svg",
-    imageGradient: "from-rose-200 to-purple-950",
-    imageMode: "logo",
-    tags: ["Python", "Pandas", "Matplotlib", "OLS"],
-    category: "Research",
-    status: "Completed",
-    timeline: "Multi-term",
-    year: "2023–2025",
-    links: [ { type: "paper", url: "https://escholarship.org/uc/item/3qp27645" } ],
-  },
-  {
-    id: "ewb-soil-robot",
-    title: "Soil Deposition Robot (Engineers Without Borders)",
-    description:
-      "Team project: C++/Arduino firmware, CAD & 3D printing for a soil deposition prototype (VP on org).",
-    image: null,
-    imageGradient: "from-amber-500 to-orange-600",
-    tags: ["C++", "Arduino", "CAD", "3D Printing"],
-    category: "Club/Org",
-    status: "Completed",
-    year: "2023–2025",
-    links: [],
+    size:"feature"
   },
   {
     id: "crime-analysis",
@@ -199,6 +222,7 @@ const projects: Project[] = [
     links: [{ type: "github", url: "https://github.com/nguyena537/CrimesDataAnalysis" },
       { type: "demo", url: "https://www.youtube.com/watch?v=GqUESbe_U3w" }
     ],
+    size:"feature"
   },
   {
     id: "ucr-chatroom",
@@ -208,7 +232,7 @@ const projects: Project[] = [
     image: null, // again, you could drop in a screenshot if you have one
     imageGradient: "from-cyan-500 to-sky-600",
     tags: ["Node.js", "MongoDB", "Express", "Firebase Auth"],
-    category: "Web",
+    category:"Database Systems",
     status: "Completed",
     year: "2024",
     // Repo is private so no public GitHub/demo link — TO DO: make public?"
@@ -217,7 +241,8 @@ const projects: Project[] = [
 
 ];
 
-const categories: Category[] = ["All", "Web", "AI/ML", "Graphics", "Embedded", "Research", "Club/Org", "Database Systems"];
+const categories: Category[] = ["All", "Web", "AI/ML", "Graphics", "Embedded", "Research", "Database Systems"];
+
 
 /* -------------------------------- UI utils ------------------------------ */
 function categoryIcon(c: Category, className = "") {
@@ -243,7 +268,6 @@ function linkMeta(type: LinkType) {
     default:        return { label: "Open", icon: <ExternalLink className="w-4 h-4 text-white" /> };
   }
 }
-
 
 
 /* --------------------------------- Page --------------------------------- */
@@ -279,12 +303,13 @@ export default async function ProjectsPage() {
                     className="flex items-center
                                 gap-[clamp(0.35rem,1vw,0.5rem)]
                                 text-[clamp(0.82rem,1.6vw,0.95rem)]
-                                leading-none">
+                                leading-none
+                                cursor-pointer">
                     {categoryIcon(c, "w-[1em] h-[1em]")}
                     {/* label disappears < md */}
-                    <span className="hidden md:inline">{c}</span>
+                    <span className="hidden md:inline cursor-pointer">{c}</span>
                     {/* count disappears < sm and scales with text */}
-                    <span className="ml-1 hidden sm:inline rounded-full bg-white/10 px-[0.6em] py-[0.2em] text-[0.72em]">
+                    <span className="ml-1 hidden sm:inline rounded-full bg-white/10 px-[0.6em] py-[0.2em] text-[0.72em] cursor-pointer">
                       {counts[c]}
                     </span>
                   </span>
@@ -294,24 +319,24 @@ export default async function ProjectsPage() {
           </div>
 
           {categories.map((c) => {
-            const list = c === "All" ? enriched : enriched.filter((p) => p.category === c);
+            const isAll = c === "All";
+            const list = isAll ? enriched : enriched.filter((p) => p.category === c);
             return (
               <TabsContent key={c} value={c} className="mt-8">  
-                <div className="grid gap-x-6 gap-y-10
-                                [grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))]
-                                sm:[grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))]
-                                md:[grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))]
-                                lg:[grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))]
-                                xl:[grid-template-columns:repeat(auto-fit,minmax(22rem,1fr))]">
+                <div className={isAll 
+                                ? "grid grid-cols-1 md:grid-cols-7 md:grid-rows-1 gap-6" 
+                                :"grid gap-x-6 gap-y-10 [grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))] sm:[grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))] md:[grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))] lg:[grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))] xl:[grid-template-columns:repeat(auto-fit,minmax(22rem,1fr))]"}>
                   {list.map((p) => {
                     const demoUrl = p.links?.find((l) => l.type === "demo")?.url;
 
                     return (
                       <Card
                         key={p.id}
-                        className="group flex flex-col overflow-hidden bg-white/[0.04] border-white/10
-                                   transition-transform duration-300 hover:scale-[1.02]"
-                      >
+                        className={cn(
+                          "group flex flex-col overflow-hidden bg-white/[0.04] border-white/10 transition-transform duration-300 hover:scale-[1.02]",
+                          isAll && "md:col-span-2 md:row-span-2",
+                          isAll && p.size === "feature" && "md:col-span-3",
+                          )}>
                         {/* Header (image / video thumb / gradient) */}
                         <div className="relative h-44 overflow-hidden">
                           {p.id === "adversarial-game-agent" ? (
@@ -377,7 +402,7 @@ export default async function ProjectsPage() {
                             </div>
                           </div>
                           <CardTitle className="text-xl">{p.title}</CardTitle>
-                          <CardDescription className="text-zinc-300">{p.description}</CardDescription>
+                          <CardDescription className={cn("text-zinc-300", p.size !== "feature" && "line-clamp-3")}>{p.description}</CardDescription>
                         </CardHeader>
 
                         <CardContent className="mt-auto">
