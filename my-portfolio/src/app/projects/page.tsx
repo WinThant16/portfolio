@@ -1,3 +1,4 @@
+import HeirsBoard from "./heirsboard"
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -72,7 +73,7 @@ const projects: Project[] = [
     title: "Dota 2 Draft Win-Probability Model",
     description:
       "ML pipeline predicting match outcome from hero drafts. 150k+ ranked matches pulled from the OpenDota API; a logistic-regression baseline reaches 56.2% accuracy against a 53.6% majority baseline, now extending to gradient boosting with hero synergy and counter features.",
-    image: null,
+    image: "/hero_coefficients.png",
     imageGradient: "from-red-600 to-rose-900",
     tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
     category: "AI/ML",
@@ -313,7 +314,16 @@ export default async function ProjectsPage() {
                       >
                         {/* Header (image / video thumb / gradient) */}
                         <div className="relative h-44 overflow-hidden">
-                          {demoUrl ? (
+                          {p.id === "adversarial-game-agent" ? (
+                            <div
+                              className={`absolute inset-0 flex items-center justify-center p-5 bg-neutral-900`}                    
+                            >
+                              <div className ="w-full max-w-[170px]">
+                                <HeirsBoard />
+                              </div>
+                            </div>
+                          ) :
+                          demoUrl ? (
                             <Link href={demoUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0">
                               <YouTubeThumb demoUrl={demoUrl} alt={`${p.title} demo thumbnail`} overlay="none" />
                             </Link>
@@ -328,7 +338,7 @@ export default async function ProjectsPage() {
                                 alt={p.title}
                                 width={p.logoSize ?? 112}
                                 height={p.logoSize ?? 112}
-                                className="object-contain drop-shadow-sm"
+                                className="object-fill drop-shadow-sm"
                               />
                             </div>
                           ) : p.image ? (
@@ -348,7 +358,7 @@ export default async function ProjectsPage() {
                           )}
 
                           <div className="absolute top-3 left-3">
-                            <Badge className="text-xs text-white">{p.status}</Badge>
+                            <Badge className="text-xs text-white bg-black/45">{p.status}</Badge>
                           </div>
                         </div>
 
