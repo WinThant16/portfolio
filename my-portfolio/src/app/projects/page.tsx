@@ -158,7 +158,10 @@ const projects: Project[] = [
     status: "Completed",
     timeline: "Apr-Jun",
     year: "2025",
-    links: [{type:"github", url:"https://github.com/WinThant16/reddit-music-search-engine"}],
+    links: [
+      { type: "demo", url: "https://www.youtube.com/watch?v=8V_QhB1leak" },
+      { type: "github", url: "https://github.com/WinThant16/reddit-music-search-engine" },
+    ],
   },
   {
     id: "genai-higher-ed",
