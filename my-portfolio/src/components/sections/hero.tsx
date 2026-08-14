@@ -34,7 +34,7 @@ export function HeroSection() {
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-rose-400/10 via-transparent to-fuchsia-600/10" />
             <Image
               src="/pixel-room.gif"
-              alt="Win Thant Tin Han"
+              alt="gif of a coder"
               fill
               priority
               unoptimized
@@ -70,10 +70,9 @@ export function HeroSection() {
             </h1>
 
             <p className="max-w-3xl lg:ml-auto text-white/70 text-lg">
-              MS in CS at USC, CS Honors from UC Riverside.
-              <br />
-              I build web apps and applied ML, with published undergraduate
-              research on how people adopt generative AI.
+              I build web apps and applied ML projects.
+              <br/>
+              MS in CS at USC, BS in CS from UC Riverside, with a published Honors undergraduate research paper on factors that influence students' usage of GenAI.
             </p>
           </div>
 

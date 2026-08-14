@@ -20,6 +20,10 @@ const experiences: Experience[] = [
     org: "USC Annenberg Media",
     location: "Los Angeles, CA",
     dates: "Feb 2026 - Present",
+    image: {
+      src: "/uscannenberg.jpg",
+      alt: "USC Annenberg Logo",
+    },
     imageGradient: "from-amber-500/30 to-rose-600/30",
     oneLiner:
       "Building editorial publishing tools inside a live newsroom's CMS.",
@@ -159,7 +163,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
               width={1200}
               height={1200}
               sizes="(max-width: 768px) 100vw, 40vw"
-              className="w-full h-[40vh] object-cover object-center"
+              className="w-full h-[40vh] object-contain object-center"
               priority={false}
             />
           </div>
