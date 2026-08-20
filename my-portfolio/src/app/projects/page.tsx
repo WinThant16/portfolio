@@ -74,7 +74,7 @@ const projects: Project[] = [
     id: "dota-draft-winprob",
     title: "Dota 2 Draft Win-Probability Model",
     description:
-      "ML pipeline predicting match outcome from hero drafts. 150k+ ranked matches pulled from the OpenDota API; a logistic-regression baseline reaches 56.2% accuracy against a 53.6% majority baseline, now extending to gradient boosting with hero synergy and counter features.",
+      "ML pipeline predicting match outcome from hero drafts alone. 150k+ Divine 1 and above ranked matches from the OpenDota API; a logistic-regression baseline hits 55.7% against a 53.7% majority baseline, and a tuned XGBoost ties it near 56%, showing that raw hero features cap out and pointing to synergy and counter features as the next lever.",
     image: "/hero_coefficients.png",
     imageGradient: "from-red-600 to-rose-900",
     tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
@@ -162,6 +162,20 @@ const projects: Project[] = [
       { type: "demo", url: "https://www.youtube.com/watch?v=8V_QhB1leak" },
       { type: "github", url: "https://github.com/WinThant16/reddit-music-search-engine" },
     ],
+  },
+  {
+    id: "container-ship-load-planner",
+    title: "Container Ship Load Planner",
+    description:
+      "Full-stack port-logistics planner built with a team: generates step-by-step container load, unload, and ship-balancing sequences under movement-cost and legal-balance constraints, shown through a React grid interface. Backed by an Express REST API and server-side computation I built, with action logging and updated-manifest output.",
+    image: "/kawrgojumper.png",
+    imageGradient: "from-amber-500 to-orange-800",
+    tags: ["React", "Express", "Node.js", "REST API", "Search/Optimization"],
+    category: "Web",
+    status: "Completed",
+    timeline: "Sep-Dec",
+    year: "2024",
+    links: [{ type: "github", url: "https://github.com/WinThant16/KawrgoJumper" }],
   },
   {
     id: "genai-higher-ed",
