@@ -176,6 +176,7 @@ const projects: Project[] = [
     timeline: "Sep-Dec",
     year: "2024",
     links: [{ type: "github", url: "https://github.com/WinThant16/KawrgoJumper" }],
+    size:"feature"
   },
   {
     id: "genai-higher-ed",
