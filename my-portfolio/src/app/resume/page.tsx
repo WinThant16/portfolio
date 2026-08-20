@@ -43,7 +43,7 @@ const education = [
     degree: 'B.S. Computer Science (Honors), Cum Laude',
     school: 'University of California, Riverside',
     location: 'Riverside, CA',
-    period: 'Sep 2021 – Jun 2025',
+    period: 'Sep 2021 - Jun 2025',
     details: [
       'Awards: Best Virtual Presentation (Undergraduate Research Symposium 2025), Chancellor’s Honors List (2021–2024), Non-Resident Achievement Scholarship, University Honors HEIR Scholarship',
     ],
@@ -56,7 +56,7 @@ const leadership = [
     title: 'Vice President',
     company: 'Engineers Without Borders @ UCR',
     location: 'Riverside, CA',
-    period: 'Sep 2023 – Jun 2025',
+    period: 'Sep 2023 - Jun 2025',
     achievements: [
       'Led the Soil Deposition Robot project, involving C++ and Arduino programming, CAD modeling, and 3D printing',
       'Organized fundraising and secured $500+ through the 2024 BCOE Match Challenge',
@@ -66,7 +66,7 @@ const leadership = [
     title: 'Operations Lead',
     company: 'BearHack Hackathon',
     location: 'Riverside, CA',
-    period: 'Jan 2025 – Apr 2025',
+    period: 'Jan 2025 - Apr 2025',
     achievements: [
       'Managed grants, budget, and prize distribution for a 2-day engineering make-a-thon',
       'Coordinated workshops, judging panels, and logistics for over 100 participants',
@@ -77,10 +77,10 @@ const leadership = [
 /* ----------------------------- Experience list --------------------------- */
 const experience = [
   {
-    title: 'Web Developer, Incoming Web Production Editor',
+    title: 'Web Developer, Web Production Editor',
     company: 'USC Annenberg Media',
     location: 'Los Angeles, CA',
-    period: 'Feb 2026 – Present',
+    period: 'Feb 2026 - Present',
     achievements: [
       "Built a custom triple-column React layout block on Arc XP's Fusion platform, integrating structured content feeds and theme-aware styling to support editorial publishing workflows",
       'Selected to lead web production for the Fall 2026 cycle after collaborating with designers and project managers across 2+ feature cycles to translate editorial requirements into production-ready components',
@@ -90,7 +90,7 @@ const experience = [
     title: 'Web Developer',
     company: 'Wise Wish Marine Engineering Training Centre',
     location: 'Remote',
-    period: 'Jan 2026 – Present',
+    period: 'Jan 2026 - Present',
     achievements: [
       'Built and shipped wisewishmetc.com, a bilingual English/Burmese site for a Myanmar maritime training school, in React, TypeScript, Vite, and Tailwind CSS with mobile-first layouts',
       'Implemented a Google Sheets-backed intake calendar rendering rolling 12-month course availability with no backend, letting non-technical staff update schedules without a deploy',
@@ -101,7 +101,7 @@ const experience = [
     title: 'IT Support (Part-Time)',
     company: 'Dr. Khin Sandra Oo, Inc. & Associates',
     location: 'Yorba Linda, CA',
-    period: 'Dec 2024 – Present',
+    period: 'Dec 2024 - Present',
     achievements: [
       'Design and develop the clinic\u2019s informational website in Next.js, TypeScript, and Tailwind CSS with interactive service and FAQ components and mobile-optimized layouts',
       'Maintain front-desk workstations, staff accounts, and routine updates and backups across clinic devices',
@@ -111,7 +111,7 @@ const experience = [
     title: 'Undergraduate Research Associate',
     company: 'Behavioral Economics & Decision-Making Lab, UCR School of Business',
     location: 'Riverside, CA',
-    period: 'Sep 2023 – Jun 2025',
+    period: 'Sep 2023 - Jun 2025',
     achievements: [
       'Conducted an independent honors capstone under Professor Ye Li, presenting progress to faculty and graduate students in weekly lab meetings',
       'Collaborated with peers on survey deployment, qualitative coding, and experimental design feedback across multiple lab projects',
@@ -123,7 +123,7 @@ const experience = [
 const projects = [
   {
     title: 'Dota 2 Draft Win-Probability Model | Python, scikit-learn, pandas, OpenDota API',
-    period: '2026 – Present',
+    period: '2026 - Present',
     details: [
       'Collected 150k+ Divine-ranked all-pick matches from the OpenDota API with cursor pagination, validation filtering, and resumable retries, stored as Parquet',
       'Trained a logistic-regression baseline reaching 56.2% test accuracy vs a 53.6% majority baseline; extending to gradient-boosted trees with hero synergy and counter features',
@@ -131,7 +131,7 @@ const projects = [
   },
   {
     title: 'Adversarial Game Agent (Heirs) | C++',
-    period: 'Jan 2026 – May 2026',
+    period: 'Jan 2026 - May 2026',
     details: [
       'Built a search agent for a 12x12 strategic board game with 8 piece types: principal variation search with iterative deepening, Zobrist-hashed transposition tables, killer/history heuristics, late move reduction, and aspiration windows',
       'Placed 19th of 201 (top 10%) in a course-wide tournament under a fixed per-move time budget',
@@ -139,7 +139,7 @@ const projects = [
   },
   {
     title: 'Poisson Surface Reconstruction | Python, NumPy, SciPy',
-    period: 'Jan 2026 – May 2026',
+    period: 'Jan 2026 - May 2026',
     details: [
       'Implemented screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes',
       'Achieved F-score 0.9999 on the Stanford bunny at depth 7; benchmarked against Alpha Shape and Ball Pivoting',
@@ -147,14 +147,14 @@ const projects = [
   },
   {
     title: 'Reddit Music Search Engine | Python, PRAW, PyLucene, JSONL',
-    period: 'Apr. 2025 – Jun. 2025',
+    period: 'Apr. 2025 - Jun. 2025',
     details: ['Built a Reddit data collection pipeline using PRAW to crawl music related subreddits, extracting posts and comment threads, into structured JSONL datasets for downstream indexing',
              'Implemented a PyLucene indexing and retrieval pipeline over titles, bodies, and comments, then reranked results by combining Lucene relevance with Reddit post score and a time decay based recency factor',
     ]
   },
   {
     title: 'Generative AI in Higher Education (Honors Capstone Research)',
-    period: 'Jan 2023 – Jun 2025',
+    period: 'Jan 2023 - Jun 2025',
     details: [
       'Analyzed how risk preference, time discounting, and loss aversion predict student academic use of ChatGPT, using Bayesian Truth Serum-scored survey data and OLS regression on 200 + UCR students',
       'Designed and deployed a behavioral survey using Qualtrics and Python (pandas, matplotlib)',
@@ -163,7 +163,7 @@ const projects = [
   },
   {
     title: 'Quantitative Analysis Club Website | Next.js, TypeScript, React, Tailwind CSS, Framer Motion',
-    period: 'Jan 2025 – Apr 2025',
+    period: 'Jan 2025 - Apr 2025',
     details: [
       'Developed a responsive website for a student-run finance club using Next.js, TypeScript, and Tailwind CSS',
       'Collaborated with 13 developers (via ACM) to design and implement features',
@@ -171,8 +171,8 @@ const projects = [
     ],
   },
   {
-    title: 'Flappy Dot – Embedded Game Development | C, Arduino Uno, ST7735 LCD',
-    period: 'Aug 2024 – Dec 2024',
+    title: 'Flappy Dot - Embedded Game Development | C, Arduino Uno, ST7735 LCD',
+    period: 'Aug 2024 - Dec 2024',
     details: [
       'Created a Flappy Bird-inspired game using C on an Arduino-compatible microcontroller',
       'Integrated SPI TFT LCD, piezo buzzer for sound effects, and collision / scoring logic',
@@ -181,7 +181,7 @@ const projects = [
 
   {
     title: 'Big Data Crime Analysis | PySpark, Python, GeoPandas, Shapely, MySQL',
-    period:  'Apr. 2024 – Jun. 2024',
+    period:  'Apr. 2024 - Jun. 2024',
     details: ['Preprocessed and standardized five large city crime datasets in PySpark by renaming columns to a common schema, handling missing values, and removing unnecessary fields across millions of records',
               'Developed a scalable geospatial processing workflow that assigned ZIP codes to 22M+ crime records in 1M row batches using GeoPandas, Shapely, and U.S. Census ZCTA shapefiles',
               'Analyzed crime frequency by ZIP code and joined demographic information to support downstream visualization of crime patterns, common offense types, and neighborhood level trends',
