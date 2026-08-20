@@ -64,27 +64,41 @@ type Project = {
   year?: string;
   featured?: boolean;
   links?: { type: LinkType; url: string }[];
-  imageMode?: "cover" | "logo";
-  logoSize?: number; // px
+
+  // Image display styles:
+  // cover   = fills container, may crop
+  // contain = shows full image with blurred backdrop
+  // logo    = centered logo
+  imageMode?: "cover" | "contain" | "logo";
+
+  logoSize?: number;
   size?: "feature";
 };
 
 const projects: Project[] = [
-  {
+    {
     id: "dota-draft-winprob",
     title: "Dota 2 Draft Win-Probability Model",
     description:
       "ML pipeline predicting match outcome from hero drafts alone. 150k+ Divine 1 and above ranked matches from the OpenDota API; a logistic-regression baseline hits 55.7% against a 53.7% majority baseline, and a tuned XGBoost ties it near 56%, showing that raw hero features cap out and pointing to synergy and counter features as the next lever.",
     image: "/hero_coefficients.png",
     imageGradient: "from-red-600 to-rose-900",
+
+    imageMode: "contain",
+
     tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
     category: "AI/ML",
     status: "In Progress",
     timeline: "June-",
     year: "2026",
     featured: true,
-    links: [{type: "github", url: "https://github.com/WinThant16/d2shenanigans"}],
-    size:"feature"
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/WinThant16/d2shenanigans",
+      },
+    ],
+    size: "feature",
   },
   {
     id: "adversarial-game-agent",
@@ -170,13 +184,21 @@ const projects: Project[] = [
       "Full-stack port-logistics planner built with a team: generates step-by-step container load, unload, and ship-balancing sequences under movement-cost and legal-balance constraints, shown through a React grid interface. Backed by an Express REST API and server-side computation I built, with action logging and updated-manifest output.",
     image: "/kawrgojumper.png",
     imageGradient: "from-amber-500 to-orange-800",
+
+    imageMode: "contain",
+
     tags: ["React", "Express", "Node.js", "REST API", "Search/Optimization"],
     category: "Web",
     status: "Completed",
     timeline: "Sep-Dec",
     year: "2024",
-    links: [{ type: "github", url: "https://github.com/WinThant16/KawrgoJumper" }],
-    size:"feature"
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/WinThant16/KawrgoJumper",
+      },
+    ],
+    size: "feature",
   },
   {
     id: "genai-higher-ed",
@@ -224,7 +246,6 @@ const projects: Project[] = [
     timeline: "Aug-Dec",
     year: "2024",
     links: [{ type: "demo", url: "https://youtu.be/llS1ihetCOk" }],
-    size:"feature"
   },
   {
     id: "crime-analysis",
@@ -358,19 +379,35 @@ export default async function ProjectsPage() {
                         {/* Header (image / video thumb / gradient) */}
                         <div className="relative h-44 overflow-hidden">
                           {p.id === "adversarial-game-agent" ? (
-                            <div
-                              className={`absolute inset-0 flex items-center justify-center p-5 bg-neutral-900`}                    
-                            >
-                              <div className ="w-full max-w-[170px]">
+                            // ------------------------------------------------------------
+                            // HEIRS BOARD
+                            // Keep its existing dimensions / aspect exactly as-is
+                            // ------------------------------------------------------------
+                            <div className="absolute inset-0 flex items-center justify-center p-5 bg-neutral-900">
+                              <div className="w-full max-w-[170px]">
                                 <HeirsBoard />
                               </div>
                             </div>
-                          ) :
-                          demoUrl ? (
-                            <Link href={demoUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0">
-                              <YouTubeThumb demoUrl={demoUrl} alt={`${p.title} demo thumbnail`} overlay="none" />
+                          ) : demoUrl ? (
+                            // ------------------------------------------------------------
+                            // YOUTUBE THUMBNAIL
+                            // ------------------------------------------------------------
+                            <Link
+                              href={demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="absolute inset-0"
+                            >
+                              <YouTubeThumb
+                                demoUrl={demoUrl}
+                                alt={`${p.title} demo thumbnail`}
+                                overlay="none"
+                              />
                             </Link>
                           ) : p.imageMode === "logo" && p.image ? (
+                            // ------------------------------------------------------------
+                            // LOGO MODE
+                            // ------------------------------------------------------------
                             <div
                               className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
                                 p.imageGradient ?? "from-slate-600 to-slate-800"
@@ -381,10 +418,50 @@ export default async function ProjectsPage() {
                                 alt={p.title}
                                 width={p.logoSize ?? 112}
                                 height={p.logoSize ?? 112}
-                                className="object-fill drop-shadow-sm"
+                                className="object-contain drop-shadow-sm"
                               />
                             </div>
+                          ) : p.imageMode === "contain" && p.image ? (
+                            // ------------------------------------------------------------
+                            // CONTAIN MODE
+                            //
+                            // The background is another copy of the image:
+                            // enlarged + blurred so there are no ugly empty bars.
+                            //
+                            // The foreground image uses object-contain so nothing
+                            // important gets cropped.
+                            // ------------------------------------------------------------
+                            <div className="absolute inset-0 bg-neutral-950">
+                              {/* Blurred background */}
+                              <Image
+                                src={p.image}
+                                alt=""
+                                fill
+                                aria-hidden="true"
+                                className="object-cover scale-110 blur-xl opacity-40"
+                                sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                              />
+
+                              {/* Slight dark overlay to keep backdrop subtle */}
+                              <div className="absolute inset-0 bg-black/25" />
+
+                              {/* Actual full image */}
+                              <div className="absolute inset-0 p-2">
+                                <Image
+                                  src={p.image}
+                                  alt={p.title}
+                                  fill
+                                  className="object-contain"
+                                  sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                                />
+                              </div>
+                            </div>
                           ) : p.image ? (
+                            // ------------------------------------------------------------
+                            // DEFAULT COVER MODE
+                            //
+                            // Good for images that still look nice when cropped.
+                            // ------------------------------------------------------------
                             <Image
                               src={p.image}
                               alt={p.title}
@@ -393,6 +470,9 @@ export default async function ProjectsPage() {
                               sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                             />
                           ) : (
+                            // ------------------------------------------------------------
+                            // FALLBACK GRADIENT
+                            // ------------------------------------------------------------
                             <div
                               className={`absolute inset-0 bg-gradient-to-br ${
                                 p.imageGradient ?? "from-slate-600 to-slate-800"
@@ -400,8 +480,11 @@ export default async function ProjectsPage() {
                             />
                           )}
 
-                          <div className="absolute top-3 left-3">
-                            <Badge className="text-xs text-white bg-black/45">{p.status}</Badge>
+                          {/* Status badge */}
+                          <div className="absolute top-3 left-3 z-10">
+                            <Badge className="text-xs text-white bg-black/45">
+                              {p.status}
+                            </Badge>
                           </div>
                         </div>
 

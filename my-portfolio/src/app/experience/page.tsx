@@ -16,7 +16,7 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    title: "Web Developer, Incoming Web Production Editor",
+    title: "Web Developer",
     org: "USC Annenberg Media",
     location: "Los Angeles, CA",
     dates: "Feb 2026 - Present",
