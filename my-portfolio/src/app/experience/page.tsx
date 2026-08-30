@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
 
 type Experience = {
   title: string;
@@ -44,9 +45,9 @@ const experiences: Experience[] = [
     oneLiner:
       "Shipped a bilingual site that a non-technical team can actually maintain.",
     story:
-      "The interesting constraint was that the school's staff needed to update course schedules themselves, without touching code or waiting on a deploy. That pushed me toward a no-backend design backed by a Google Sheet, so the people who run the school stay in control of their own content.",
+      "It was my first time working on a professional website alone. The challenge was trying to understand what the school actually wanted to show and illustrate to prospective clients and then coming up with a detailed mockup to fit its needs.",
     impact:
-      "Built and shipped wisewishmetc.com in React, TypeScript, Vite, and Tailwind with English and Burmese support, a Google Sheets-backed intake calendar showing 12 months of availability, and an automated Cloudflare deploy on every merge.",
+      "Built and shipped wisewishmetc.com in React, TypeScript, Vite, and Tailwind with English and Burmese support, a Google Sheets-backed intake calendar showing 12 months of availability that updates in real-time.",
     stack:
       "React, TypeScript, Vite, Tailwind CSS, Cloudflare Workers, Google Sheets API",
     links: [{ label: "wisewishmetc.com", href: "https://wisewishmetc.com" }],
@@ -60,9 +61,9 @@ const experiences: Experience[] = [
     oneLiner:
       "Wearing two hats: building the clinic's site and keeping its systems running.",
     story:
-      "A small practice where the work varies day to day. Sometimes it's designing a patient-facing page; other times it's fixing a front-desk workstation before the clinic opens. It taught me to keep things simple and reliable for people who aren't technical.",
+      "A small practice where the work varies day to day. Sometimes it's designing a webpage or a poster; other times it's fixing a front-desk workstation before the clinic opens, or fixing internet connectivity issues. It taught me to keep things simple and reliable for people who aren't technical.",
     impact:
-      "Design and develop the clinic's informational site in Next.js, TypeScript, and Tailwind with mobile-first layouts, and maintain front-desk workstations, staff accounts, and device backups.",
+      "Design and develop the optometry clinic's informational site in Next.js, TypeScript, and Tailwind with mobile-first layouts, and maintain front-desk workstations, staff accounts, and device backups.",
     stack:
       "Next.js, TypeScript, Tailwind CSS, IT support",
     links: [],
@@ -79,7 +80,7 @@ const experiences: Experience[] = [
     oneLiner:
       "Led planning and execution of student-led projects for the EWB Chapter at UCR.",
     story:
-      "EWB was my first leadership role in college, and it taught me how to balance big picture vision with day-to-day execution. I learned to listen to team members, delegate effectively, and keep projects on track while adapting to challenges.",
+      "EWB was my first leadership role in college, and it taught me how to balance between taking charge and delegating tasks. I learned to listen to team members, delegate effectively, and keep projects on track while adapting to challenges.",
     impact:
       "Coordinated a team of more than 20 engineers to take a fertilizer deposition robot from concept to prototype, and supported fundraising that raised over $500 for the 2024 BCOE Match Challenge.",
     stack:
@@ -100,7 +101,7 @@ const experiences: Experience[] = [
     oneLiner:
       "Research taught me patience, and how to turn curiosity into measurable questions.",
     story:
-      "This was slow, in a good way. I would come in thinking I had a clear question, only to realize after discussion that parts of it were underdefined or poorly measured. Most of the progress came from tightening definitions, questioning assumptions, and rerunning analysis until the results made sense and were defensible.",
+      "This was slow, in a good way. Sometimes, I would feel like I had it all figured out. Other times, I would realize parts of it were underdefined or poorly measured. Most of the progress came from tightening definitions, questioning assumptions, and rerunning analysis until the results made sense and were defensible.",
     impact:
       "Pursued an honors capstone on generative AI adoption in education with mentorship from Professor Ye Li, and contributed feedback on study design plus survey methodology across multiple projects.",
     stack:
@@ -121,7 +122,7 @@ const experiences: Experience[] = [
     oneLiner:
       "Led operations, logistics, and budgeting for a student-run hackathon.",
     story:
-      "This was mostly reacting in real time. Schedules slipped, rooms weren’t ready, speakers changed plans, and people kept coming to me for decisions that didn’t have a clean answer. I learned to make calls quickly with partial information, communicate the decision clearly, and move on instead of second-guessing. When something broke later, we adjusted and kept the event running.",
+      "I learned no matter how hard we plan meticulously, there can be factors beyond our control that can affect schedules for an event. I learned to make calls quickly with partial information, communicate the decision clearly, and move on instead of second-guessing. When something broke later, we adjusted and kept the event running.",
     impact:
       "Managed grants, budget, and prize distribution for a two day makeathon, and coordinated workshops plus judging and event logistics for more than 100 participants.",
     stack:
@@ -142,7 +143,7 @@ const experiences: Experience[] = [
     oneLiner:
       "Worked on frontend development and UI improvements for a student organization site.",
     story:
-      "I liked how predictable the workflow was. Tasks were assigned on a weekly basis, and I worked on each feature independently on my own branch. Before opening a pull request, I’d make sure the feature ran locally and include screenshots or short explanations so the project lead could review it quickly. Once approved, the changes were merged, and we moved on to the next task. It felt closer to a real production pipeline than most student projects.",
+      "I liked how predictable the workflow was. Tasks were assigned on a weekly basis, and I worked on each feature independently on my own branch. Before opening a pull request, I would make sure the feature ran locally and include screenshots or short explanations so the project lead could review it quickly. Once approved, the changes were merged, and we moved on to the next task. It felt closer to a real production pipeline than most student projects.",
     impact:
       "Built a modern responsive site for a student run finance club using Next.js, TypeScript, and Tailwind, and collaborated with a team of 13 developers while improving UI motion with Framer Motion.",
     stack:
@@ -241,10 +242,40 @@ export default function Page() {
         </p>
       </header>
 
-      <section className="mt-10 grid gap-6">
-        {experiences.map((exp) => (
-          <ExperienceCard key={`${exp.title}-${exp.org}`} exp={exp} />
-        ))}
+      <section className="mt-10">
+        <ol className="relative ml-3 border-l border-white/10">
+          {experiences.map((exp) => (
+            <li key={`${exp.title}-${exp.org}`} className="ml-6 pb-12 last:pb-0">
+              <span className="absolute -left-[6.5px] mt-2 h-3 w-3 rounded-full bg-gradient-to-r from-rose-400 to-fuchsia-600" />
+
+              <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
+                <h2 className="text-xl font-semibold">{exp.title}</h2>
+                <span className="shrink-0 text-sm text-white/60">{exp.dates}</span>
+              </div>
+              <p className="mt-1 text-sm text-white/70">
+                <span className="font-medium text-white/90">{exp.org}</span>
+                <span className="mx-2 text-white/40">·</span>{exp.location}
+              </p>
+
+              {/* the substance recruiters scan */}
+              <p className="mt-3 text-sm text-white/80">{exp.impact}</p>
+
+              {/* the personal voice, kept but quiet */}
+              <p className="mt-2 text-sm italic text-white/50">{exp.story}</p>
+
+              {/* skills as their own tag row, not a nested box */}
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {exp.stack.split(",").map((s) => (
+                  <Badge key={s} variant="secondary" className="text-xs">{s.trim()}</Badge>
+                ))}
+              </div>
+
+              {exp.links?.length ? (
+                <div className="mt-3 flex flex-wrap gap-3">{/* your existing link pills */}</div>
+              ) : null}
+            </li>
+          ))}
+        </ol>
       </section>
     </main>
   );
