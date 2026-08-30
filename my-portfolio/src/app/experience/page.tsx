@@ -16,22 +16,22 @@ type Experience = {
 };
 
 const experiences: Experience[] = [
-  {
-    title: "Web Developer",
+    {
+    title: "Web Production Editor",
     org: "USC Annenberg Media",
     location: "Los Angeles, CA",
-    dates: "Feb 2026 - Present",
+    dates: "Aug 2026 - Present",
     image: {
       src: "/uscannenberg.jpg",
       alt: "USC Annenberg Logo",
     },
     imageGradient: "from-amber-500/30 to-rose-600/30",
     oneLiner:
-      "Building editorial publishing tools inside a live newsroom's CMS.",
+      "Leading web production inside a live newsroom's CMS.",
     story:
-      "It was my first time working with Arc XP Fusion, and I learned a lot about how media groups like USC Annenberg deploy websites.",
+      "Working inside a real newsroom meant my code had to fit an existing editorial workflow, not the other way around. I started as a volunteer building components in the spring, then moved into the paid Web Production Editor role for the Fall 2026 cycle, where I spend as much time understanding what editors and designers need as I do writing the components themselves.",
     impact:
-      "Built a custom triple-column React layout block on Arc XP's Fusion platform with structured content feeds and theme-aware styling, and am an incoming Web Editor Team lead for Fall 2026.",
+      "Built a custom triple-column React layout block on Arc XP's Fusion platform and used it to publish a redesigned Annenberg Media homepage, rebuilt the site's navigation with Queryly-powered search, and lead web production for the Fall 2026 cycle across 2+ feature cycles.",
     stack:
       "React, Arc XP Fusion, TypeScript, editorial CMS workflows",
     links: [],

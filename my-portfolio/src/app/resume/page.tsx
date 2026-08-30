@@ -76,14 +76,15 @@ const leadership = [
 
 /* ----------------------------- Experience list --------------------------- */
 const experience = [
-  {
-    title: 'Web Developer, Web Production Editor',
+    {
+    title: 'Web Production Editor',
     company: 'USC Annenberg Media',
     location: 'Los Angeles, CA',
-    period: 'Feb 2026 - Present',
+    period: 'Aug 2026 - Present',
     achievements: [
-      "Built a custom triple-column React layout block on Arc XP's Fusion platform, integrating structured content feeds and theme-aware styling to support editorial publishing workflows",
-      'Selected to lead web production for the Fall 2026 cycle after collaborating with designers and project managers across 2+ feature cycles to translate editorial requirements into production-ready components',
+      "Built a custom triple-column React layout block on Arc XP's Fusion platform and used it to publish a redesigned Annenberg Media homepage, integrating structured content feeds and theme-aware styling",
+      "Redesigned the site's navigation bar component and integrated Queryly-powered search",
+      'Lead web production for the Fall 2026 cycle, collaborating with designers and project managers across 2+ feature cycles to translate editorial requirements into production-ready components and webpages',
     ],
   },
   {
