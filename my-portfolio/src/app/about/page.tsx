@@ -4,46 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
 import {
-  Code, Coffee, ExternalLink, Layers,
+  Code, Coffee, ExternalLink, Layers, Github
 } from "lucide-react";
+import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "About | Win Thant Tin Han",
+  title: "About",
   description:
-    "MSCS at USC. CS Honors from UC Riverside. I build web apps and work with data.",
+    "M.S. Computer Science student at USC building production software, full-stack systems, and applied AI/ML projects.",
 };
-
-/* --- Content ---------------------------------------------------------------- */
-
-const values = [
-  {
-    title: "Readability",
-    description:
-      "I try to write code that future me or someone else can pick up and understand quickly.",
-    gradient: "from-rose-500/20 to-fuchsia-500/20",
-  },
-  {
-    title: "Doing it right",
-    description:
-      "I don't like cutting corners. If I'm involved, I want the end result to be solid.",
-    gradient: "from-blue-500/20 to-indigo-500/20",
-  },
-  {
-    title: "Being thoughtful",
-    description:
-      "I try to understand how people think and what they care about, not just what they’re responsible for.",
-    gradient: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    title: "Working together",
-    description:
-      "Great products come from great teams. I value clear communication and mutual respect.",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-  },
-];
-
 /* --- Page ------------------------------------------------------------------- */
 
 export default function AboutPage() {
@@ -60,28 +30,33 @@ export default function AboutPage() {
                   <Badge variant="outline">About</Badge>
                   <div className="text-sm text-muted-foreground flex items-center gap-2">
                     <Layers className="w-4 h-4" />
-                    Software • AI/ML • Research
+                    Software | AI/ML | Research
                   </div>
                 </div>
 
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  I&apos;m a Master&apos;s student in CS at the University of Southern California, and I graduated with  
-                  Honors in CS at University of California - Riverside. I
-                  enjoy working on the intersection of software engineering and applied AI/ML: mostly web applications and data-driven backends.
+                  I&apos;m an M.S. Computer Science student at the University of Southern
+                  California and a Computer Science Honors graduate from the University of
+                  California, Riverside. I enjoy building software across the stack, from
+                  production web applications and backend systems to algorithms and applied
+                  AI/ML projects.
                 </p>
 
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  My honors capstone at UC Riverside became a{" "}
+                  My undergraduate honors capstone at UC Riverside studied how
+                  decision-making traits and other factors relate to students&apos; use of
+                  generative AI in higher education, and was{" "}
                   <a
-                    href="https://escholarship.org/uc/item/3qp27645"
+                    href={profile.research.publicationUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="underline underline-offset-4 hover:text-foreground"
                   >
-                    published paper
-                  </a>{" "}
-                  on decision-making traits and how they potentially shape whether college students decide to use generative AI in their assignments. These days I am mostly
-                  building and shipping web apps, and am currently a Web Editor for USC Annenberg Media, where I am redesigning their website!
+                    published through UC eScholarship
+                  </a>
+                  . These days, I&apos;m a Web Production Editor at USC Annenberg Media,
+                  where I build and ship production components for a live newsroom publishing
+                  platform while co-leading web production for the Fall 2026 cycle.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -126,11 +101,16 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold mb-6">Other interests</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Outside of work I follow soccer, the NBA, and play a lot of Dota 2, which is where my current ML project came from.
-                You will find me building web apps, small ML models, or side projects no one asked for here: 
+                Outside of work, I follow soccer and the NBA and probably play too much
+                Dota 2, which is where my current draft-prediction ML project came from.
+                I also tend to build side projects no one asked for.
               </p>
-              <a href="https://github.com/WinThant16" target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-2 underline underline-offset-4 hover:text-foreground">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 underline underline-offset-4 hover:text-foreground"
+              >
                 <Github className="w-4 h-4" /> GitHub
               </a>
             </div>
@@ -147,8 +127,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-4xl font-bold mb-6">If you want to work together</h2>
               <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                I&apos;m looking for software roles and open to research
-                projects in CS. If you think I&apos;d be a good fit, please reach out.
+                I&apos;m looking for software engineering opportunities and am also open to
+                interesting AI/ML and research collaborations. If you think I&apos;d be a
+                good fit, please reach out.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="outline" asChild size="lg">

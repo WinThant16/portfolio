@@ -1,21 +1,18 @@
-'use client';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { profile } from "@/data/profile";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Mail, Github, Linkedin } from "lucide-react";
 
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Mail, Github, Linkedin } from 'lucide-react';
-import { useEffect } from 'react';
-
-const EMAIL = 'winthant1601@gmail.com';
-const LINKEDIN = 'https://www.linkedin.com/in/win-thant-tin-han';
-const GITHUB = 'https://github.com/WinThant16';
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact Win Thant Tin Han for software engineering, AI/ML, and research opportunities.",
+};
 
 export default function ContactPage() {
-  useEffect(() => {
-    document.title = 'Contact | Win Thant Tin Han';
-  }, []);
-
   return (
     <section className="relative min-h-[75vh] pt-20 md:pt-28">
       <div className="container-max">
@@ -28,7 +25,7 @@ export default function ContactPage() {
             Let&apos;s build something great
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto">
-            Open to internships, software engineering roles, and research collaborations.
+            Open to software engineering opportunities and AI/ML or research collaborations.
             I usually reply within a day.
           </p>
         </div>
@@ -42,21 +39,21 @@ export default function ContactPage() {
 
             <div className="flex flex-col gap-5">
               <Button asChild variant="outline" className="justify-start rounded-full">
-                <a href={`mailto:${EMAIL}`}>
+                <a href={`mailto:${profile.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
-                  {EMAIL}
+                  {profile.email}
                 </a>
               </Button>
 
               <Button asChild variant="outline" className="justify-start rounded-full">
-                <Link href={LINKEDIN} target="_blank">
+                <Link href={profile.linkedin} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
                 </Link>
               </Button>
 
               <Button asChild variant="outline" className="justify-start rounded-full">
-                <Link href={GITHUB} target="_blank">
+                <Link href={profile.github} target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </Link>

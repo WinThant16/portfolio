@@ -22,10 +22,10 @@ export function HeroSection() {
       />
 
       {/* BIGGER gaps on lg+ screens */}
-      <div className="container-max grid items-center gap-12 lg:gap-16 xl:gap-24 lg:grid-cols-12">
+      <div className="container-max grid items-center gap-12 lg:gap-12 xl:gap-18 lg:grid-cols-12">
         {/* LEFT: visual */}
         <motion.div
-          className="order-2 lg:order-1 lg:col-span-5 -ml-4 sm:-ml-6 lg:-ml-16"
+          className="order-2 lg:order-1 lg:col-span-4 -ml-4 sm:-ml-6 lg:-ml-16"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -46,7 +46,7 @@ export function HeroSection() {
 
         {/* RIGHT: content (right-aligned, with a bit of left padding to push off the GIF) */}
         <motion.div
-          className="order-1 lg:order-2 lg:col-span-7 space-y-10 lg:text-right lg:pl-8 xl:pl-16"
+          className="order-1 lg:order-2 lg:col-span-8 space-y-10 lg:text-right lg:pl-2 xl:pl-4"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -56,7 +56,7 @@ export function HeroSection() {
             <Badge className="px-4 py-2 bg-gradient-to-r from-rose-400/10 to-fuchsia-600/10 border-rose-300/20 text-white">
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                Open to collaboration
+                Open to Software Engineering Opportunities
               </div>
             </Badge>
           </div>
@@ -65,14 +65,14 @@ export function HeroSection() {
             <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] md:leading-[1.12]">
               Hi, I&apos;m Win.
               <span className="inline-block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
-                Software Engineer &amp; Researcher.
+                Software Engineer.
               </span>
             </h1>
 
-            <p className="max-w-3xl lg:ml-auto text-white/70 text-lg">
-              I build web apps and applied ML projects.
+            <p className="lg:ml-auto text-white/70 text-lg">
+              <span className="block">I build web applications, full-stack systems, and applied AI/ML projects.</span>
               <br/>
-              MS in CS at USC, BS in CS from UC Riverside, with a published Honors undergraduate research paper on factors that influence students' usage of GenAI.
+              <span className="block">M.S. in Computer Science at USC, B.S. Honors in Computer Science from UCR.</span>
             </p>
           </div>
 

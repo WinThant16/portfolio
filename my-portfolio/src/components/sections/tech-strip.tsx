@@ -3,79 +3,48 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { skills } from "@/data/skills";
+import type { SkillGroup } from "@/data/types";
 
 type IconItem = { src: string; label: string };
 type ColumnSpec = { title: string; tone: string; items: IconItem[] };
 
-const A = (arr: IconItem[]): IconItem[] => arr;
 const ICON_HOVER_SPRING = { type: 'spring' as const, stiffness: 420, damping: 22, mass: 0.3 };
 
+const GROUP_TONES: Record<SkillGroup, string> = {
+  Languages:
+    "from-rose-500/25 to-fuchsia-500/25 border-rose-500/30",
+  "Web Stack":
+    "from-purple-500/25 to-indigo-500/25 border-purple-500/30",
+  Databases:
+    "from-indigo-500/25 to-blue-500/25 border-indigo-500/30",
+  "Infra & Deploy":
+    "from-blue-500/25 to-sky-500/25 border-blue-500/30",
+  "Data & ML":
+    "from-sky-500/25 to-cyan-500/25 border-sky-500/30",
+};
+
+
 /* --------------------------------- Data ---------------------------------- */
-const COLUMNS: ColumnSpec[] = [
-  {
-    title: 'Languages',
-    tone: 'from-rose-500/25 to-fuchsia-500/25 border-rose-500/30',
-    items: A([
-      { src: '/stack/c.svg', label: 'C' },
-      { src: '/stack/cplusplus.svg', label: 'C++' },
-      { src: '/stack/python.svg', label: 'Python' },
-      { src: '/stack/javascript.svg', label: 'JavaScript' },
-      { src: '/stack/typescript.svg', label: 'TypeScript' },
-    ]),
-  },
-  {
-    title: 'Web Stack',
-    tone: 'from-purple-500/25 to-indigo-500/25 border-purple-500/30',
-    items: A([
-      { src: '/stack/next-js.svg', label: 'Next.js' },
-      { src: '/stack/react.svg', label: 'React' },
-      { src: '/stack/node-js.svg', label: 'Node.js' },
-      // { src: '/stack/html.svg', label: 'HTML' },
-      // { src: '/stack/CSS3.svg', label: 'CSS' },
-      { src: '/stack/tailwind.svg', label: 'Tailwind' },
-      { src: '/stack/shadcnui.svg', label: 'shadcn/ui' },
-    ]),
-  },
-  {
-    title: 'Databases',
-    tone: 'from-indigo-500/25 to-blue-500/25 border-indigo-500/30',
-    items: A([
-      { src: '/stack/postgresql.svg', label: 'PostgreSQL' },
-      { src: '/stack/mysql.svg', label: 'MySQL' },
-      { src: '/stack/mongodb.svg', label: 'MongoDB' },
-      { src: '/stack/sqlite.svg', label: 'SQLite' },
-    ]),
-  },
-  {
-    title: 'Infra & Deploy',
-    tone: 'from-blue-500/25 to-sky-500/25 border-blue-500/30',
-    items: A([
-      { src: '/stack/vercel.svg', label: 'Vercel' },
-      { src: '/stack/github-actions.svg', label: 'GitHub Actions' },
-    ]),
-  },
-  {
-    title: 'Data & ML',
-    tone: 'from-sky-500/25 to-cyan-500/25 border-sky-500/30',
-    items: A([
-      { src: '/stack/apachespark.svg', label: 'Apache Spark' },
-      { src: '/stack/pandas.svg', label: 'Pandas' },
-      { src: '/stack/scikitlearn.svg', label: 'scikit-learn' },
-      { src: '/stack/tensorflow.svg', label: 'TensorFlow' },
-      { src: '/stack/pytorch.svg', label: 'PyTorch' },
-    ]),
-  },
-  {
-    title: 'Visualization',
-    tone: 'from-cyan-500/25 to-teal-500/25 border-cyan-500/30',
-    items: A([
-      { src: '/stack/matplotlib.svg', label: 'Matplotlib' },
-      { src: '/stack/seaborn.svg', label: 'Seaborn' },
-      { src: '/stack/plotly.svg', label: 'Plotly' },
-      { src: '/stack/tableau.svg', label: 'Tableau' },
-    ]),
-  },
+const GROUP_ORDER: SkillGroup[] = [
+  "Languages",
+  "Web Stack",
+  "Databases",
+  "Infra & Deploy",
+  "Data & ML",
 ];
+
+const COLUMNS = GROUP_ORDER.map((group) => ({
+  title: group,
+  tone: GROUP_TONES[group],
+  items: skills
+    .filter((skill) => skill.group === group)
+    .filter((skill) => skill.icon)
+    .map((skill) => ({
+      src: skill.icon!,
+      label: skill.name,
+    })),
+}));
 
 /* ---------------------------- Column (card) ------------------------------- */
 function ColumnCard({ title, tone, items }: ColumnSpec) {
@@ -88,7 +57,7 @@ function ColumnCard({ title, tone, items }: ColumnSpec) {
       className={`
         relative rounded-2xl border bg-gradient-to-r ${tone}
         p-6 shadow-sm hover:shadow-md transition-shadow
-        min-h-[clamp(10rem,18vw,10rem)]
+        min-h-[clamp(10rem,18vw,10rem)] h-full
       `}
     >
       <div className="mb-4 text-center text-sm font-semibold tracking-wide text-white/90">
@@ -180,13 +149,22 @@ export function TechStrip() {
             </span>
           </h2>
           <p className="mt-2 text-sm md:text-base text-white/70">
-            The stack I use across coursework, research, and personal projects.
+            Tools I use across production work, projects, research, and coursework.
           </p>
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          {cols.map((c) => (
-            <ColumnCard key={c.title} {...c} />
+        <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-6">
+          {cols.map((c,i) => (
+            <div 
+              key={c.title}
+              className={`
+                xl:col-span-2
+                ${i === 3 ? "xl:col-start-2" : ""}
+                ${i === 4 ? "xl:col-start-4" : ""}
+                `}
+            >
+                <ColumnCard key={c.title} {...c} />
+            </div>
           ))}
         </div>
       </div>
