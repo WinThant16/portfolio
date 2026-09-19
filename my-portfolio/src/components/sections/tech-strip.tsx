@@ -9,7 +9,6 @@ import type { SkillGroup } from "@/data/types";
 type IconItem = { src: string; label: string };
 type ColumnSpec = { title: string; tone: string; items: IconItem[] };
 
-const A = (arr: IconItem[]): IconItem[] => arr;
 const ICON_HOVER_SPRING = { type: 'spring' as const, stiffness: 420, damping: 22, mass: 0.3 };
 
 const GROUP_TONES: Record<SkillGroup, string> = {

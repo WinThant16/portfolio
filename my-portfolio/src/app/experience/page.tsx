@@ -1,6 +1,14 @@
 import { experiences } from "@/data/experience";
 import { formatDateRange } from "@/lib/date";
 import { Badge } from "@/components/ui/badge";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experience",
+  description:
+    "Professional experience, research, and leadership work by Win Thant Tin Han.",
+};
+
 
 export default function Page() {
   return (

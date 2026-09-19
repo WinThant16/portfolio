@@ -10,7 +10,7 @@ import {
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "About | Win Thant Tin Han",
+  title: "About",
   description:
     "M.S. Computer Science student at USC building production software, full-stack systems, and applied AI/ML projects.",
 };

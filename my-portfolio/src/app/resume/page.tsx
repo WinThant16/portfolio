@@ -1,5 +1,3 @@
-'use client'
-
 import { profile } from "@/data/profile";
 import { experiences } from "@/data/experience";
 import { projects } from "@/data/projects";
@@ -7,7 +5,6 @@ import { skills } from "@/data/skills";
 import { formatDateRange } from "@/lib/date";
 
 import Link from 'next/link'
-import { useEffect } from 'react'
 import {
   Mail,
   MapPin,
@@ -24,6 +21,13 @@ import {
   FileText
 } from 'lucide-react'
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description:
+    "Resume of Win Thant Tin Han, M.S. Computer Science student at USC with experience in software engineering, full-stack development, AI/ML, and research.",
+};
 
 /* --------------------------- Professional summary ----------------------- */
 const summary = `M.S. Computer Science student at USC and CS Honors graduate (Cum Laude) from UC Riverside, with experience across full-stack software engineering, applied AI/ML, algorithms, and data systems. I build production web applications, from newsroom publishing tooling on Arc XP Fusion to a bilingual maritime training-school site, alongside machine-learning and systems projects. My undergraduate honors capstone on generative AI adoption in education is published through UC eScholarship. I'm seeking software engineering and AI/ML opportunities.`;
@@ -79,10 +83,6 @@ const groupedSkills = skills.reduce<Record<string, string[]>>(
 
 /* ----------------------------- Component -------------------------------- */
 export default function ResumePage() {
-  useEffect(() => {
-    document.title = 'Resume | Win Thant Tin Han'
-  }, [])
-
   return (
     <main className="min-h-screen bg-transparent text-foreground">
       <div className="mx-auto max-w-4xl px-6 py-14">

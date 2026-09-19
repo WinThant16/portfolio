@@ -4,18 +4,28 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme";
 import Header from "@/components/layout/Header";
-import Image from "next/image";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Win Thant Tin Han",
-  description: "Projects, research, and contact.",
+  metadataBase: new URL("https://win-thant-portfolio.vercel.app"),
+
+  title: {
+    default: "Win Thant Tin Han | Software Engineer",
+    template: "%s | Win Thant Tin Han",
+  },
+
+  description:
+    "Software engineer and M.S. Computer Science student at USC building production web applications, full-stack systems, algorithms, and applied AI/ML projects.",
+
   openGraph: {
-    title: "Win Thant Tin Han",
-    description: "Portfolio site. Projects, research, and contact.",
+    title: "Win Thant Tin Han | Software Engineer",
+    description:
+      "Production software, full-stack systems, algorithms, and applied AI/ML projects.",
     type: "website",
+    url: "/",
+    siteName: "Win Thant Tin Han",
   },
 };
 

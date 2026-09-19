@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Menu, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import Image from "next/image";
 
 const navItems = [
@@ -22,8 +22,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { scrollY } = useScroll();
-
+  
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     onScroll();
