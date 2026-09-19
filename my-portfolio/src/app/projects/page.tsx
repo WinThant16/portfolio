@@ -12,6 +12,14 @@ import { Github, ExternalLink, Calendar, Clock, Code, CodeXml, Cpu, Microscope, 
 import YouTubeThumb from "@/components/YouTubeThumb";
 
 import { cn } from "@/lib/utils";
+import { projects } from "@/data/projects";
+import type { Project, ProjectCategory, PortfolioLinkType } from "@/data/types";
+import {
+  formatProjectTimeline,
+  formatProjectYear,
+} from "@/lib/date";
+
+
 /* --------------------------------- SEO --------------------------------- */
 export const metadata: Metadata = {
   title: "Projects | Win Thant Tin Han",
@@ -28,7 +36,7 @@ async function enrichProjectsForThumbs(list: Project[]): Promise<Project[]> {
   return Promise.all(
     list.map(async (p) => {
       // Only fetch if no image is already set:
-      if (!p.image) {
+      if (!p.portfolio?.image) {
         const paperUrl = p.links?.find((l) => l.type === 'paper')?.url;
         // const demoUrl  = p.links?.find((l) => l.type === 'demo')?.url;
 
@@ -38,7 +46,12 @@ async function enrichProjectsForThumbs(list: Project[]): Promise<Project[]> {
         if (pageToProbe) {
           const og = await getOgImage(pageToProbe).catch(() => null);
           if (og) {
-            return { ...p, image: og, imageMode: 'cover' as const };
+            return { ...p, 
+                     portfolio: {
+                        ...p.portfolio,
+                        image: og,
+                        imageMode: "cover" as const,
+                     } };
           }
         }
       }
@@ -47,267 +60,91 @@ async function enrichProjectsForThumbs(list: Project[]): Promise<Project[]> {
   );
 }
 
-/* --------------------------------- Data -------------------------------- */
-type LinkType = "github" | "live" | "paper" | "demo";
-type Category = "All" | "Web" | "AI/ML" | "Graphics" | "Embedded" | "Research" | "Club/Org" | "Database Systems";
-
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  image?: string | null;
-  imageGradient?: string | null;
-  tags: string[];
-  category: Exclude<Category, "All">;
-  status: "Completed" | "In Progress";
-  timeline?: string;
-  year?: string;
-  featured?: boolean;
-  links?: { type: LinkType; url: string }[];
-
-  // Image display styles:
-  // cover   = fills container, may crop
-  // contain = shows full image with blurred backdrop
-  // logo    = centered logo
-  imageMode?: "cover" | "contain" | "logo";
-
-  logoSize?: number;
-  size?: "feature";
-};
-
-const projects: Project[] = [
-    {
-    id: "dota-draft-winprob",
-    title: "Dota 2 Draft Win-Probability Model",
-    description:
-      "ML pipeline predicting match outcome from hero drafts alone. 150k+ Divine 1 and above ranked matches from the OpenDota API; a logistic-regression baseline hits 55.7% against a 53.7% majority baseline, and a tuned XGBoost ties it near 56%, showing that raw hero features cap out and pointing to synergy and counter features as the next lever.",
-    image: "/hero_coefficients.png",
-    imageGradient: "from-red-600 to-rose-900",
-
-    imageMode: "contain",
-
-    tags: ["Python", "scikit-learn", "pandas", "OpenDota API"],
-    category: "AI/ML",
-    status: "In Progress",
-    timeline: "June-",
-    year: "2026",
-    featured: true,
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/WinThant16/d2shenanigans",
-      },
-    ],
-    size: "feature",
-  },
-  {
-    id: "adversarial-game-agent",
-    title: "Adversarial Game Agent (Heirs)",
-    description:
-      "Search agent for a 12x12 strategic board game with 8 piece types: principal variation search with iterative deepening, Zobrist-hashed transposition tables, killer/history heuristics, and late move reduction. Placed 19th of 201 (top 10%) in a course tournament.",
-    image: null,
-    imageGradient: "from-violet-600 to-indigo-900",
-    tags: ["C++", "Adversarial Search", "Game AI"],
-    category: "AI/ML",
-    status: "Completed",
-    timeline: "Jan-May",
-    year: "2026",
-    links: [{type:"github", url:"https://github.com/WinThant16/heirs-chess-variant-agent"}],
-  },
-  {
-  id: "sandra-oo-optometry",
-  title: "Dr. Khin Sandra Oo Optometry",
-  description:
-    "Production site for an independent optometry practice: services, doctor profiles, an eye-conditions library, FAQs, and a contact section with an embedded map and hours. Built in Next.js and deployed on Vercel.",
-  image: "/optometrysite.png",
-  imageGradient: "from-teal-500 to-emerald-800",
-  tags: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
-  category: "Web",
-  status: "Completed",
-  timeline: "Apr-Jun",
-  year: "2026",
-  links: [{ type: "live", url: "https://drsandraooeyecare.com/" }],
-  },
-  {
-    id: "poisson-surface-recon",
-    title: "Poisson Surface Reconstruction",
-    description:
-      "Screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes. F-score 0.9999 on the Stanford bunny at depth 7, benchmarked against Alpha Shape and Ball Pivoting.",
-    image: "/surface-reconstruction.jpg",
-    imageGradient: "from-sky-500 to-blue-800",
-    tags: ["Python", "NumPy", "SciPy", "Marching Cubes"],
-    category: "Graphics",
-    status: "Completed",
-    timeline: "Jan-May",
-    year: "2026",
-    links: [{type: "github", url:"https://github.com/laddertosky/surface_reconstruction"}],
-  },
-  {
-    id: "wise-wish-metc",
-    title: "Wise Wish Marine Engineering Training Centre",
-    description:
-      "Production marketing and enrollment site for a Myanmar marine training school. Course catalog, News section, and a live per-course intake calendar pulling from Google Sheets via OpenSheet. Built solo and deployed on Cloudflare Workers.",
-    image: "/wisewishsite.png",
-    imageGradient: "from-blue-600 to-cyan-800",
-    tags: ["React", "Vite", "TypeScript", "Tailwind", "Cloudflare Workers"],
-    category: "Web",
-    status: "Completed",
-    timeline: "Jan-Jun",
-    year: "2026",
-    featured: true,
-    links: [{ type: "live", url: "https://wisewishmetc.com" }],
-    size: "feature",
-  },
-  
-  
-  {
-    id: "reddit-music-search",
-    title: "Reddit Music Search Engine",
-    description:
-      "PyLucene indexing and retrieval over post titles, bodies, and comments from music subreddits, reranking by Lucene relevance combined with post score and a time-decay recency factor. PRAW pipeline crawls the data into structured JSONL.",
-    image: null,
-    imageGradient: "from-orange-500 to-rose-700",
-    tags: ["Python", "PRAW", "PyLucene", "Information Retrieval"],
-    category: "AI/ML",
-    status: "Completed",
-    timeline: "Apr-Jun",
-    year: "2025",
-    links: [
-      { type: "demo", url: "https://www.youtube.com/watch?v=8V_QhB1leak" },
-      { type: "github", url: "https://github.com/WinThant16/reddit-music-search-engine" },
-    ],
-  },
-  {
-    id: "container-ship-load-planner",
-    title: "Container Ship Load Planner",
-    description:
-      "Full-stack port-logistics planner built with a team: generates step-by-step container load, unload, and ship-balancing sequences under movement-cost and legal-balance constraints, shown through a React grid interface. Backed by an Express REST API and server-side computation I built, with action logging and updated-manifest output.",
-    image: "/kawrgojumper.png",
-    imageGradient: "from-amber-500 to-orange-800",
-
-    imageMode: "contain",
-
-    tags: ["React", "Express", "Node.js", "REST API", "Search/Optimization"],
-    category: "Web",
-    status: "Completed",
-    timeline: "Sep-Dec",
-    year: "2024",
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/WinThant16/KawrgoJumper",
-      },
-    ],
-    size: "feature",
-  },
-  {
-    id: "genai-higher-ed",
-    title: "Generative AI in Higher Education (Honors Capstone)",
-    description:
-      "Survey design + OLS analysis on how decision-making traits (risk preference, time preference and loss aversion) relate to academic use of ChatGPT.",
-    image: "/logo_eschol-small.svg",
-    imageGradient: "from-rose-200 to-purple-950",
-    imageMode: "logo",
-    tags: ["Python", "Pandas", "Matplotlib", "OLS"],
-    category: "Research",
-    status: "Completed",
-    timeline: "Multi-term",
-    year: "2023-2025",
-    links: [ { type: "paper", url: "https://escholarship.org/uc/item/3qp27645" } ],
-  },
-  {
-    id: "qac-website",
-    title: "Quantitative Analysis Club Website",
-    description:
-      "Modern club site with dynamic event listings, team profiles, and mobile-first UI built in Next.js + TypeScript.",
-    image: "/logoquant.webp",
-    imageGradient: "from-cyan-500 to-purple-950",
-    imageMode: "logo",
-    logoSize: 64,
-    tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    category: "Web",
-    status: "Completed",
-    timeline: "Jan-Apr",
-    year: "2025",
-    featured: true,
-    links: [{type: "github", url: "https://github.com/acm-ucr/quant-website/tree/dev"},
-      { type: "live", url: "https://quant.ucrhighlanders.org/" }],
-  },
-  {
-    id: "flappy-dot",
-    title: "Flappy Dot (Embedded Game)",
-    description:
-      "Arduino-based Flappy Bird-style game on Uno R3 with TFT LCD, buzzer effects, scoring/collision logic in C.",
-    image: null,
-    imageGradient: "from-emerald-500 to-teal-600",
-    tags: ["C", "Arduino", "Embedded", "TFT LCD"],
-    category: "Embedded",
-    status: "Completed",
-    timeline: "Aug-Dec",
-    year: "2024",
-    links: [{ type: "demo", url: "https://youtu.be/llS1ihetCOk" }],
-  },
-  {
-    id: "crime-analysis",
-    title: "Crimes Data Analysis",
-    description:
-      "Data analysis project exploring U.S. crime datasets with preprocessing, feature engineering, and visualization. Includes models to identify trends and predictive insights, built with Python and data science libraries.",
-    image: "/crdatanalysis.png", 
-    imageGradient: "from-indigo-500 to-blue-600",
-    tags: ["Python", "Pandas", "Matplotlib", "Data Science"],
-    category: "Database Systems",
-    status: "Completed",
-    year: "2024",
-    links: [{ type: "github", url: "https://github.com/nguyena537/CrimesDataAnalysis" },
-      { type: "demo", url: "https://www.youtube.com/watch?v=GqUESbe_U3w" }
-    ],
-    size:"feature"
-  },
-  {
-    id: "ucr-chatroom",
-    title: "UCR Chatroom",
-    description:
-      "Collaborative chatroom app built with classmates. Supports Google login, private rooms with access keys, nickname support, and persistent chatrooms stored via MongoDB. Users can message in public or private rooms after authentication.",
-    image: null, // again, you could drop in a screenshot if you have one
-    imageGradient: "from-cyan-500 to-sky-600",
-    tags: ["Node.js", "MongoDB", "Express", "Firebase Auth"],
-    category:"Database Systems",
-    status: "Completed",
-    year: "2024",
-    // Repo is private so no public GitHub/demo link — TO DO: make public?"
-    links: [],
-  },
-
+type Category = "All" | ProjectCategory;
+const categories: Category[] = [
+  "All",
+  "Web",
+  "AI/ML",
+  "Algorithms",
+  "Graphics",
+  "Data",
+  "Embedded",
+  "Research",
+  "Database Systems",
 ];
-
-const categories: Category[] = ["All", "Web", "AI/ML", "Graphics", "Embedded", "Research", "Database Systems"];
-
 
 /* -------------------------------- UI utils ------------------------------ */
 function categoryIcon(c: Category, className = "") {
   switch (c) {
-    case "Web": return <CodeXml className={`text-white ${className}`} />;
-    case "AI/ML": return <Brain className={`text-white ${className}`} />;
-    case "Graphics": return <Box className={`text-white ${className}`} />;
-    case "Embedded": return <Cpu className={`text-white ${className}`} />;
-    case "Research": return <Microscope className={`text-white ${className}`} />;
-    case "Club/Org": return <Rocket className={`text-white ${className}`} />;
-    case "Database Systems": return <Database className={`text-white ${className}`} />;
-    default: return <Code className={`text-white ${className}`} />;
+    case "Web":
+      return <CodeXml className={`text-white ${className}`} />;
+
+    case "AI/ML":
+      return <Brain className={`text-white ${className}`} />;
+
+    case "Algorithms":
+      return <Cpu className={`text-white ${className}`} />;
+
+    case "Graphics":
+      return <Box className={`text-white ${className}`} />;
+
+    case "Data":
+      return <Database className={`text-white ${className}`} />;
+
+    case "Embedded":
+      return <Cpu className={`text-white ${className}`} />;
+
+    case "Research":
+      return <Microscope className={`text-white ${className}`} />;
+
+    case "Database Systems":
+      return <Database className={`text-white ${className}`} />;
+
+    default:
+      return <Code className={`text-white ${className}`} />;
   }
 }
 
 
-function linkMeta(type: LinkType) {
+function linkMeta(type: PortfolioLinkType) {
   switch (type) {
-    case "github":  return { label: "View Code", icon: <Github className="w-4 h-4 text-white" /> };
-    case "live":    return { label: "Live Site", icon: <ExternalLink className="w-4 h-4 text-white" /> };
-    case "paper":   return { label: "Paper", icon: <ExternalLink className="w-4 h-4 text-white" /> };
-    case "demo":    return { label: "Watch Demo", icon: <ExternalLink className="w-4 h-4 text-white" /> };
-    default:        return { label: "Open", icon: <ExternalLink className="w-4 h-4 text-white" /> };
+    case "github":
+      return {
+        label: "View Code",
+        icon: <Github className="w-4 h-4 text-white" />,
+      };
+
+    case "live":
+      return {
+        label: "Live Site",
+        icon: <ExternalLink className="w-4 h-4 text-white" />,
+      };
+
+    case "paper":
+      return {
+        label: "Paper",
+        icon: <ExternalLink className="w-4 h-4 text-white" />,
+      };
+
+    case "demo":
+      return {
+        label: "Watch Demo",
+        icon: <ExternalLink className="w-4 h-4 text-white" />,
+      };
+
+    case "external":
+      return {
+        label: "View Link",
+        icon: <ExternalLink className="w-4 h-4 text-white" />,
+      };
   }
 }
 
+function formatStatus(status: Project["status"]){
+  return status === "in-progress"
+  ? "In Progress"
+  : "Completed";
+}
 
 /* --------------------------------- Page --------------------------------- */
 export default async function ProjectsPage() {
@@ -321,7 +158,6 @@ export default async function ProjectsPage() {
         {/* Header */}
         <div className="text-center mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Projects</h1>
-          <p className="text-white/70 mt-4">A small, honest slice of work across web dev, embedded systems, and research.</p>
           {/* <div className="mt-4 flex flex-wrap self-center justify-center gap-2">
             <Badge variant="secondary">{projects.length} projects</Badge>
             <Badge variant="secondary">Built with care</Badge>
@@ -374,7 +210,7 @@ export default async function ProjectsPage() {
                         className={cn(
                           "group flex flex-col overflow-hidden bg-white/[0.04] border-white/10 transition-transform duration-300 hover:scale-[1.02]",
                           isAll && "md:col-span-2 md:row-span-2",
-                          isAll && p.size === "feature" && "md:col-span-3",
+                          isAll && p.portfolio?.size === "feature" && "md:col-span-3",
                           )}>
                         {/* Header (image / video thumb / gradient) */}
                         <div className="relative h-44 overflow-hidden">
@@ -404,24 +240,24 @@ export default async function ProjectsPage() {
                                 overlay="none"
                               />
                             </Link>
-                          ) : p.imageMode === "logo" && p.image ? (
+                          ) : p.portfolio?.imageMode === "logo" && p.portfolio?.image ? (
                             // ------------------------------------------------------------
                             // LOGO MODE
                             // ------------------------------------------------------------
                             <div
                               className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
-                                p.imageGradient ?? "from-slate-600 to-slate-800"
+                                p.portfolio?.imageGradient ?? "from-slate-600 to-slate-800"
                               }`}
                             >
                               <Image
-                                src={p.image}
+                                src={p.portfolio?.image}
                                 alt={p.title}
-                                width={p.logoSize ?? 112}
-                                height={p.logoSize ?? 112}
+                                width={p.portfolio?.logoSize ?? 112}
+                                height={p.portfolio?.logoSize ?? 112}
                                 className="object-contain drop-shadow-sm"
                               />
                             </div>
-                          ) : p.imageMode === "contain" && p.image ? (
+                          ) : p.portfolio?.imageMode === "contain" && p.portfolio?.image ? (
                             // ------------------------------------------------------------
                             // CONTAIN MODE
                             //
@@ -434,7 +270,7 @@ export default async function ProjectsPage() {
                             <div className="absolute inset-0 bg-neutral-950">
                               {/* Blurred background */}
                               <Image
-                                src={p.image}
+                                src={p.portfolio?.image}
                                 alt=""
                                 fill
                                 aria-hidden="true"
@@ -448,7 +284,7 @@ export default async function ProjectsPage() {
                               {/* Actual full image */}
                               <div className="absolute inset-0 p-2">
                                 <Image
-                                  src={p.image}
+                                  src={p.portfolio?.image}
                                   alt={p.title}
                                   fill
                                   className="object-contain"
@@ -456,14 +292,14 @@ export default async function ProjectsPage() {
                                 />
                               </div>
                             </div>
-                          ) : p.image ? (
+                          ) : p.portfolio?.image ? (
                             // ------------------------------------------------------------
                             // DEFAULT COVER MODE
                             //
                             // Good for images that still look nice when cropped.
                             // ------------------------------------------------------------
                             <Image
-                              src={p.image}
+                              src={p.portfolio?.image}
                               alt={p.title}
                               fill
                               className="object-cover"
@@ -475,7 +311,7 @@ export default async function ProjectsPage() {
                             // ------------------------------------------------------------
                             <div
                               className={`absolute inset-0 bg-gradient-to-br ${
-                                p.imageGradient ?? "from-slate-600 to-slate-800"
+                                p.portfolio?.imageGradient ?? "from-slate-600 to-slate-800"
                               }`}
                             />
                           )}
@@ -483,7 +319,7 @@ export default async function ProjectsPage() {
                           {/* Status badge */}
                           <div className="absolute top-3 left-3 z-10">
                             <Badge className="text-xs text-white bg-black/45">
-                              {p.status}
+                              {formatStatus(p.status)}
                             </Badge>
                           </div>
                         </div>
@@ -494,35 +330,35 @@ export default async function ProjectsPage() {
                               {p.category}
                             </Badge>
                             <div className="flex items-center text-xs text-white/60">
-                              {p.year && (
+                              {formatProjectYear(p.dates) && (
                                 <>
                                   <Calendar className="w-3 h-3 mr-1" />
-                                  {p.year}
+                                  {formatProjectYear(p.dates)}
                                 </>
                               )}
                             </div>
                           </div>
                           <CardTitle className="text-xl">{p.title}</CardTitle>
-                          <CardDescription className={cn("text-zinc-300", p.size !== "feature" && "line-clamp-3")}>{p.description}</CardDescription>
+                          <CardDescription className={cn("text-zinc-300", p.portfolio?.size !== "feature" && "line-clamp-3")}>{p.summary}</CardDescription>
                         </CardHeader>
 
                         <CardContent className="mt-auto">
                           <div className="flex items-center gap-4 text-xs text-white/60">
-                            {p.timeline && (
+                            {formatProjectTimeline(p.dates) && (
                               <>
-                                <Clock className="w-3 h-3" /> {p.timeline}
+                                <Clock className="w-3 h-3" /> {formatProjectTimeline(p.dates)}
                               </>
                             )}
                           </div>
                           <div className="mt-3 flex flex-wrap gap-1">
-                            {p.tags.slice(0, 4).map((tag) => (
+                            {p.technologies.slice(0, 4).map((tag) => (
                               <Badge key={tag} variant="secondary" className="text-xs">
                                 {tag}
                               </Badge>
                             ))}
-                            {p.tags.length > 4 && (
+                            {p.technologies.length > 4 && (
                               <Badge variant="secondary" className="text-xs">
-                                +{p.tags.length - 4}
+                                +{p.technologies.length - 4}
                               </Badge>
                             )}
                           </div>
