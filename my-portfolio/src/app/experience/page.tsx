@@ -92,7 +92,7 @@ const experiences: Experience[] = [
     title: "Undergraduate Research Associate",
     org: "Behavioral Economics and Decision Making Lab, UCR School of Business",
     location: "Riverside, CA",
-    dates: "Sep 2023 - Jun 2025",
+    dates: "Jan 2023 - Jun 2025",
     image: {
       src: "/researchaward.jpg",
       alt: "Research award photo with Professor Ye Li",
