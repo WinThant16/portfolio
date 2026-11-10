@@ -39,7 +39,7 @@
   --color-ring: var(--navy);
 
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -113,9 +113,8 @@
   .heading-2,
   .heading-3 {
     font-family: var(--font-display);
-    font-variation-settings: "SOFT" 70, "WONK" 0;
     font-optical-sizing: auto;
-    font-weight: 430;
+    font-weight: 500;
   }
 
   .heading-1 {

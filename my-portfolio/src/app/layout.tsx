@@ -7,10 +7,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 // Self-hosted so builds don't depend on Google Fonts (both are SIL OFL)
-const fraunces = localFont({
-  src: "../fonts/fraunces.woff2",
-  variable: "--font-fraunces",
-  weight: "100 900",
+const newsreader = localFont({
+  src: "../fonts/newsreader.woff2",
+  variable: "--font-newsreader",
+  weight: "200 800",
   display: "swap",
 });
 
@@ -48,7 +48,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${hanken.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${newsreader.variable} ${hanken.variable}`}>
       <body className="flex min-h-screen flex-col">
         <ThemeProvider>
           <a
