@@ -1,67 +1,59 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { CopyButton } from "@/components/CopyButton";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Contact Win Thant Tin Han for software engineering, AI/ML, and research opportunities.",
+  description: "Contact Win Thant Tin Han for software engineering, AI/ML, and research opportunities.",
 };
+
+const channels = [
+  { label: "Email", value: profile.email, href: `mailto:${profile.email}`, external: false },
+  {
+    label: "LinkedIn",
+    value: profile.linkedin.replace("https://www.", ""),
+    href: profile.linkedin,
+    external: true,
+  },
+  { label: "GitHub", value: profile.github.replace("https://", ""), href: profile.github, external: true },
+];
 
 export default function ContactPage() {
   return (
-    <section className="relative min-h-[75vh] pt-20 md:pt-28">
-      <div className="container-max">
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <Badge className="px-3 py-1 bg-gradient-to-r from-rose-400/10 to-fuchsia-600/10 border-rose-300/20 text-white">
-            Contact
-          </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Let&apos;s build something great
-          </h1>
-          <p className="text-white/70 max-w-2xl mx-auto">
-            Open to software engineering opportunities and AI/ML or research collaborations.
-            I usually reply within a day.
-          </p>
-        </div>
+    <main className="wrap pt-12 md:pt-20">
+      <header className="max-w-3xl">
+        <h1 className="heading-1">Let&apos;s build something great</h1>
+        <p className="mt-5 max-w-xl text-lg text-dim">
+          Open to software engineering opportunities and AI/ML or research collaborations. I usually reply
+          within a day.
+        </p>
+      </header>
 
-        {/* Single centered card */}
-        <div className="mt-10 flex justify-center w-fit align-middle mx-auto">
-          <Card className="w-full max-w-xl p-6 space-y-10 border-white/10 bg-slate-950/90">
-            <div className="space-y-2">
-              <div className="font-semibold text-center">Reach me directly:</div>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <Button asChild variant="outline" className="justify-start rounded-full">
-                <a href={`mailto:${profile.email}`}>
-                  <Mail className="mr-2 h-4 w-4" />
-                  {profile.email}
-                </a>
-              </Button>
-
-              <Button asChild variant="outline" className="justify-start rounded-full">
-                <Link href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="mr-2 h-4 w-4" />
-                  LinkedIn
-                </Link>
-              </Button>
-
-              <Button asChild variant="outline" className="justify-start rounded-full">
-                <Link href={profile.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </Link>
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </div>
-    </section>
+      <section className="mt-16 max-w-3xl">
+        <h2 className="text-dim">Reach me directly:</h2>
+        <ul className="mt-4 divide-y divide-line border-y border-line">
+          {channels.map((c) => (
+            <li key={c.label} className="flex items-center gap-4">
+              <a
+                href={c.href}
+                {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="group grid flex-1 gap-1 py-6 sm:grid-cols-[8rem_1fr_auto] sm:items-center sm:gap-6"
+              >
+                <span className="text-sm text-dim">{c.label}</span>
+                <span className="font-display break-all text-xl text-ink transition-colors group-hover:text-navy sm:text-2xl">
+                  {c.value}
+                </span>
+                <ArrowUpRight
+                  aria-hidden
+                  className="hidden size-5 text-faint transition-colors group-hover:text-navy sm:block"
+                />
+              </a>
+              {c.label === "Email" && <CopyButton value={profile.email} label="Copy" />}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 }

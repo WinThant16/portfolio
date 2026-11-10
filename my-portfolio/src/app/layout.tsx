@@ -1,12 +1,25 @@
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// Self-hosted so builds don't depend on Google Fonts (both are SIL OFL)
+const fraunces = localFont({
+  src: "../fonts/fraunces.woff2",
+  variable: "--font-fraunces",
+  weight: "100 900",
+  display: "swap",
+});
+
+const hanken = localFont({
+  src: "../fonts/hanken-grotesk.woff2",
+  variable: "--font-hanken",
+  weight: "100 900",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://win-thant-portfolio.vercel.app"),
@@ -29,16 +42,26 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#fbf8f1",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="h-full">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen relative antialiased
-                    bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
-      >
+    <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${hanken.variable}`}>
+      <body className="flex min-h-screen flex-col">
         <ThemeProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-navy focus:px-3 focus:py-2 focus:text-paper"
+          >
+            Skip to content
+          </a>
           <Header />
-          {children}
+          <div id="main" className="flex-1">
+            {children}
+          </div>
+          <Footer />
           <Analytics />
         </ThemeProvider>
       </body>

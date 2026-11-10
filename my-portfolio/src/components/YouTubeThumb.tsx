@@ -58,7 +58,7 @@ export default function YouTubeThumb({
             className={[
               'inline-flex items-center justify-center',
               overlay === 'center' ? 'h-11 w-11' : 'h-8 w-8',
-              'rounded-full bg-black/55 backdrop-blur-sm text-white ring-1 ring-white/20 shadow-md',
+              'rounded-full bg-paper/85 backdrop-blur-sm text-ink ring-1 ring-black/10',
             ].join(' ')}
           >
             <svg viewBox="0 0 24 24" className={overlay === 'center' ? 'h-5 w-5' : 'h-4 w-4'}>

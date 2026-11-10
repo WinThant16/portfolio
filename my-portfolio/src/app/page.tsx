@@ -1,12 +1,15 @@
-// src/app/page.tsx
 import { HeroSection } from "@/components/sections/hero";
+import { SelectedWork } from "@/components/sections/selected-work";
+import { ExperiencePreview } from "@/components/sections/experience-preview";
 import { TechStrip } from "@/components/sections/tech-strip";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main>
       <HeroSection />
+      <SelectedWork />
+      <ExperiencePreview />
       <TechStrip />
     </main>
   );
-} 
+}

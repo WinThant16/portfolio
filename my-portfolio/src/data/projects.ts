@@ -14,10 +14,10 @@ export const projects: Project[] = [
 		category: "AI/ML",
 
 		summary:
-		"Machine-learning pipeline predicting match outcomes from hero drafts using 150K+ high-ranked Dota 2 matches.",
+		"Machine-learning pipeline predicting match outcomes from hero drafts using 300K+ high-ranked Dota 2 matches.",
 
 		highlights: [
-		"Collected and validated 150K+ Divine-ranked matches from the OpenDota API using cursor-based ingestion and resumable collection.",
+		"Collected and validated 300K+ Divine-ranked matches from the OpenDota API using cursor-based ingestion and resumable collection.",
 		"Used a temporal train/test split to reduce leakage from changes in the game meta.",
 		"Logistic regression reached 55.7% test accuracy against a 53.7% majority baseline.",
 		"Tuned XGBoost reached 56.0%, suggesting that richer hero synergy and counter features are a more promising next step than additional model complexity alone.",

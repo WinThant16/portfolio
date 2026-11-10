@@ -1,97 +1,96 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { profile } from "@/data/profile";
+import { LocalTime } from "@/components/LocalTime";
+
+// The one orchestrated motion moment on the site: a short staggered entrance.
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+const item: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const socials = [
+  { label: "GitHub", href: profile.github, icon: Github },
+  { label: "LinkedIn", href: profile.linkedin, icon: Linkedin },
+  { label: "Email", href: `mailto:${profile.email}`, icon: Mail },
+];
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[78vh] flex items-center pt-20 md:pt-28">
-      {/* faint background pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)",
-          backgroundSize: "50px 50px",
-        }}
-      />
-
-      {/* BIGGER gaps on lg+ screens */}
-      <div className="container-max grid items-center gap-12 lg:gap-12 xl:gap-18 lg:grid-cols-12">
-        {/* LEFT: visual */}
+    <section className="wrap pb-16 pt-12 md:pb-20 md:pt-20">
+      <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12">
         <motion.div
-          className="order-2 lg:order-1 lg:col-span-4 -ml-4 sm:-ml-6 lg:-ml-16"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          className="lg:col-span-7"
+          variants={container}
+          initial="hidden"
+          animate="show"
         >
-          <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,.3)]">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-rose-400/10 via-transparent to-fuchsia-600/10" />
+          <motion.h1 variants={item} className="heading-1">
+            Hi, I&apos;m Win.
+            <br />
+            Software Engineer.
+          </motion.h1>
+
+          <motion.div variants={item} className="mt-7 max-w-[34rem] space-y-3 text-lg leading-relaxed text-dim">
+            <p>I build web applications, full-stack systems, and applied AI/ML projects.</p>
+            <p>M.S. in Computer Science at USC, B.S. Honors in Computer Science from UCR.</p>
+          </motion.div>
+
+          <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
+            <Link href="/resume" className="btn btn-primary">
+              View Resume
+            </Link>
+            <Link href="/contact" className="btn btn-line">
+              Get in Touch
+            </Link>
+          </motion.div>
+
+          <motion.ul variants={item} className="mt-8 flex items-center gap-5">
+            {socials.map(({ label, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex items-center gap-2 text-[0.9375rem] text-dim transition-colors hover:text-ink"
+                >
+                  <Icon className="size-4" aria-hidden />
+                  {label}
+                </a>
+              </li>
+            ))}
+          </motion.ul>
+        </motion.div>
+
+        <motion.figure
+          className="lg:col-span-5"
+          initial={{ opacity: 0, scale: 0.985 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-panel ring-1 ring-line">
             <Image
               src="/pixel-room.gif"
-              alt="gif of a coder"
+              alt="Pixel-art animation of someone coding at a desk late at night"
               fill
               priority
               unoptimized
-              className="object-cover object-center"
-              sizes="(min-width: 1024px) 720px, 100vw"
+              className="object-cover object-[55%_50%]"
+              sizes="(min-width: 1024px) 560px, 100vw"
             />
           </div>
-        </motion.div>
-
-        {/* RIGHT: content (right-aligned, with a bit of left padding to push off the GIF) */}
-        <motion.div
-          className="order-1 lg:order-2 lg:col-span-8 space-y-10 lg:text-right lg:pl-2 xl:pl-4"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* badge aligned to the right on lg+ */}
-          <div className="flex lg:justify-end">
-            <Badge className="px-4 py-2 bg-gradient-to-r from-rose-400/10 to-fuchsia-600/10 border-rose-300/20 text-white">
-              <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                Open to Software Engineering Opportunities
-              </div>
-            </Badge>
-          </div>
-
-          <div className="space-y-10 bg-zinc-950/60">
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] md:leading-[1.12]">
-              Hi, I&apos;m Win.
-              <span className="inline-block pb-2 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600">
-                Software Engineer.
-              </span>
-            </h1>
-
-            <p className="lg:ml-auto text-white/70 text-lg">
-              <span className="block">I build web applications, full-stack systems, and applied AI/ML projects.</span>
-              <br/>
-              <span className="block">M.S. in Computer Science at USC, B.S. Honors in Computer Science from UCR.</span>
-            </p>
-          </div>
-
-          {/* buttons right-aligned on lg+ */}
-          <div className="mt-2 flex flex-col sm:flex-row gap-4 sm:justify-start lg:justify-end">
-            <Button
-              size="lg"
-              asChild
-              className="rounded-full leading-none text-center items-center justify-center bg-gradient-to-r from-rose-400 to-fuchsia-600 text-white shadow-lg hover:from-rose-300 hover:to-fuchsia-600"
-            >
-              <Link href="/resume">
-                View Resume <ArrowRight className="ml-1 h-3 w-3" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full">
-              <a href="/contact">Get in Touch</a>
-            </Button>
-          </div>
-        </motion.div>
+          <figcaption className="mt-3 flex items-center justify-between text-sm text-faint">
+            <span>{profile.location}</span>
+            <LocalTime />
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );

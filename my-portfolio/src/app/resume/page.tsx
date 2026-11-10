@@ -1,27 +1,12 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { FileText, Github, Linkedin, Mail, MapPin } from "lucide-react";
+
 import { profile } from "@/data/profile";
 import { experiences } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
 import { formatDateRange } from "@/lib/date";
-
-import Link from 'next/link'
-import {
-  Mail,
-  MapPin,
-  GraduationCap,
-  Building,
-  Code,
-  Star,
-  ExternalLink,
-  Calendar,
-  Github,
-  Linkedin,
-  Briefcase,
-  Rocket,
-  FileText
-} from 'lucide-react'
-
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -31,20 +16,10 @@ export const metadata: Metadata = {
 
 /* --------------------------- Professional summary ----------------------- */
 const summary = `M.S. Computer Science student at USC and CS Honors graduate (Cum Laude) from UC Riverside, with experience across full-stack software engineering, applied AI/ML, algorithms, and data systems. I build production web applications, from newsroom publishing tooling on Arc XP Fusion to a bilingual maritime training-school site, alongside machine-learning and systems projects. My undergraduate honors capstone on generative AI adoption in education is published through UC eScholarship. I'm seeking software engineering and AI/ML opportunities.`;
-const resumeTitle = "M.S. Computer Science Student @ USC"; 
+const resumeTitle = "M.S. Computer Science Student @ USC";
 
-const resumeExperienceIds = [
-  "usc-annenberg-media",
-  "wise-wish-metc",
-  "sandra-oo-clinic",
-  "bedlab",
-];
-
-const resumeLeadershipIds = [
-  "ewb-ucr",
-  "bearhack",
-];
-
+const resumeExperienceIds = ["usc-annenberg-media", "wise-wish-metc", "sandra-oo-clinic", "bedlab"];
+const resumeLeadershipIds = ["ewb-ucr", "bearhack"];
 const resumeProjectIds = [
   "dota-draft-winprob",
   "adversarial-game-agent",
@@ -56,291 +31,174 @@ const resumeProjectIds = [
   "crime-analysis",
 ];
 
-const resumeExperience = experiences.filter((exp) =>
-  resumeExperienceIds.includes(exp.id)
-);
+const resumeExperience = experiences.filter((exp) => resumeExperienceIds.includes(exp.id));
+const resumeLeadership = experiences.filter((exp) => resumeLeadershipIds.includes(exp.id));
+const resumeProjects = projects.filter((project) => resumeProjectIds.includes(project.id));
 
-const resumeLeadership = experiences.filter((exp) =>
-  resumeLeadershipIds.includes(exp.id)
-);
+const groupedSkills = skills.reduce<Record<string, string[]>>((groups, skill) => {
+  (groups[skill.group] ??= []).push(skill.name);
+  return groups;
+}, {});
 
-const resumeProjects = projects.filter((project) =>
-  resumeProjectIds.includes(project.id)
-);
+/* ------------------------------ Building blocks ------------------------- */
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="grid gap-5 border-t border-line py-10 md:grid-cols-[11rem_1fr] md:gap-10">
+      <h2 className="font-display text-xl text-ink">{title}</h2>
+      <div className="min-w-0 space-y-8">{children}</div>
+    </section>
+  );
+}
 
-const groupedSkills = skills.reduce<Record<string, string[]>>(
-  (groups, skill) => {
-    if (!groups[skill.group]) {
-      groups[skill.group] = [];
-    }
-
-    groups[skill.group].push(skill.name);
-
-    return groups;
-  },
-  {}
-);
+function Entry({
+  title,
+  subtitle,
+  dates,
+  bullets,
+}: {
+  title: React.ReactNode;
+  subtitle?: string;
+  dates: string;
+  bullets?: readonly string[];
+}) {
+  return (
+    <div>
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+        <h3 className="font-medium text-ink">{title}</h3>
+        <p className="shrink-0 text-sm tabular-nums text-dim">{dates}</p>
+      </div>
+      {subtitle && <p className="text-[0.9375rem] text-dim">{subtitle}</p>}
+      {bullets?.length ? (
+        <ul className="mt-3 space-y-2 text-[0.9375rem] leading-relaxed text-ink/85">
+          {bullets.map((b) => (
+            <li key={b} className="relative pl-5">
+              <span aria-hidden className="absolute left-0 top-[0.72em] h-px w-2.5 bg-faint" />
+              {b}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 /* ----------------------------- Component -------------------------------- */
 export default function ResumePage() {
   return (
-    <main className="min-h-screen bg-transparent text-foreground">
-      <div className="mx-auto max-w-4xl px-6 py-14">
+    <main className="wrap pt-12 md:pt-20">
+      <div className="mx-auto max-w-4xl">
         {/* ---------- Header ---------- */}
-        <header className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-2">
-          {profile.name}
-        </h1>
+        <header className="pb-10">
+          <h1 className="heading-1">{profile.name}</h1>
+          <p className="mt-3 text-lg text-dim">{resumeTitle}</p>
 
-        <h2 className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-fuchsia-600 mb-4">
-          {resumeTitle}
-        </h2>
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] text-dim">
+            <li>
+              <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 hover:text-ink">
+                <Mail className="size-4" aria-hidden />
+                {profile.email}
+              </a>
+            </li>
+            <li className="inline-flex items-center gap-2">
+              <MapPin className="size-4" aria-hidden />
+              {profile.location}
+            </li>
+            <li>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink">
+                <Linkedin className="size-4" aria-hidden />
+                linkedin.com/in/win-thant-tin-han
+              </a>
+            </li>
+            <li>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink">
+                <Github className="size-4" aria-hidden />
+                github.com/WinThant16
+              </a>
+            </li>
+          </ul>
 
-        <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center">
-            <Mail className="w-4 h-4 mr-1" />
-            {profile.email}
-          </div>
-
-          <div className="flex items-center">
-            <MapPin className="w-4 h-4 mr-1" />
-            {profile.location}
-          </div>
-        </div>
-          <div className="flex flex-wrap justify-center gap-3 mt-3">
-            <Link
-              href={profile.linkedin}
-              target="_blank"
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-border/60 text-xs hover:bg-muted/40 transition"
-            >
-              <Linkedin className="w-3.5 h-3.5" />
-              linkedin.com/in/win-thant-tin-han
-            </Link>
-            <Link
-              href={profile.github}
-              target="_blank"
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-border/60 text-xs hover:bg-muted/40 transition"
-            >
-              <Github className="w-3.5 h-3.5" />
-              github.com/WinThant16
-            </Link>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3 mt-4">
-            <Link
-              href="/win_resume2026.pdf"
-              target="_blank"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-400 to-fuchsia-600 px-4 py-2 text-sm font-medium text-white shadow-lg transition hover:opacity-90"
-            >
-              <FileText className="w-4 h-4" />
-              View PDF Resume
-            </Link>
-          </div>
+          <Link href="/win_resume2026.pdf" target="_blank" className="btn btn-primary mt-8">
+            <FileText className="size-4" aria-hidden />
+            View PDF Resume
+          </Link>
         </header>
 
-        {/* ---------- Summary ---------- */}
-        <section className="mb-10">
-          <h3 className="text-xl font-semibold mb-3 flex items-center">
-            <Star className="w-5 h-5 mr-2 text-primary" />
-            Professional Summary
-          </h3>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-justify">
-            {summary}
-          </p>
-        </section>
+        <Section title="Professional Summary">
+          <p className="leading-relaxed text-ink/85">{summary}</p>
+        </Section>
 
-        <hr className="my-8 border-border/60" />
-
-        {/* ---------- Education ---------- */}
-        <section className="mb-10">
-          <h3 className="text-xl font-semibold mb-6 flex items-center">
-            <GraduationCap className="w-5 h-5 mr-2 text-primary" />
-            Education
-          </h3>
+        <Section title="Education">
           {profile.education.map((edu) => (
-            <div key={edu.id} className="mb-6 last:mb-0">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
-                <div>
-                  <h4 className="font-semibold text-base">{edu.degree}</h4>
-                  <p className="text-xs text-muted-foreground">
-                    {edu.school} | {edu.location}
-                  </p>
-                </div>
-                <div className="text-xs text-muted-foreground flex items-center mt-1 sm:mt-0">
-                  <Calendar className="w-3.5 h-3.5 mr-1" />
-                  {formatDateRange(edu.dates)}
-                </div>
-              </div>
-              {edu.id === "ucr-bscs" && (
-                <ul className="mt-2 text-[13px] text-muted-foreground leading-relaxed space-y-1.5">
-                  <li className="pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/60">
-                    GPA: {edu.gpa}
-                  </li>
-
-                  <li className="pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/60">
-                    {profile.research.award}
-                  </li>
-                </ul>
-              )}
-            </div>
+            <Entry
+              key={edu.id}
+              title={edu.degree}
+              subtitle={`${edu.school}, ${edu.location}`}
+              dates={formatDateRange(edu.dates)}
+              bullets={edu.id === "ucr-bscs" ? [`GPA: ${edu.gpa}`, profile.research.award] : undefined}
+            />
           ))}
-        </section>
+        </Section>
 
-        <hr className="my-8 border-border/60" />
-
-        {/* ---------- Leadership ---------- */}
-        <section className="mb-10">
-          <h3 className="text-xl font-semibold mb-6 flex items-center">
-            <Rocket className="w-5 h-5 mr-2 text-primary" />
-            Leadership
-          </h3>
-          {resumeLeadership.map((role) => (
-            <div key={role.id} className="mb-6 last:mb-0">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
-                <div>
-                  <h4 className="font-semibold text-base">{role.title}</h4>
-                  <p className="text-xs text-muted-foreground">
-                    {role.organization} | {role.location}
-                  </p>
-                </div>
-                <div className="text-xs text-muted-foreground flex items-center mt-1 sm:mt-0">
-                  <Calendar className="w-3.5 h-3.5 mr-1" />
-                  {formatDateRange(role.dates)}
-                </div>
-              </div>
-              <ul className="mt-2 text-[13px] text-muted-foreground leading-relaxed space-y-1.5 text-justify">
-                {role.highlights.map((highlight) => (
-                  <li
-                    key={highlight}
-                    className="pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/60"
-                  >
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-
-        <hr className="my-8 border-border/60" />
-
-        {/* ---------- Experience ---------- */}
-        <section className="mb-10">
-          <h3 className="text-xl font-semibold mb-6 flex items-center">
-            <Building className="w-5 h-5 mr-2 text-primary" />
-            Experience
-          </h3>
+        <Section title="Experience">
           {resumeExperience.map((job) => (
-            <div key={job.id} className="mb-6 last:mb-0">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
-                <div>
-                  <h4 className="font-semibold text-base">{job.title}</h4>
-                  <p className="text-xs text-muted-foreground">
-                    {job.organization} | {job.location}
-                  </p>
-                </div>
-                <div className="text-xs text-muted-foreground flex items-center mt-1 sm:mt-0">
-                  <Calendar className="w-3.5 h-3.5 mr-1" />
-                  {formatDateRange(job.dates)}
-                </div>
-              </div>
-              <ul className="mt-2 text-[13px] text-muted-foreground leading-relaxed space-y-1.5 text-justify">
-                {job.highlights.map((a, j) => (
-                  <li
-                    key={j}
-                    className="pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/60"
-                  >
-                    {a}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Entry
+              key={job.id}
+              title={job.title}
+              subtitle={`${job.organization}, ${job.location}`}
+              dates={formatDateRange(job.dates)}
+              bullets={job.highlights}
+            />
           ))}
-        </section>
+        </Section>
 
-        <hr className="my-8 border-border/60" />
-
-        {/* ---------- Projects ---------- */}
-        <section className="mb-10">
-          <h3 className="text-xl font-semibold mb-6 flex items-center">
-            <Briefcase className="w-5 h-5 mr-2 text-primary" />
-            Projects
-          </h3>
+        <Section title="Projects">
           {resumeProjects.map((proj) => (
-            <div key={proj.id} className="mb-6 last:mb-0">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
-                <h4 className="font-semibold text-base">
-                  {proj.title}
-                  <span className="font-normal text-muted-foreground">
-                    {" | "}
-                    {proj.technologies.join(", ")}
-                  </span>
-                </h4>
-                <p className="text-xs text-muted-foreground flex items-center mt-1 sm:mt-0">
-                  <Calendar className="w-3.5 h-3.5 mr-1" />
-                  {formatDateRange(proj.dates)}
-                </p>
-              </div>
-              <ul className="mt-2 text-[13px] text-muted-foreground leading-relaxed space-y-1.5 text-justify">
-                {proj.highlights.map((d, j) => (
-                  <li
-                    key={j}
-                    className="pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent/60"
-                  >
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Entry
+              key={proj.id}
+              title={proj.title}
+              subtitle={proj.technologies.join(", ")}
+              dates={formatDateRange(proj.dates)}
+              bullets={proj.highlights}
+            />
           ))}
-        </section>
+        </Section>
 
-        <hr className="my-8 border-border/60" />
+        <Section title="Leadership">
+          {resumeLeadership.map((role) => (
+            <Entry
+              key={role.id}
+              title={role.title}
+              subtitle={`${role.organization}, ${role.location}`}
+              dates={formatDateRange(role.dates)}
+              bullets={role.highlights}
+            />
+          ))}
+        </Section>
 
-        {/* ---------- Skills ---------- */}
-        <section>
-          <h3 className="text-xl font-semibold mb-6 flex items-center">
-            <Code className="w-5 h-5 mr-2 text-primary" />
-            Technical Skills
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <Section title="Technical Skills">
+          <dl className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
             {Object.entries(groupedSkills).map(([cat, list]) => (
               <div key={cat}>
-                <h4 className="font-semibold mb-2">{cat}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {list.map((s) => (
-                    <span
-                      key={s}
-                      className="px-2 py-1 text-[11px] rounded-md bg-muted/70 text-foreground/80 uppercase tracking-wide"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
+                <dt className="font-medium text-ink">{cat}</dt>
+                <dd className="mt-1 text-[0.9375rem] text-dim">{list.join(", ")}</dd>
               </div>
             ))}
-          </div>
-        </section>
+          </dl>
+        </Section>
 
         {/* ---------- Footer ---------- */}
-        <footer className="mt-16 pt-8 border-t border-border/60 text-center text-sm text-muted-foreground">
-          <p>References available upon request.</p>
-          <div className="flex justify-center gap-4 mt-4">
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 border border-border px-4 py-2 rounded-md hover:bg-muted/40 transition text-xs"
-            >
-              <ExternalLink className="w-4 h-4" /> View Projects
+        <footer className="flex flex-col gap-5 border-t border-line pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-dim">References available upon request.</p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/projects" className="btn btn-line btn-sm">
+              View Projects
             </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 border border-border px-4 py-2 rounded-md hover:bg-muted/40 transition text-xs"
-            >
-              <Mail className="w-4 h-4" /> Contact Me
+            <Link href="/contact" className="btn btn-line btn-sm">
+              Contact Me
             </Link>
           </div>
         </footer>
       </div>
     </main>
-  )
+  );
 }

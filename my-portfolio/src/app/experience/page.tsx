@@ -1,100 +1,72 @@
+import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
 import { experiences } from "@/data/experience";
 import { formatDateRange } from "@/lib/date";
-import { Badge } from "@/components/ui/badge";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description:
-    "Professional experience, research, and leadership work by Win Thant Tin Han.",
+  description: "Professional experience, research, and leadership work by Win Thant Tin Han.",
 };
-
 
 export default function Page() {
   return (
-    <main className="container-max py-16">
-      <header className="max-w-2xl justify-center">
-        <h1 className="text-3xl m-5 font-semibold">Experience</h1>
-        <p className="m-5 text-foreground/70 ">
-          A more personal look at the roles that shaped how I build, lead, and
-          learn.
+    <main className="wrap pt-12 md:pt-20">
+      <header className="max-w-2xl">
+        <h1 className="heading-1">Experience</h1>
+        <p className="mt-5 text-lg text-dim">
+          A more personal look at the roles that shaped how I build, lead, and learn.
         </p>
       </header>
 
-      <section className="mt-10 grid gap-6">
-        <ol className="relative ml-3 border-l border-white/10">
-          {experiences.map((exp) => (
-            <li
-              key={exp.id}
-              className="ml-6 pb-12 last:pb-0"
-            >
-              <span className="absolute -left-[6.5px] mt-2 h-3 w-3 rounded-full bg-gradient-to-r from-rose-400 to-fuchsia-600" />
+      <div className="mt-14 border-b border-line">
+        {experiences.map((exp) => (
+          <article
+            key={exp.id}
+            className="grid gap-4 border-t border-line py-12 md:grid-cols-[14rem_1fr] md:gap-12"
+          >
+            {/* left rail: when and where */}
+            <div className="text-sm md:sticky md:top-24 md:self-start">
+              <p className="tabular-nums text-ink">{formatDateRange(exp.dates)}</p>
+              <p className="mt-1 text-dim">{exp.location}</p>
+            </div>
 
-              <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
-                <h2 className="text-xl font-semibold">
-                  {exp.title}
-                </h2>
+            <div className="max-w-[44rem]">
+              <h2 className="heading-3 text-[1.625rem]">{exp.title}</h2>
+              <p className="mt-1 text-dim">{exp.organization}</p>
 
-                <span className="shrink-0 text-sm text-white/60">
-                  {formatDateRange(exp.dates)}
-                </span>
-              </div>
-
-              <p className="mt-1 text-sm text-white/70">
-                <span className="font-medium text-white/90">
-                  {exp.organization}
-                </span>
-
-                <span className="mx-2 text-white/40">
-                  ·
-                </span>
-
-                {exp.location}
-              </p>
-
-              <div className="mt-3 space-y-1 text-sm text-white/80">
-                {exp.highlights.map((highlight) => (
-                  <p key={highlight}>{highlight}</p>
+              <ul className="mt-6 space-y-3">
+                {exp.highlights.map((h) => (
+                  <li key={h} className="relative pl-5 leading-relaxed">
+                    <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-2.5 bg-faint" />
+                    {h}
+                  </li>
                 ))}
-              </div>
+              </ul>
 
               {exp.story && (
-                <p className="mt-2 text-sm italic text-white/50">
+                <blockquote className="font-display mt-8 border-l-2 border-navy/70 pl-5 text-[1.1875rem] leading-[1.6] text-ink/90">
                   {exp.story}
-                </p>
+                </blockquote>
               )}
 
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {exp.technologies.map((tech) => (
-                  <Badge
-                    key={tech}
-                    variant="secondary"
-                    className="text-xs"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
+              <p className="mt-7 text-sm text-faint">{exp.technologies.join(", ")}</p>
 
               {exp.links?.length ? (
-                <div className="mt-3 flex flex-wrap gap-3">
+                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                   {exp.links.map((link) => (
-                    <a
-                      key={`${link.type}-${link.url}`}
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm text-white/70 underline hover:text-white"
-                    >
-                      {link.label ?? "View link"}
-                    </a>
+                    <li key={`${link.type}-${link.url}`}>
+                      <a href={link.url} target="_blank" rel="noreferrer" className="text-link">
+                        {link.label ?? "View link"}
+                        <ArrowUpRight className="size-4 text-faint" aria-hidden />
+                      </a>
+                    </li>
                   ))}
-                </div>
+                </ul>
               ) : null}
-            </li>
-          ))}
-        </ol>
-      </section>
+            </div>
+          </article>
+        ))}
+      </div>
     </main>
   );
 }

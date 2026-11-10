@@ -15,7 +15,11 @@ const BOARD = [
 
 export default function HeirsBoard() {
   return (
-    <div className="grid grid-cols-12 w-full aspect-square mx-auto rounded-lg overflow-hidden border border-white/10">
+    <div
+      role="img"
+      aria-label="12 by 12 Heirs game board in its starting position"
+      className="grid aspect-square w-full grid-cols-12 overflow-hidden rounded-md ring-1 ring-line"
+    >
       {BOARD.map((row, r) =>
         row.split("").map((piece, c) => {
           const isDark = (r + c) % 2 === 1;
@@ -25,16 +29,12 @@ export default function HeirsBoard() {
           return (
             <div
               key={`${r}-${c}`}
-              className={`flex items-center justify-center ${
-                isDark ? "bg-neutral-900" : "bg-neutral-700"
-              }`}
+              className={`flex items-center justify-center ${isDark ? "bg-[#ddd3bf]" : "bg-[#f1ebdf]"}`}
             >
               {!isEmpty && (
                 <span
-                  className={`flex items-center justify-center w-[80%] h-[80%] rounded-full text-[10px] sm:text-xs font-bold leading-none ${
-                    isWhitePiece
-                      ? "bg-white/10 text-white"
-                      : "bg-rose-500/15 text-rose-300"
+                  className={`flex h-[78%] w-[78%] items-center justify-center rounded-full text-[9px] font-semibold leading-none sm:text-[10px] ${
+                    isWhitePiece ? "bg-white text-ink ring-1 ring-black/10" : "bg-navy text-paper"
                   }`}
                 >
                   {piece}
