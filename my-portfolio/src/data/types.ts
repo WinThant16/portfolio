@@ -57,7 +57,6 @@ export type Project = {
 		image?: string | null;
 		imageMode?: "cover" | "contain" | "logo";
 		logoSize?: number;
-		size?: "feature";
 		featured?: boolean;
 		spineTitle?: string; // short label for the bookshelf spine
 	};

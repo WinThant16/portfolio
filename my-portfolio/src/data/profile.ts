@@ -8,7 +8,7 @@ export const profile = {
 
 	linkedin: "https://www.linkedin.com/in/win-thant-tin-han",
 	github: "https://github.com/WinThant16",
-
+  portfolio: "https://win-thant-portfolio.vercel.app",
 	education: [
 		{
 			id: "usc-mscs",

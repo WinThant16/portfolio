@@ -24,7 +24,7 @@ function hash(s: string) {
 export function spineSize(p: Project) {
 	const words = p.summary.split(" ").length + p.highlights.join(" ").split(" ").length;
 	const width = Math.min(70, Math.max(48, 36 + words * 0.25)) + (hash(p.id) % 6);
-	const height = 270;
+	const height = 340;
 	return { width: Math.round(width), height };
 }
 

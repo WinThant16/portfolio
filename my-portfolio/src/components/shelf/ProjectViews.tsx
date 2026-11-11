@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useSyncExternalStore, type ReactNode } from "react";
 import { LibraryBig, List } from "lucide-react";
 import { cn } from "@/lib/utils";

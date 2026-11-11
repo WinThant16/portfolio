@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import "../data/profile";
+import { profile } from "@/data/profile";
 
 // Self-hosted so builds don't depend on Google Fonts (both are SIL OFL)
 const newsreader = localFont({
@@ -22,7 +22,7 @@ const hanken = localFont({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("profile.portfolio"),
+	metadataBase: new URL(profile.portfolio), 
 
 	title: {
 		default: "Win Thant Tin Han | Software Engineer",

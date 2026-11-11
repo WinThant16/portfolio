@@ -33,7 +33,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "Dota 2 Draft Model",
+			spineTitle: "Dota 2 Draft Model Prediction",
 			image: "/hero_coefficients.png",
 			imageMode: "contain",
 			featured: true,
@@ -72,7 +72,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "Heirs Game Agent",
+			spineTitle: "Heirs Adversarial Game Agent",
 			image: null,
 			featured: true,
 		},
@@ -148,7 +148,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "Surface Reconstruction",
+			spineTitle: "Poisson Surface Reconstruction",
 			image: "/surface-reconstruction.jpg",
 		},
 	},
@@ -225,7 +225,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "Reddit Music Search",
+			spineTitle: "Reddit Music Search Engine",
 			image: null,
 		},
 	},
@@ -304,7 +304,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "GenAI Usage in Higher Ed",
+			spineTitle: "GenAI Usage in Higher Ed (Paper)",
 			image: "/logo_eschol-small.svg",
 			imageMode: "logo",
 		},
@@ -316,7 +316,7 @@ export const projects: Project[] = [
 
 		dates: {
 			start: "2025-01",
-			end: "2025-04",
+			end: "2025-03",
 		},
 
 		status: "completed",
@@ -384,7 +384,7 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-			spineTitle: "Flappy Dot",
+			spineTitle: "Flappy Dot Embedded Game",
 			image: null,
 		},
 	},
