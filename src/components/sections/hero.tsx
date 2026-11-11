@@ -59,22 +59,22 @@ export function HeroSection() {
 
 				<figure className="rise lg:col-span-5" style={delay(0.25)}>
 					<div
-            role="img"                                                                       // ← moved here
-            aria-label="Pixel-art animation of someone coding at a desk late at night"      // ← moved here
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-panel ring-1 ring-line"
-          >
-            <video
-              src="/pixel-room.mp4"
-              poster="/pixel-room-poster.webp"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-hidden                                                                  // ← was role + aria-label
-              className="absolute inset-0 size-full object-cover object-[55%_50%]"
-            />
-          </div>
+						role="img" // ← moved here
+						aria-label="Pixel-art animation of someone coding at a desk late at night" // ← moved here
+						className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-panel ring-1 ring-line"
+					>
+						<video
+							src="/pixel-room.mp4"
+							poster="/pixel-room-poster.webp"
+							autoPlay
+							muted
+							loop
+							playsInline
+							preload="auto"
+							aria-hidden // ← was role + aria-label
+							className="absolute inset-0 size-full object-cover object-[55%_50%]"
+						/>
+					</div>
 					<figcaption className="mt-3 flex items-center justify-between text-sm text-faint">
 						<span>{profile.location}</span>
 						<LocalTime />

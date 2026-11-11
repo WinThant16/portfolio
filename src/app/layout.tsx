@@ -22,7 +22,7 @@ const hanken = localFont({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL(profile.portfolio), 
+	metadataBase: new URL(profile.portfolio),
 
 	title: {
 		default: "Win Thant Tin Han | Software Engineer",
