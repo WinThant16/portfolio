@@ -5,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import type { Project } from "@/data/types";
 import { BookDetail } from "./BookDetail";
-import { BOOK_TYPES, pad3, spineLabel, spineSize } from "./bookType";
+import { BOOK_HEIGHT, BOOK_TYPES, pad3, spineLabel, spineSize } from "./bookType";
 
 type Props = {
 	projects: Project[];
@@ -15,8 +15,9 @@ type Props = {
 
 const LIFT = -26; // how far a book slides up before it comes off the shelf
 const LIFT_MS = 170;
-const SHELF_ROW = 340; // px per shelf row: tallest book + headroom + the board
 const BOARD = 14; // board thickness
+const HEADROOM = 48;
+const SHELF_ROW = BOOK_HEIGHT + BOARD + HEADROOM; // px per shelf row: tallest book + headroom + the board
 
 /* Everything is sized in px times --s, so phones get slightly smaller books */
 const px = (n: number) => `calc(${n}px * var(--s))`;

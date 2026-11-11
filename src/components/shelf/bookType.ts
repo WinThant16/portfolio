@@ -13,6 +13,8 @@ export const BOOK_TYPES: Record<ProjectCategory, { color: string; tint: string; 
 	"Database Systems": { color: "#505a67", tint: "#eff1f3", Icon: Server },
 };
 
+export const BOOK_HEIGHT = 340;
+
 /* Small stable hash so each book keeps the same size on every render */
 function hash(s: string) {
 	let h = 0;
@@ -24,7 +26,7 @@ function hash(s: string) {
 export function spineSize(p: Project) {
 	const words = p.summary.split(" ").length + p.highlights.join(" ").split(" ").length;
 	const width = Math.min(70, Math.max(48, 36 + words * 0.25)) + (hash(p.id) % 6);
-	const height = 340;
+	const height = BOOK_HEIGHT;
 	return { width: Math.round(width), height };
 }
 

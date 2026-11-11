@@ -1,4 +1,4 @@
-﻿# Win Thant Tin Han - Portfolio
+# Win Thant Tin Han - Portfolio
 
 Personal portfolio site: projects, experience, and resume.
 
