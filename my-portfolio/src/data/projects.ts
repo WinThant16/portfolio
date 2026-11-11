@@ -39,11 +39,12 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/hero_coefficients.png",
-		imageGradient: "from-red-600 to-rose-900",
-		imageMode: "contain",
-		size: "feature",
-		featured: true,
+			spineTitle: "Dota 2 Draft Win Probability Model",
+			image: "/hero_coefficients.png",
+			imageGradient: "from-red-600 to-rose-900",
+			imageMode: "contain",
+			size: "feature",
+			featured: true,
 		},
 	},
 
@@ -83,9 +84,10 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: null,
-		imageGradient: "from-violet-600 to-indigo-900",
-		featured: true,
+			spineTitle: "Adversarial Game Agent (Heirs)",
+			image: null,
+			imageGradient: "from-violet-600 to-indigo-900",
+			featured: true,
 		},
 	},
 
@@ -124,8 +126,9 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/optometrysite.png",
-		imageGradient: "from-teal-500 to-emerald-800",
+			spineTitle: "Dr. Khin Sandra Oo Optometry Website",
+			image: "/optometrysite.png",
+			imageGradient: "from-teal-500 to-emerald-800",
 		},
 	},
 
@@ -169,8 +172,9 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/surface-reconstruction.jpg",
-		imageGradient: "from-sky-500 to-blue-800",
+			spineTitle: "Poisson Surface Reconstruction",
+			image: "/surface-reconstruction.jpg",
+			imageGradient: "from-sky-500 to-blue-800",
 		},
 	},
 
@@ -212,10 +216,11 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/wisewishsite.png",
-		imageGradient: "from-blue-600 to-cyan-800",
-		featured: true,
-		size: "feature",
+			spineTitle: "Wise Wish Website",
+			image: "/wisewishsite.png",
+			imageGradient: "from-blue-600 to-cyan-800",
+			featured: true,
+			size: "feature",
 		},
 	},
 
@@ -260,8 +265,9 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: null,
-		imageGradient: "from-orange-500 to-rose-700",
+			spineTitle: "Reddit Music Search Engine",
+			image: null,
+			imageGradient: "from-orange-500 to-rose-700",
 		},
 	},
 
@@ -307,11 +313,12 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/kawrgojumper.png",
-		imageGradient: "from-amber-500 to-orange-800",
-		imageMode: "contain",
-		size: "feature",
-		featured: true,
+			spineTitle: "Container Ship AI Loader",
+			image: "/kawrgojumper.png",
+			imageGradient: "from-amber-500 to-orange-800",
+			imageMode: "contain",
+			size: "feature",
+			featured: true,
 		},
 	},
 
@@ -353,9 +360,10 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/logo_eschol-small.svg",
-		imageGradient: "from-rose-200 to-purple-950",
-		imageMode: "logo",
+			spineTitle: "GenAI Usage in Higher Education",
+			image: "/logo_eschol-small.svg",
+			imageGradient: "from-rose-200 to-purple-950",
+			imageMode: "logo",
 		},
 	},
 
@@ -402,10 +410,11 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/logoquant.webp",
-		imageGradient: "from-cyan-500 to-purple-950",
-		imageMode: "logo",
-		logoSize: 64,
+			spineTitle: "Quant Analysis Club Website",
+			image: "/logoquant.webp",
+			imageGradient: "from-cyan-500 to-purple-950",
+			imageMode: "logo",
+			logoSize: 64,
 		},
 	},
 
@@ -444,8 +453,9 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: null,
-		imageGradient: "from-emerald-500 to-teal-600",
+			spineTitle: "Flappy Dot Embedded Systems Project",
+			image: null,
+			imageGradient: "from-emerald-500 to-teal-600",
 		},
 	},
 
@@ -481,8 +491,9 @@ export const projects: Project[] = [
 		links: [],
 
 		portfolio: {
-		image: null,
-		imageGradient: "from-cyan-500 to-sky-600",
+			spineTitle: "UCR Chatroom",
+			image: null,
+			imageGradient: "from-cyan-500 to-sky-600",
 		},
 	},
 
@@ -529,9 +540,10 @@ export const projects: Project[] = [
 		],
 
 		portfolio: {
-		image: "/crdatanalysis.png",
-		size: "feature",
-		imageGradient: "from-indigo-500 to-blue-600",
+			spineTitle: "Crime Big Data Analysis",
+			image: "/crdatanalysis.png",
+			size: "feature",
+			imageGradient: "from-indigo-500 to-blue-600",
 		},
 	},
 

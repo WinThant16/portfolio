@@ -72,6 +72,7 @@ export type Project = {
     logoSize?: number;
     size?: "feature";
     featured?: boolean;
+    spineTitle?: string; // short label for the bookshelf spine
   };
 };
 

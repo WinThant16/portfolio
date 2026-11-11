@@ -48,14 +48,18 @@
 }
 
 :root {
-  --paper: #fbf8f1; /* page: warm white, newsprint rather than cream */
+  --paper: #fffdf9; /* page: warm white, newsprint rather than cream */
   --panel: #f3eee4; /* raised surfaces, image frames */
-  --line: #e4ddcf; /* rules and borders */
+  --line: #847f76; /* rules and borders */
   --ink: #1f1d1a; /* body text and headings */
   --dim: #56524a; /* secondary text */
   --faint: #6f6a61; /* small meta text */
   --navy: #24385f; /* links, buttons, active states */
   --live: #2b7468; /* "open to opportunities" dot only */
+  --shelf: #dccdb2; /* bookshelf board */
+  --shelf-edge: #c4b292; /* front lip of board */
+  --spine: #f6f1e4;
+  --spine-edge: #e2d9c4;
   --radius: 10px;
   color-scheme: light;
 }
@@ -162,6 +166,54 @@
 
   .text-link {
     @apply inline-flex items-center gap-1.5 text-[0.9375rem] font-medium text-ink transition-colors hover:text-navy;
+  }
+
+    /* Ivory spine. --type (set inline) colors the top cap and the bottom band */
+  .spine {
+    background: var(--spine);
+    border: 1px solid var(--spine-edge);
+    box-shadow:
+      inset 2px 0 0 rgb(255 255 255 / 0.7),
+      inset -2px 0 0 rgb(0 0 0 / 0.04),
+      0 1px 2px rgb(31 29 26 / 0.12);
+  }
+  .spine::before,
+  .spine::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    background: var(--type);
+  }
+  .spine::before {
+    top: -1px;
+    height: 9px;
+    border-radius: 3px 3px 0 0;
+  }
+  .spine::after {
+    bottom: 32px;
+    height: 3px;
+  }
+
+  /* Little triangle above the hovered or focused book */
+  .spine-marker {
+    position: absolute;
+    left: 50%;
+    top: -24px;
+    translate: -50% 0;
+    border-inline: 8px solid transparent;
+    border-top: 11px solid var(--type);
+    transition: opacity 150ms;
+  }
+
+  /* Gold foil band on featured projects */
+  .spine-foil {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    height: 5px;
+    background: linear-gradient(90deg, #b8913c, #ecd38a 50%, #b8913c);
   }
 }
 
