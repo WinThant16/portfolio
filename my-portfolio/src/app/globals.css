@@ -1,225 +1,249 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
-
 /*
   Light, newsprint-like palette. The accent is the navy from the
   pixel-room GIF in the hero, so the page and the GIF belong together.
   All text colors pass WCAG AA on both paper and panel.
 */
 @theme inline {
-  --color-paper: var(--paper);
-  --color-panel: var(--panel);
-  --color-line: var(--line);
-  --color-ink: var(--ink);
-  --color-dim: var(--dim);
-  --color-faint: var(--faint);
-  --color-navy: var(--navy);
-  --color-live: var(--live);
+	--color-paper: var(--paper);
+	--color-panel: var(--panel);
+	--color-line: var(--line);
+	--color-ink: var(--ink);
+	--color-dim: var(--dim);
+	--color-faint: var(--faint);
+	--color-navy: var(--navy);
+	--color-live: var(--live);
 
-  /* shadcn tokens mapped onto the palette so ui/* components match */
-  --color-background: var(--paper);
-  --color-foreground: var(--ink);
-  --color-card: var(--panel);
-  --color-card-foreground: var(--ink);
-  --color-popover: var(--paper);
-  --color-popover-foreground: var(--ink);
-  --color-primary: var(--navy);
-  --color-primary-foreground: var(--paper);
-  --color-secondary: var(--panel);
-  --color-secondary-foreground: var(--ink);
-  --color-muted: var(--panel);
-  --color-muted-foreground: var(--dim);
-  --color-accent: var(--panel);
-  --color-accent-foreground: var(--ink);
-  --color-destructive: oklch(0.55 0.2 27);
-  --color-border: var(--line);
-  --color-input: var(--line);
-  --color-ring: var(--navy);
+	/* shadcn tokens mapped onto the palette so ui/* components match */
+	--color-background: var(--paper);
+	--color-foreground: var(--ink);
+	--color-card: var(--panel);
+	--color-card-foreground: var(--ink);
+	--color-popover: var(--paper);
+	--color-popover-foreground: var(--ink);
+	--color-primary: var(--navy);
+	--color-primary-foreground: var(--paper);
+	--color-secondary: var(--panel);
+	--color-secondary-foreground: var(--ink);
+	--color-muted: var(--panel);
+	--color-muted-foreground: var(--dim);
+	--color-accent: var(--panel);
+	--color-accent-foreground: var(--ink);
+	--color-destructive: oklch(0.55 0.2 27);
+	--color-border: var(--line);
+	--color-input: var(--line);
+	--color-ring: var(--navy);
 
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+	--font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+	--font-display: var(--font-newsreader), ui-serif, Georgia, serif;
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-xl: 14px;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 10px;
+	--radius-xl: 14px;
 }
 
 :root {
-  --paper: #fffdf9; /* page: warm white, newsprint rather than cream */
-  --panel: #f3eee4; /* raised surfaces, image frames */
-  --line: #847f76; /* rules and borders */
-  --ink: #1f1d1a; /* body text and headings */
-  --dim: #56524a; /* secondary text */
-  --faint: #6f6a61; /* small meta text */
-  --navy: #24385f; /* links, buttons, active states */
-  --live: #2b7468; /* "open to opportunities" dot only */
-  --shelf: #dccdb2; /* bookshelf board */
-  --shelf-edge: #c4b292; /* front lip of board */
-  --spine: #f6f1e4;
-  --spine-edge: #e2d9c4;
-  --radius: 10px;
-  color-scheme: light;
+	--paper: #fffdf9; /* page: warm white, newsprint rather than cream */
+	--panel: #f3eee4; /* raised surfaces, image frames */
+	--line: #847f76; /* rules and borders */
+	--ink: #1f1d1a; /* body text and headings */
+	--dim: #56524a; /* secondary text */
+	--faint: #6f6a61; /* small meta text */
+	--navy: #24385f; /* links, buttons, active states */
+	--live: #2b7468; /* "open to opportunities" dot only */
+	--shelf: #dccdb2; /* bookshelf board */
+	--shelf-edge: #c4b292; /* front lip of board */
+	--spine: #f6f1e4;
+	--spine-edge: #e2d9c4;
+	--radius: 10px;
+	color-scheme: light;
 }
 
 @layer base {
-  * {
-    @apply border-line;
-  }
+	* {
+		@apply border-line;
+	}
 
-  html {
-    -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
-  }
+	html {
+		-webkit-text-size-adjust: 100%;
+		scroll-behavior: smooth;
+	}
 
-  body {
-    @apply bg-paper text-ink font-sans antialiased;
-    font-size: 1.0625rem;
-    line-height: 1.65;
-    font-feature-settings: "ss01" on;
-  }
+	body {
+		@apply bg-paper text-ink font-sans antialiased;
+		font-size: 1.0625rem;
+		line-height: 1.65;
+		font-feature-settings: "ss01" on;
+	}
 
-  /* avoids one-word last lines in paragraphs */
-  p,
-  li,
-  blockquote {
-    text-wrap: pretty;
-  }
+	/* avoids one-word last lines in paragraphs */
+	p,
+	li,
+	blockquote {
+		text-wrap: pretty;
+	}
 
-  ::selection {
-    background: var(--navy);
-    color: var(--paper);
-  }
+	::selection {
+		background: var(--navy);
+		color: var(--paper);
+	}
 
-  :focus-visible {
-    outline: 2px solid var(--navy);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
+	:focus-visible {
+		outline: 2px solid var(--navy);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
 }
 
 @layer components {
-  /* One content column for the whole site */
-  .wrap {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
-  }
+	/* One content column for the whole site */
+	.wrap {
+		@apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+	}
 
-  .font-display,
-  .heading-1,
-  .heading-2,
-  .heading-3 {
-    font-family: var(--font-display);
-    font-optical-sizing: auto;
-    font-weight: 500;
-  }
+	.font-display,
+	.heading-1,
+	.heading-2,
+	.heading-3 {
+		font-family: var(--font-display);
+		font-optical-sizing: auto;
+		font-weight: 500;
+	}
 
-  .heading-1 {
-    @apply font-display text-ink;
-    font-size: clamp(2.75rem, 6.5vw, 4.5rem);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
+	.heading-1 {
+		@apply font-display text-ink;
+		font-size: clamp(2.75rem, 6.5vw, 4.5rem);
+		line-height: 1.04;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+	}
 
-  .heading-2 {
-    @apply font-display text-ink;
-    font-size: clamp(1.75rem, 3.2vw, 2.25rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
-  }
+	.heading-2 {
+		@apply font-display text-ink;
+		font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+		line-height: 1.15;
+		letter-spacing: -0.01em;
+		text-wrap: balance;
+	}
 
-  .heading-3 {
-    @apply font-display text-ink;
-    font-size: 1.375rem;
-    line-height: 1.25;
-    text-wrap: balance;
-  }
+	.heading-3 {
+		@apply font-display text-ink;
+		font-size: 1.375rem;
+		line-height: 1.25;
+		text-wrap: balance;
+	}
 
-  .btn {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 text-[0.9375rem] font-medium whitespace-nowrap transition-colors duration-200;
-  }
+	.btn {
+		@apply inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 text-[0.9375rem] font-medium whitespace-nowrap transition-colors duration-200;
+	}
 
-  .btn-primary {
-    @apply bg-navy text-paper hover:bg-[#1a2a4a];
-  }
+	.btn-primary {
+		@apply bg-navy text-paper hover:bg-[#1a2a4a];
+	}
 
-  .btn-line {
-    @apply border border-line text-ink hover:border-dim/50 hover:bg-panel;
-  }
+	.btn-line {
+		@apply border border-line text-ink hover:border-dim/50 hover:bg-panel;
+	}
 
-  .btn-sm {
-    @apply h-9 px-4 text-sm;
-  }
+	.btn-sm {
+		@apply h-9 px-4 text-sm;
+	}
 
-  .link {
-    @apply text-ink underline decoration-faint/50 underline-offset-4 transition-colors hover:text-navy hover:decoration-navy;
-  }
+	.link {
+		@apply text-ink underline decoration-faint/50 underline-offset-4 transition-colors hover:text-navy hover:decoration-navy;
+	}
 
-  .text-link {
-    @apply inline-flex items-center gap-1.5 text-[0.9375rem] font-medium text-ink transition-colors hover:text-navy;
-  }
+	.text-link {
+		@apply inline-flex items-center gap-1.5 text-[0.9375rem] font-medium text-ink transition-colors hover:text-navy;
+	}
 
-    /* Ivory spine. --type (set inline) colors the top cap and the bottom band */
-  .spine {
-    background: var(--spine);
-    border: 1px solid var(--spine-edge);
-    box-shadow:
-      inset 2px 0 0 rgb(255 255 255 / 0.7),
-      inset -2px 0 0 rgb(0 0 0 / 0.04),
-      0 1px 2px rgb(31 29 26 / 0.12);
-  }
-  .spine::before,
-  .spine::after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    right: -1px;
-    background: var(--type);
-  }
-  .spine::before {
-    top: -1px;
-    height: 9px;
-    border-radius: 3px 3px 0 0;
-  }
-  .spine::after {
-    bottom: 32px;
-    height: 3px;
-  }
+	/* Ivory spine. --type (set inline) colors the top cap and the bottom band */
+	.spine {
+		background: var(--spine);
+		border: 1px solid var(--spine-edge);
+		box-shadow:
+			inset 2px 0 0 rgb(255 255 255 / 0.7),
+			inset -2px 0 0 rgb(0 0 0 / 0.04),
+			0 1px 2px rgb(31 29 26 / 0.12);
+	}
+	.spine::before,
+	.spine::after {
+		content: "";
+		position: absolute;
+		left: -1px;
+		right: -1px;
+		background: var(--type);
+	}
+	.spine::before {
+		top: -1px;
+		height: 9px;
+		border-radius: 3px 3px 0 0;
+	}
+	.spine::after {
+		bottom: 32px;
+		height: 3px;
+	}
 
-  /* Little triangle above the hovered or focused book */
-  .spine-marker {
-    position: absolute;
-    left: 50%;
-    top: -24px;
-    translate: -50% 0;
-    border-inline: 8px solid transparent;
-    border-top: 11px solid var(--type);
-    transition: opacity 150ms;
-  }
+	/* Little triangle above the hovered or focused book */
+	.spine-marker {
+		position: absolute;
+		left: 50%;
+		top: -24px;
+		translate: -50% 0;
+		border-inline: 8px solid transparent;
+		border-top: 11px solid var(--type);
+		transition: opacity 150ms;
+	}
 
-  /* Gold foil band on featured projects */
-  .spine-foil {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 40px;
-    height: 5px;
-    background: linear-gradient(90deg, #b8913c, #ecd38a 50%, #b8913c);
-  }
+	/* Gold foil band on featured projects */
+	.spine-foil {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 40px;
+		height: 5px;
+		background: linear-gradient(90deg, #b8913c, #ecd38a 50%, #b8913c);
+	}
+}
+
+/* Hero entrance. Pure CSS, so it runs on first paint instead of waiting for JS */
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+}
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: scale(0.985);
+	}
+}
+.rise {
+	animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s) both;
+}
+.rise-in {
+	animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s) both;
+}
+@media (prefers-reduced-motion: reduce) {
+	.rise,
+	.rise-in {
+		animation: none;
+	}
 }
 
 /* Kept so any old pages using it still lay out correctly */
 @layer utilities {
-  .container-max {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
-  }
+	.container-max {
+		@apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+	}
 }
