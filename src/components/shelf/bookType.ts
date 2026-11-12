@@ -1,16 +1,12 @@
-import { Box, Brain, CodeXml, Cpu, Database, Microscope, Server, type LucideIcon } from "lucide-react";
+import { Brain, CodeXml, Cpu, Waypoints, type LucideIcon } from "lucide-react";
 import type { Project, ProjectCategory } from "@/data/types";
 
 /* Each category is a book "type": spine color, a light tint, and an icon */
 export const BOOK_TYPES: Record<ProjectCategory, { color: string; tint: string; Icon: LucideIcon }> = {
 	Web: { color: "#2f4f86", tint: "#eef2f8", Icon: CodeXml },
-	"AI/ML": { color: "#9c3535", tint: "#f8eeec", Icon: Brain },
-	Algorithms: { color: "#5b4691", tint: "#f1eef8", Icon: Cpu },
-	Graphics: { color: "#2c6f8e", tint: "#ecf4f7", Icon: Box },
-	Data: { color: "#a06d18", tint: "#f8f2e6", Icon: Database },
-	Embedded: { color: "#466f37", tint: "#eef4ea", Icon: Cpu },
-	Research: { color: "#2b6b60", tint: "#ebf4f2", Icon: Microscope },
-	"Database Systems": { color: "#505a67", tint: "#eff1f3", Icon: Server },
+	"AI & Data": { color: "#9c3535", tint: "#f8eeec", Icon: Brain },
+	Algorithms: { color: "#5b4691", tint: "#f1eef8", Icon: Waypoints },
+	Systems: { color: "#2b6b60", tint: "#ebf4f2", Icon: Cpu },
 };
 
 export const BOOK_HEIGHT = 340;

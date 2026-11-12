@@ -17,17 +17,7 @@ export const metadata: Metadata = {
 };
 
 type Category = "All" | ProjectCategory;
-const categories: Category[] = [
-	"All",
-	"Web",
-	"AI/ML",
-	"Algorithms",
-	"Graphics",
-	"Data",
-	"Embedded",
-	"Research",
-	"Database Systems",
-];
+const categories: Category[] = ["All", "Web", "AI & Data", "Algorithms", "Systems"];
 
 /* --------------------------------- Page --------------------------------- */
 export default function ProjectsPage() {

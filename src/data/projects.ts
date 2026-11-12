@@ -1,6 +1,44 @@
 import type { Project } from "./types";
 
 export const projects: Project[] = [
+	// Shelf order = set numbers: best work first, then everything else newest first
+	{
+		id: "wise-wish-metc",
+		title: "Wise Wish Marine Engineering Training Centre",
+
+		dates: {
+			start: "2026-01",
+			end: "2026-06",
+		},
+
+		status: "completed",
+		category: "Web",
+
+		summary:
+			"Production marketing and enrollment site for a Myanmar marine training school. Course catalog, News section, and a live per-course intake calendar pulling from Google Sheets via OpenSheet. Built solo and deployed on Cloudflare Workers.",
+
+		highlights: [
+			"Built responsive English and Burmese interfaces using React, TypeScript, Vite, and Tailwind CSS.",
+			"Implemented a Google Sheets-backed rolling intake calendar that can be updated by non-technical staff.",
+			"Deployed the production site through Cloudflare Workers with automated builds and custom DNS.",
+		],
+
+		technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Google Sheets", "Cloudflare Workers"],
+
+		links: [
+			{
+				type: "live",
+				url: "https://wisewishmetc.com",
+			},
+		],
+
+		portfolio: {
+			spineTitle: "Wise Wish Website",
+			image: "/wisewishsite.png",
+			featured: true,
+		},
+	},
+
 	{
 		id: "dota-draft-winprob",
 		title: "Dota 2 Draft Win-Probability Model",
@@ -11,7 +49,7 @@ export const projects: Project[] = [
 		},
 
 		status: "in-progress",
-		category: "AI/ML",
+		category: "AI & Data",
 
 		summary:
 			"Machine-learning pipeline predicting match outcomes from hero drafts using 300K+ high-ranked Dota 2 matches.",
@@ -114,6 +152,48 @@ export const projects: Project[] = [
 	},
 
 	{
+		id: "container-ship-load-planner",
+		title: "Container Ship Load Planner",
+
+		dates: {
+			start: "2024-09",
+			end: "2024-12",
+		},
+
+		status: "completed",
+		category: "Web",
+
+		summary:
+			"Full-stack port-logistics planner built with a team: generates step-by-step container load, unload, and ship-balancing sequences under movement-cost and legal-balance constraints, shown through a React grid interface. Backed by an Express REST API and server-side computation I built, with action logging and updated-manifest output.",
+
+		highlights: [
+			"Built a multi-step React workflow backed by an Express REST API.",
+			"Designed REST endpoints for manifest ingestion, load/unload planning, and balance computation.",
+			"Implemented server-side move generation, action logging, and updated-manifest output.",
+		],
+
+		technologies: ["React", "Node.js", "Express", "JavaScript", "REST API", "Search/Optimization"],
+
+		teamProject: true,
+		contribution:
+			"Worked on the full-stack application and implemented the REST API and server-side planning workflow consumed by the React client.",
+
+		links: [
+			{
+				type: "github",
+				url: "https://github.com/WinThant16/KawrgoJumper",
+			},
+		],
+
+		portfolio: {
+			spineTitle: "AI Ship Load Planner",
+			image: "/kawrgojumper.png",
+			imageMode: "contain",
+			featured: true,
+		},
+	},
+
+	{
 		id: "poisson-surface-recon",
 		title: "Poisson Surface Reconstruction",
 
@@ -123,7 +203,7 @@ export const projects: Project[] = [
 		},
 
 		status: "completed",
-		category: "Graphics",
+		category: "Systems",
 
 		summary:
 			"Screened Poisson reconstruction from oriented point clouds on a voxel grid with an FFT solve, trilinear normal splatting, finite-difference divergence, and marching cubes. F-score 0.9999 on the Stanford bunny at depth 7, benchmarked against Alpha Shape and Ball Pivoting.",
@@ -150,43 +230,6 @@ export const projects: Project[] = [
 		portfolio: {
 			spineTitle: "Poisson Surface Reconstruction",
 			image: "/surface-reconstruction.jpg",
-		},
-	},
-
-	{
-		id: "wise-wish-metc",
-		title: "Wise Wish Marine Engineering Training Centre",
-
-		dates: {
-			start: "2026-01",
-			end: "2026-06",
-		},
-
-		status: "completed",
-		category: "Web",
-
-		summary:
-			"Production marketing and enrollment site for a Myanmar marine training school. Course catalog, News section, and a live per-course intake calendar pulling from Google Sheets via OpenSheet. Built solo and deployed on Cloudflare Workers.",
-
-		highlights: [
-			"Built responsive English and Burmese interfaces using React, TypeScript, Vite, and Tailwind CSS.",
-			"Implemented a Google Sheets-backed rolling intake calendar that can be updated by non-technical staff.",
-			"Deployed the production site through Cloudflare Workers with automated builds and custom DNS.",
-		],
-
-		technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Google Sheets", "Cloudflare Workers"],
-
-		links: [
-			{
-				type: "live",
-				url: "https://wisewishmetc.com",
-			},
-		],
-
-		portfolio: {
-			spineTitle: "Wise Wish Website",
-			image: "/wisewishsite.png",
-			featured: true,
 		},
 	},
 
@@ -231,48 +274,6 @@ export const projects: Project[] = [
 	},
 
 	{
-		id: "container-ship-load-planner",
-		title: "Container Ship Load Planner",
-
-		dates: {
-			start: "2024-09",
-			end: "2024-12",
-		},
-
-		status: "completed",
-		category: "Web",
-
-		summary:
-			"Full-stack port-logistics planner built with a team: generates step-by-step container load, unload, and ship-balancing sequences under movement-cost and legal-balance constraints, shown through a React grid interface. Backed by an Express REST API and server-side computation I built, with action logging and updated-manifest output.",
-
-		highlights: [
-			"Built a multi-step React workflow backed by an Express REST API.",
-			"Designed REST endpoints for manifest ingestion, load/unload planning, and balance computation.",
-			"Implemented server-side move generation, action logging, and updated-manifest output.",
-		],
-
-		technologies: ["React", "Node.js", "Express", "JavaScript", "REST API", "Search/Optimization"],
-
-		teamProject: true,
-		contribution:
-			"Worked on the full-stack application and implemented the REST API and server-side planning workflow consumed by the React client.",
-
-		links: [
-			{
-				type: "github",
-				url: "https://github.com/WinThant16/KawrgoJumper",
-			},
-		],
-
-		portfolio: {
-			spineTitle: "AI Ship Load Planner",
-			image: "/kawrgojumper.png",
-			imageMode: "contain",
-			featured: true,
-		},
-	},
-
-	{
 		id: "genai-higher-ed",
 		title: "Generative AI in Higher Education (Honors Capstone)",
 
@@ -282,7 +283,7 @@ export const projects: Project[] = [
 		},
 
 		status: "completed",
-		category: "Research",
+		category: "AI & Data",
 
 		summary:
 			"Honors capstone studying decision making preferences and their association with student use of generative AI in higher education.",
@@ -364,7 +365,7 @@ export const projects: Project[] = [
 		},
 
 		status: "completed",
-		category: "Embedded",
+		category: "Systems",
 
 		summary:
 			"Arduino-based Flappy Bird-style game on Uno R3 with TFT LCD, buzzer effects, scoring/collision logic in C.",
@@ -390,38 +391,6 @@ export const projects: Project[] = [
 	},
 
 	{
-		id: "ucr-chatroom",
-		title: "UCR Chatroom",
-
-		dates: {
-			start: "2024-04",
-			end: "2024-06",
-		},
-
-		status: "completed",
-		category: "Database Systems",
-
-		summary:
-			"Collaborative chatroom app built with classmates. Supports Google login, private rooms with access keys, nickname support, and persistent chatrooms stored via MongoDB. Users can message in public or private rooms after authentication.",
-
-		highlights: [
-			"Implemented Google authentication and persistent chatrooms.",
-			"Supported public rooms, private rooms with access keys, and user nicknames.",
-		],
-
-		technologies: ["Node.js", "Express", "MongoDB", "Firebase Auth"],
-
-		teamProject: true,
-
-		links: [],
-
-		portfolio: {
-			spineTitle: "UCR Chatroom",
-			image: null,
-		},
-	},
-
-	{
 		id: "crime-analysis",
 		title: "Big Data Crime Analysis",
 
@@ -431,7 +400,7 @@ export const projects: Project[] = [
 		},
 
 		status: "completed",
-		category: "Data",
+		category: "AI & Data",
 
 		summary:
 			"Big data analysis of crime records from five U.S. cities: standardized in PySpark, geocoded 22M+ records to ZIP codes, and joined with Census demographics to compare offense trends across neighborhoods.",
@@ -460,6 +429,38 @@ export const projects: Project[] = [
 		portfolio: {
 			spineTitle: "Crime Big Data Analysis",
 			image: "/crdatanalysis.png",
+		},
+	},
+
+	{
+		id: "ucr-chatroom",
+		title: "UCR Chatroom",
+
+		dates: {
+			start: "2024-04",
+			end: "2024-06",
+		},
+
+		status: "completed",
+		category: "Systems",
+
+		summary:
+			"Collaborative chatroom app built with classmates. Supports Google login, private rooms with access keys, nickname support, and persistent chatrooms stored via MongoDB. Users can message in public or private rooms after authentication.",
+
+		highlights: [
+			"Implemented Google authentication and persistent chatrooms.",
+			"Supported public rooms, private rooms with access keys, and user nicknames.",
+		],
+
+		technologies: ["Node.js", "Express", "MongoDB", "Firebase Auth"],
+
+		teamProject: true,
+
+		links: [],
+
+		portfolio: {
+			spineTitle: "UCR Chatroom",
+			image: null,
 		},
 	},
 ];

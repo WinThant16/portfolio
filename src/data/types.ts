@@ -32,8 +32,7 @@ export type Experience = {
 
 export type ProjectStatus = "completed" | "in-progress";
 
-export type ProjectCategory =
-	"Web" | "AI/ML" | "Algorithms" | "Graphics" | "Data" | "Embedded" | "Research" | "Database Systems";
+export type ProjectCategory = "Web" | "AI & Data" | "Algorithms" | "Systems";
 
 export type Project = {
 	id: string;
