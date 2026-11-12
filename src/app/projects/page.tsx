@@ -8,7 +8,6 @@ import type { ProjectCategory } from "@/data/types";
 import { Bookshelf } from "@/components/shelf/Bookshelf";
 import { ProjectList } from "@/components/shelf/ProjectList";
 import { ProjectViews, ViewToggle } from "@/components/shelf/ProjectViews";
-import { View } from "lucide-react";
 
 /* --------------------------------- SEO --------------------------------- */
 export const metadata: Metadata = {
