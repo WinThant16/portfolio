@@ -79,9 +79,9 @@ export default function Header() {
 							</Link>
 						);
 					})}
-					<Link href="/resume" className="btn btn-line btn-sm ml-3">
-						Resume
-					</Link>
+					<a href="/resume" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+						View Resume
+					</a>
 				</nav>
 
 				<Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -94,11 +94,7 @@ export default function Header() {
 					<SheetContent side="right" className="w-full max-w-xs border-l border-line bg-paper p-0">
 						<SheetTitle className="sr-only">Navigation</SheetTitle>
 						<nav aria-label="Mobile" className="flex flex-col px-6 pt-16">
-							{[
-								{ href: "/", label: "Home" },
-								...navItems,
-								{ href: "/resume", label: "Resume" },
-							].map((item) => {
+							{[{ href: "/", label: "Home" }, ...navItems].map((item) => {
 								const active = isActive(item.href);
 								return (
 									<Link
@@ -115,6 +111,15 @@ export default function Header() {
 									</Link>
 								);
 							})}
+							<a
+								href="/resume"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => setIsOpen(false)}
+								className="font-display border-b border-line py-4 text-2xl text-ink transition-colors hover:text-navy"
+							>
+								Resume
+							</a>
 						</nav>
 					</SheetContent>
 				</Sheet>

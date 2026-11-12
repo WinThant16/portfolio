@@ -24,31 +24,36 @@ export function BookDetail({ project: p, number, onPrev, onNext }: Props) {
 			<div className="overflow-y-auto p-6 sm:p-8">
 				<ProjectMedia project={p} className="aspect-[2/1]" />
 
-				<p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dim">
-					<span className="tabular-nums">No. {pad3(number)}</span>
-					<span className="rounded-full px-2.5 py-0.5 text-xs" style={{ background: tint, color }}>
-						{p.category}
-					</span>
-					<span>{formatProjectTimeline(p.dates)}</span>
-					{p.status === "in-progress" && <span className="text-live">In progress</span>}
-					{p.teamProject && <span>Team project</span>}
-				</p>
+				<div className="mt-6 md:mt-0">
+					<p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dim">
+						<span className="tabular-nums">No. {pad3(number)}</span>
+						<span
+							className="rounded-full px-2.5 py-0.5 text-xs"
+							style={{ background: tint, color }}
+						>
+							{p.category}
+						</span>
+						<span>{formatProjectTimeline(p.dates)}</span>
+						{p.status === "in-progress" && <span className="text-live">In progress</span>}
+						{p.teamProject && <span>Team project</span>}
+					</p>
 
-				<Dialog.Title className="heading-2 mt-3">{p.title}</Dialog.Title>
-				<Dialog.Description className="mt-3 text-dim">{p.summary}</Dialog.Description>
+					<Dialog.Title className="heading-2 mt-3">{p.title}</Dialog.Title>
+					<Dialog.Description className="mt-3 text-dim">{p.summary}</Dialog.Description>
 
-				{p.highlights.length > 0 && (
-					<ul className="mt-5 list-disc space-y-1.5 pl-5 text-[0.9375rem] marker:text-faint">
-						{p.highlights.map((h) => (
-							<li key={h}>{h}</li>
-						))}
-					</ul>
-				)}
+					{p.highlights.length > 0 && (
+						<ul className="mt-5 list-disc space-y-1.5 pl-5 text-[0.9375rem] marker:text-faint">
+							{p.highlights.map((h) => (
+								<li key={h}>{h}</li>
+							))}
+						</ul>
+					)}
 
-				{p.contribution && <p className="mt-4 text-sm text-dim">My part: {p.contribution}</p>}
+					{p.contribution && <p className="mt-4 text-sm text-dim">My part: {p.contribution}</p>}
 
-				<p className="mt-5 text-sm text-faint">{p.technologies.join(", ")}</p>
-				<ProjectLinks links={p.links} className="mt-5" />
+					<p className="mt-5 text-sm text-faint">{p.technologies.join(", ")}</p>
+					<ProjectLinks links={p.links} className="mt-5" />
+				</div>
 			</div>
 
 			{/* Footer: flip to the neighboring books, or put this one back */}

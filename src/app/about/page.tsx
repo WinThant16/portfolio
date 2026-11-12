@@ -48,9 +48,14 @@ export default function AboutPage() {
 						<Link href="/contact" className="btn btn-primary">
 							Let&apos;s work together
 						</Link>
-						<Link href="/resume" className="btn btn-line">
+						<a
+							href="/resume"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="btn btn-primary"
+						>
 							View Resume
-						</Link>
+						</a>
 					</div>
 				</div>
 
@@ -96,9 +101,14 @@ export default function AboutPage() {
 						<Link href="/contact" className="btn btn-primary">
 							Get in touch
 						</Link>
-						<Link href="/resume" className="btn btn-line">
-							View resume
-						</Link>
+						<a
+							href="/resume"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="btn btn-primary"
+						>
+							View Resume
+						</a>
 					</div>
 				</div>
 			</section>

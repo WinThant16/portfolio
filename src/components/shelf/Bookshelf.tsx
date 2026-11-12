@@ -121,7 +121,7 @@ export function Bookshelf({ projects, numbers }: Props) {
 										y: { duration: LIFT_MS / 1000, ease: "easeOut" },
 										layout: morph,
 									}}
-									className="spine relative flex cursor-pointer flex-col items-center justify-between rounded-[3px] pt-4 pb-2.5 text-ink focus-visible:outline-offset-4"
+									className="spine relative flex cursor-pointer flex-col items-center rounded-[3px] pt-4 pb-2.5 text-ink focus-visible:outline-offset-4"
 									style={
 										{
 											width: px(width),
@@ -137,7 +137,7 @@ export function Bookshelf({ projects, numbers }: Props) {
 									</motion.span>
 									<motion.span
 										layout
-										className="font-display min-h-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.8125rem] leading-none sm:text-[0.9375rem] [writing-mode:vertical-rl] rotate-180"
+										className="mt-auto mb-6 font-display min-h-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.8125rem] leading-none sm:text-[0.9375rem] [writing-mode:vertical-rl] rotate-180"
 										style={{ maxHeight: px(height - 100) }} // stays clear of the printed bands
 									>
 										{spineLabel(p)}
@@ -226,7 +226,7 @@ export function Bookshelf({ projects, numbers }: Props) {
 									key={current.id}
 									layoutId={`book-${current.id}`}
 									transition={{ layout: morph }}
-									className="pointer-events-auto relative w-full max-w-[760px] bg-[var(--spine)] p-0 pl-3.5 shadow-2xl"
+									className="pointer-events-auto relative w-full max-w-[960px] bg-[var(--spine)] p-0 pl-3.5 shadow-2xl"
 									style={{ borderRadius: 10 }}
 								>
 									<span

@@ -31,9 +31,14 @@ export function HeroSection() {
 					</div>
 
 					<div className="rise mt-9 flex flex-wrap items-center gap-3" style={delay(0.21)}>
-						<Link href="/resume" className="btn btn-primary">
+						<a
+							href="/resume"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="btn btn-primary"
+						>
 							View Resume
-						</Link>
+						</a>
 						<Link href="/contact" className="btn btn-line">
 							Get in Touch
 						</Link>

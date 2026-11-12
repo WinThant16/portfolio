@@ -41,13 +41,13 @@ export function formatProjectTimeline(dates: DateRange) {
 	const start = parseYearMonth(dates.start);
 
 	if (!dates.end) {
-		return `${MONTHS[start.month - 1]} - Present`;
+		return `${start.label} - Present`;
 	}
 
 	const end = parseYearMonth(dates.end);
 
 	if (start.year === end.year) {
-		return `${MONTHS[start.month - 1]} - ${MONTHS[end.month - 1]}`;
+		return `${MONTHS[start.month - 1]} - ${end.label}`;
 	}
 
 	return `${start.label} - ${end.label}`;
