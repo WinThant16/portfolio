@@ -1,3 +1,0 @@
-﻿# Win Thant Tin Han - portfolio
-Next.js (app router) - Tailwind v4 - shadcn-ready - Dark mode
-
